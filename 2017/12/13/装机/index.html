@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.5" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.5">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.5">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.5">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.5" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.5',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  
+  <meta name="keywords" content="学习笔记," />
+
+
+<meta name="description" content="装机时候一些常用软件的安装 iTerm oh-my-zsh brew pip virtualenv, virtualenvwrapper docker Atom, PyCharm mysql, redis  1. iTerm1.1 下载安装    去 官网 下载最新版本, 并安装 1.2 set Transparency   1.3 Set Font Style(下载、安装库字体库) 1.3.1">
+<meta name="keywords" content="学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="装机">
+<meta property="og:url" content="http://wudizhangzhi.github.io/2017/12/13/装机/index.html">
+<meta property="og:site_name" content="月牙天冲">
+<meta property="og:description" content="装机时候一些常用软件的安装 iTerm oh-my-zsh brew pip virtualenv, virtualenvwrapper docker Atom, PyCharm mysql, redis  1. iTerm1.1 下载安装    去 官网 下载最新版本, 并安装 1.2 set Transparency   1.3 Set Font Style(下载、安装库字体库) 1.3.1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://wudizhangzhi.github.io/2017/12/13/装机/装机/transparency.jpg">
+<meta property="og:image" content="http://wudizhangzhi.github.io/2017/12/13/装机/装机/change_font.jpg">
+<meta property="og:image" content="http://wudizhangzhi.github.io/2017/12/13/装机/装机/theme.jpg">
+<meta property="og:updated_time" content="2018-03-13T07:27:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="装机">
+<meta name="twitter:description" content="装机时候一些常用软件的安装 iTerm oh-my-zsh brew pip virtualenv, virtualenvwrapper docker Atom, PyCharm mysql, redis  1. iTerm1.1 下载安装    去 官网 下载最新版本, 并安装 1.2 set Transparency   1.3 Set Font Style(下载、安装库字体库) 1.3.1">
+<meta name="twitter:image" content="http://wudizhangzhi.github.io/2017/12/13/装机/装机/transparency.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="月牙天冲" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://wudizhangzhi.github.io/2017/12/13/装机/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+  <title>装机 | 月牙天冲</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+  
+    <script type="text/javascript" color="0,0,0" opacity='0.5' zIndex="-1" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">月牙天冲</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wudizhangzhi.github.io/2017/12/13/装机/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="月牙天冲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">装机</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-13T15:04:46+08:00">2017-12-13</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/13/装机/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/13/装机/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/13/装机/" class="leancloud_visitors" data-flag-title="装机">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <html><head></head><body><h1 id="装机时候一些常用软件的安装"><a href="#装机时候一些常用软件的安装" class="headerlink" title="装机时候一些常用软件的安装"></a>装机时候一些常用软件的安装</h1><ul>
+<li>iTerm</li>
+<li>oh-my-zsh</li>
+<li>brew</li>
+<li>pip</li>
+<li>virtualenv, virtualenvwrapper</li>
+<li>docker</li>
+<li>Atom, PyCharm</li>
+<li>mysql, redis</li>
+</ul>
+<h2 id="1-iTerm"><a href="#1-iTerm" class="headerlink" title="1. iTerm"></a>1. iTerm</h2><h3 id="1-1-下载安装"><a href="#1-1-下载安装" class="headerlink" title="1.1 下载安装"></a>1.1 下载安装</h3><p>    去 <a href="http://www.iterm2.com/" target="_blank" rel="noopener">官网</a> 下载最新版本, 并安装</p>
+<h3 id="1-2-set-Transparency"><a href="#1-2-set-Transparency" class="headerlink" title="1.2 set Transparency"></a>1.2 set Transparency</h3><p>  <img src="装机/transparency.jpg" alt="set-transparency"></p>
+<h3 id="1-3-Set-Font-Style-下载、安装库字体库"><a href="#1-3-Set-Font-Style-下载、安装库字体库" class="headerlink" title="1.3 Set Font Style(下载、安装库字体库)"></a>1.3 Set Font Style(下载、安装库字体库)</h3><ul>
+<li><p>1.3.1 拉取工程</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> https://github.com/powerline/fonts</span></span><br><span class="line">git clone git@github.com:powerline/fonts.git</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>1.3.2 安装字体</p>
+<p>执行./install.sh指令安装所有Powerline字体<br>安装完成后提示所有字体均已下载到/Users/superdanny/Library/Fonts路径下</p>
+</li>
+<li><p>1.3.3 修改iterm设置</p>
+<p><img src="装机/change_font.jpg" alt="change_font"></p>
+</li>
+</ul>
+<h3 id="1-4-配色方案"><a href="#1-4-配色方案" class="headerlink" title="1.4 配色方案"></a>1.4 配色方案</h3><ul>
+<li><p><a href="git@github.com:altercation/solarized.git">安装配色方案</a></p>
+</li>
+<li><p>配置配色方案</p>
+<p><img src="装机/theme.jpg" alt="theme"></p>
+</li>
+</ul>
+<h2 id="2-oh-my-zsh"><a href="#2-oh-my-zsh" class="headerlink" title="2. oh-my-zsh"></a>2. oh-my-zsh</h2><h3 id="2-1-Install-oh-my-zsh"><a href="#2-1-Install-oh-my-zsh" class="headerlink" title="2.1 Install oh-my-zsh"></a>2.1 Install oh-my-zsh</h3>  <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> via curl</span></span><br><span class="line">sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"</span><br><span class="line"><span class="meta">#</span><span class="bash"> via wget</span></span><br><span class="line">sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="2-2-切换系统使用的shell"><a href="#2-2-切换系统使用的shell" class="headerlink" title="2.2 切换系统使用的shell"></a>2.2 切换系统使用的shell</h3><ul>
+<li><p>通过 <strong><em>cat /etc/shells</em></strong> 命令可以查看当前系统可以使用哪些shell</p>
+</li>
+<li><p>通过 <strong><em>echo $SHELL</em></strong> 命令可以查看我们当前正在使用的shell</p>
+</li>
+<li><p>如果当前的shell不是zsh，我们可以通过 <strong><em>chsh -s /bin/zsh</em></strong>  命令可以将shell切换为shell之zsh，终端重启之后即可生效。</p>
+</li>
+</ul>
+<h3 id="2-3-使用主题-agnoster"><a href="#2-3-使用主题-agnoster" class="headerlink" title="2.3 使用主题(agnoster)"></a>2.3 使用主题(agnoster)</h3><ul>
+<li><p>下载<a href="https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor" target="_blank" rel="noopener">agnoster</a>主题</p>
+<p>到下载的工程里面运行install文件,主题将安装到~/.oh-my-zsh/themes目录下</p>
+</li>
+<li><p>设置该主题</p>
+<p>进入~/.zshrc打开.zshrc文件，然后将ZSH_THEME后面的字段改为agnoster。ZSH_THEME=”agnoster”（agnoster即为要设置的主题）</p>
+</li>
+</ul>
+<h3 id="2-4-语法高亮-zsh-syntax-highlighting"><a href="#2-4-语法高亮-zsh-syntax-highlighting" class="headerlink" title="2.4 语法高亮(zsh-syntax-highlighting)"></a>2.4 语法高亮(zsh-syntax-highlighting)</h3><ul>
+<li><p>cd到.zshrc所在目录</p>
+</li>
+<li><p>执行指令将工程克隆到当前目录</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">git clone git://github.com/zsh-users/zsh-syntax-highlighting.git</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>打开.zshrc文件，在最后添加下面内容</p>
+<p>  plugins=(git zsh-syntax-highlighting)</p>
+<p>  保存文件。</p>
+</li>
+</ul>
+</body></html>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/11/Upload-Python-Package/" rel="next" title="Upload Python Package">
+                <i class="fa fa-chevron-left"></i> Upload Python Package
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/20/python-cookbook-第二章-字符串和文本/" rel="prev" title="python-cookbook 第二章:字符串和文本">
+                python-cookbook 第二章:字符串和文本 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="月牙天冲" />
+            
+              <p class="site-author-name" itemprop="name">月牙天冲</p>
+              <p class="site-description motion-element" itemprop="description">月牙天冲在 Github 上的个人博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yourname" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#装机时候一些常用软件的安装"><span class="nav-number">1.</span> <span class="nav-text">装机时候一些常用软件的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-iTerm"><span class="nav-number">1.1.</span> <span class="nav-text">1. iTerm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-下载安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 下载安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-set-Transparency"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 set Transparency</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Set-Font-Style-下载、安装库字体库"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Set Font Style(下载、安装库字体库)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-配色方案"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 配色方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-oh-my-zsh"><span class="nav-number">1.2.</span> <span class="nav-text">2. oh-my-zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Install-oh-my-zsh"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Install oh-my-zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-切换系统使用的shell"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 切换系统使用的shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-使用主题-agnoster"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 使用主题(agnoster)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-语法高亮-zsh-syntax-highlighting"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 语法高亮(zsh-syntax-highlighting)</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.0.5</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.5"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.5"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.5"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.5"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.5"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.5"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.5"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz',
+        appKey: 'DIuUso0SxwWwS71czjaJBJS6',
+        placeholder: '请在这里输入吐槽...',
+        avatar:'retro',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz", "DIuUso0SxwWwS71czjaJBJS6");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set 'security' option to 'false'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
