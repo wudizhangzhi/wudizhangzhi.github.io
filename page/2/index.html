@@ -252,9 +252,40 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -275,6 +306,448 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wudizhangzhi.github.io/2018/01/09/python中几个get/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="月牙天冲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/09/python中几个get/" itemprop="url">python中几个get</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T10:31:02+08:00">2018-01-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/01/09/python中几个get/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/01/09/python中几个get/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/01/09/python中几个get/" class="leancloud_visitors" data-flag-title="python中几个get">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <html><head></head><body><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dept</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.x = x</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__get__</span><span class="params">(self, instance, owner)</span>:</span></span><br><span class="line">        print(<span class="string">'__get__: instance:{} owner:{}'</span>.format(instance, owner))</span><br><span class="line">        <span class="comment"># if not instance:</span></span><br><span class="line">        <span class="comment">#     return self</span></span><br><span class="line">        <span class="comment"># else:</span></span><br><span class="line">        <span class="comment">#     return instance</span></span><br><span class="line">        super(Dept, self).__get__(instance, owner)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattr__</span><span class="params">(self, item)</span>:</span>  <span class="comment">#</span></span><br><span class="line">        print(<span class="string">'__getattr__: {}'</span>.format(item))</span><br><span class="line">        super(Dept, self).__getattr__(item)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, item)</span>:</span>  <span class="comment"># “_ getitem_”只适用于所有的“[]”运算符；</span></span><br><span class="line">        print(<span class="string">'__getitem__: {}'</span>.format(item))</span><br><span class="line">        super(Dept, self).__getitem__(item)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getattribute__</span><span class="params">(self, item)</span>:</span>  <span class="comment"># “_ getattribute_”只适用于所有的“.”运算符；</span></span><br><span class="line">        print(<span class="string">'__getattribute__: {}'</span>.format(item))</span><br><span class="line">        super(Dept, self).__getattribute__(item)</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="get"><a href="#get" class="headerlink" title="__get__"></a><code>__get__</code></h2><p><code>__get__</code>将对象作为数据描述符</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Company</span>:</span></span><br><span class="line">    dept = Dept(<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">c = Company()</span><br><span class="line">c.dept  <span class="comment"># __get__: instance:<__main__.test2.<locals>.Company object at 0x1059b07f0> owner:<class '__main__.test2.<locals>.Company'></span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="getattribute"><a href="#getattribute" class="headerlink" title="__getattribute__"></a><code>__getattribute__</code></h2><p>适用 ‘.’ 运算符</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">d = Dept(<span class="number">15</span>)</span><br><span class="line">d.x  <span class="comment"># __getattribute__: x</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="getattr"><a href="#getattr" class="headerlink" title="__getattr__"></a><code>__getattr__</code></h2><p>当 <code>__getattribute__</code> 找不到触发</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">d = Dept(<span class="number">15</span>)</span><br><span class="line">d.y  <span class="comment"># __getattribute__: y   __getattr__: y</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="getitem"><a href="#getitem" class="headerlink" title="__getitem__"></a><code>__getitem__</code></h2><p>适用 ‘[]’ 运算符</p>
+<figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">d = Dept(<span class="number">15</span>)</span><br><span class="line">d[<span class="string">'x'</span>]  <span class="comment"># __getitem__: x</span></span><br></pre></td></tr></tbody></table></figure>
+</body></html>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wudizhangzhi.github.io/2017/12/27/Git局域网搭建并自动部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="月牙天冲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/27/Git局域网搭建并自动部署/" itemprop="url">Git局域网搭建并自动部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T11:29:56+08:00">2017-12-27</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/27/Git局域网搭建并自动部署/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/27/Git局域网搭建并自动部署/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/27/Git局域网搭建并自动部署/" class="leancloud_visitors" data-flag-title="Git局域网搭建并自动部署">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <html><head></head><body><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">mkdir sampleproject.git</span><br><span class="line">cd sampleproject.git</span><br><span class="line">git init --bare</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">unset GIT_DIR</span><br><span class="line">DeployPath="/home/taidii/document/document/"</span><br><span class="line">echo "==============================================="</span><br><span class="line">cd $DeployPath</span><br><span class="line">echo "deploying the document web"</span><br><span class="line">git pull origin master</span><br><span class="line">echo "================================================"</span><br></pre></td></tr></tbody></table></figure>
+</body></html>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wudizhangzhi.github.io/2017/12/20/python-cookbook-第四章-迭代器与生成器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="月牙天冲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/20/python-cookbook-第四章-迭代器与生成器/" itemprop="url">python-cookbook 第四章:迭代器与生成器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T21:01:18+08:00">2017-12-20</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/20/python-cookbook-第四章-迭代器与生成器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/20/python-cookbook-第四章-迭代器与生成器/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/12/20/python-cookbook-第四章-迭代器与生成器/" class="leancloud_visitors" data-flag-title="python-cookbook 第四章:迭代器与生成器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <html><head></head><body></body></html>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1069,14 +1542,14 @@
 <li>登录后可以编辑博客的功能</li>
 <li>浏览博客的功能</li>
 </ol>
-<h1 id="GitFlow"><a href="#GitFlow" class="headerlink" title="GitFlow"></a>GitFlow</h1><h2 id="1-概览"><a href="#1-概览" class="headerlink" title="1.概览"></a>1.概览</h2><p><img src="Interns-s-Exercise/gitflow_git.gif" alt="gitflow-git"></p>
+<h1 id="GitFlow"><a href="#GitFlow" class="headerlink" title="GitFlow"></a>GitFlow</h1><h2 id="1-概览"><a href="#1-概览" class="headerlink" title="1.概览"></a>1.概览</h2><p><img src="gitflow_git.gif" alt="gitflow-git"></p>
 <h2 id="2-当前分支master"><a href="#2-当前分支master" class="headerlink" title="2.当前分支master"></a>2.当前分支master</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">git pull --rebase origin master</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="3-第一次开始任务-TDP-xxx，-创建分支-“-”前面可用fix-feature-hotfix-对应修改bug，新需求功能，紧急修复"><a href="#3-第一次开始任务-TDP-xxx，-创建分支-“-”前面可用fix-feature-hotfix-对应修改bug，新需求功能，紧急修复" class="headerlink" title="3.第一次开始任务 TDP-xxx， 创建分支,  “/”前面可用fix, feature, hotfix, 对应修改bug，新需求功能，紧急修复"></a>3.第一次开始任务 TDP-xxx， 创建分支,  “/”前面可用fix, feature, hotfix, 对应修改bug，新需求功能，紧急修复</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">git checkout -b feature/yourname_TDP-xxx</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="4-不是第一次开始任务，切换分支"><a href="#4-不是第一次开始任务，切换分支" class="headerlink" title="4.不是第一次开始任务，切换分支"></a>4.不是第一次开始任务，切换分支</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">git checkout feature/yourname_TDP-xxx</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="5-修改完-提交修改"><a href="#5-修改完-提交修改" class="headerlink" title="5.修改完, 提交修改"></a>5.修改完, 提交修改</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit -m'自己修改的内容的描述'</span><br><span class="line">git push origin feature/yourname_TDP-xxx</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="6-自己本地测试完后线上测试-合并，-merge-切换到-dev分支-并更新dev分支到最新"><a href="#6-自己本地测试完后线上测试-合并，-merge-切换到-dev分支-并更新dev分支到最新" class="headerlink" title="6.自己本地测试完后线上测试,合并， merge, 切换到 dev分支, 并更新dev分支到最新"></a>6.自己本地测试完后线上测试,合并， merge, 切换到 dev分支, 并更新dev分支到最新</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git pull --rebase origin dev</span><br><span class="line">git merge --no-ff feature/yourname_TDP-xxx</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="7-成功后"><a href="#7-成功后" class="headerlink" title="7.成功后"></a>7.成功后</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">git push origin dev</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="8-在dev上查看自己修改是否成功-如果没有问题，在gihub上创建pull-request"><a href="#8-在dev上查看自己修改是否成功-如果没有问题，在gihub上创建pull-request" class="headerlink" title="8.在dev上查看自己修改是否成功, 如果没有问题，在gihub上创建pull request"></a>8.在dev上查看自己修改是否成功, 如果没有问题，在gihub上创建pull request</h2><p><img src="Interns-s-Exercise/gitflow_pullrequest.gif" alt="gitflow-git"></p>
+<h2 id="8-在dev上查看自己修改是否成功-如果没有问题，在gihub上创建pull-request"><a href="#8-在dev上查看自己修改是否成功-如果没有问题，在gihub上创建pull-request" class="headerlink" title="8.在dev上查看自己修改是否成功, 如果没有问题，在gihub上创建pull request"></a>8.在dev上查看自己修改是否成功, 如果没有问题，在gihub上创建pull request</h2><p><img src="gitflow_pullrequest.gif" alt="gitflow-git"></p>
 <h1 id="一些python的练习"><a href="#一些python的练习" class="headerlink" title="一些python的练习"></a>一些python的练习</h1><h2 id="1-Add-Digits"><a href="#1-Add-Digits" class="headerlink" title="1. Add Digits"></a>1. Add Digits</h2><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"> Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">For example:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one digit, return it.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Follow up:</span></span><br><span class="line"><span class="string">Could you do it without any loop/recursion in O(1) runtime?</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addDigits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">      <span class="keyword">pass</span></span><br></pre></td></tr></tbody></table></figure>
 <h3 id="My-solution"><a href="#My-solution" class="headerlink" title="My solution"></a>My solution</h3><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addDigits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">      <span class="keyword">if</span> num==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">      <span class="keyword">return</span> num % <span class="number">9</span> <span class="keyword">if</span> num % <span class="number">9</span> !=<span class="number">0</span> <span class="keyword">else</span> <span class="number">9</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addDigits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">      <span class="keyword">if</span> num==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">      <span class="keyword">return</span> (num - <span class="number">1</span>) % <span class="number">9</span> + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 迭代</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addDigits</span><span class="params">(self, num)</span>:</span></span><br><span class="line">      <span class="keyword">return</span> num <span class="keyword">if</span> num < <span class="number">10</span> <span class="keyword">else</span> self.addDigits(reduce(lambad x,y: int(x) + int(y), list(str(num))))</span><br></pre></td></tr></tbody></table></figure>
 <h2 id="2-array-partition-i"><a href="#2-array-partition-i" class="headerlink" title="2. array partition i"></a>2. array partition i</h2><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"> Given an array of 2n integers, your task is to group these integers</span></span><br><span class="line"><span class="string"> into n pairs of integer, say (a1, b1), (a2, b2), ..., (an, bn)</span></span><br><span class="line"><span class="string"> which makes sum of min(ai, bi) for all i from 1 to n as large as possible.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Example 1:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Input: [1,4,3,2]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Output: 4</span></span><br><span class="line"><span class="string">Explanation: n is 2, and the maximum sum of pairs is 4.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Note:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    n is a positive integer, which is in the range of [1, 10000].</span></span><br><span class="line"><span class="string">    All the integers in the array will be in the range of [-10000, 10000].</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">arrayPairSum</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></tbody></table></figure>
@@ -1457,533 +1930,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wudizhangzhi.github.io/2017/09/15/Reinforcement-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="月牙天冲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月牙天冲">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/15/Reinforcement-Learning/" itemprop="url">Reinforcement Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T17:03:24+08:00">2017-09-15</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/15/Reinforcement-Learning/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/09/15/Reinforcement-Learning/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/09/15/Reinforcement-Learning/" class="leancloud_visitors" data-flag-title="Reinforcement Learning">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <html><head></head><body><h1 id="Q-Learning"><a href="#Q-Learning" class="headerlink" title="Q-Learning"></a>Q-Learning</h1><h2 id="1-主题思想"><a href="#1-主题思想" class="headerlink" title="1.主题思想"></a>1.主题思想</h2><ul>
-<li>1.创建一个Q表。存放所有环境状态(S), 行动(A), 奖励(R), 后续可以根据环境查表。获取奖励最大的行动</li>
-<li>2.初始化环境</li>
-<li>3.获取环境的状态 observation (s)</li>
-<li>4.查Q表获得行动 action (a)</li>
-<li>5.用action 去更新环境, 获得新的状态 observation_ (s_) 和 奖励 reward (r) .得 Q现实 = reward + gamma * Q_max(observation_, action_)。 其中Q_max(observation_, action_)为查Q表获得的下一步最大的奖励的值</li>
-<li>6.用action 去查询Q表。获得 Q估计 = Q(s, a)</li>
-<li>7.error = Q现实 - Q估计</li>
-<li>8.利用梯度下降或者其他activation不断学习，降低error。<br>  Q(s, a) = Q(s, a) + alpha * error</li>
-</ul>
-<h2 id="2-算法"><a href="#2-算法" class="headerlink" title="2.算法"></a>2.算法</h2><p>  <img src="Reinforcement-Learning/Q_learning.png" alt="Q-Learning"></p>
-<h1 id="Sarsa"><a href="#Sarsa" class="headerlink" title="Sarsa"></a>Sarsa</h1><h2 id="1-主题思想-1"><a href="#1-主题思想-1" class="headerlink" title="1.主题思想"></a>1.主题思想</h2><pre><code>* 与Q-Learning类似。但是第5步中获取 Q现实不同。
-  Q-learning是查询Q表获取最大的奖励reward
-  sarsa是将环境代入Q表和算法中获取下一步的行动action_和奖励 Q(observation_, action_)
-</code></pre><h2 id="2-算法-1"><a href="#2-算法-1" class="headerlink" title="2.算法"></a>2.算法</h2><p>  <img src="Reinforcement-Learning/3-1-1.png" alt="Sarsa"></p>
-<h2 id="Sarsa-lambda"><a href="#Sarsa-lambda" class="headerlink" title="Sarsa(lambda)"></a>Sarsa(lambda)</h2><h2 id="1-算法"><a href="#1-算法" class="headerlink" title="1.算法"></a>1.算法</h2><p>  <img src="Reinforcement-Learning/3-3-1.png" alt="Sarsa"></p>
-<h1 id="DQN"><a href="#DQN" class="headerlink" title="DQN"></a>DQN</h1><h2 id="1-主题思想-2"><a href="#1-主题思想-2" class="headerlink" title="1.主题思想"></a>1.主题思想</h2><ul>
-<li>1.与Q-learning类似，但是Q-learning方法对于状态连续的，状态数量无限多的情况不适用。所以使用神经网络代替Q表。<br>类似于用一个复杂的方程代替Q表。输入环境状态 s 和 行动 a 获得 对应的奖励reward</li>
-<li>2.用2个Neural Network.一个(N_eval)用于Q现实。一个(N_target)用于Q估计。</li>
-<li>3.N_target的参数快于N_eval. N_eval用于计算Q_现实<br>N_target不断训练。与N_eval的值对比。一定步数之后将N_eval的参数替换为N_target的。</li>
-</ul>
-<h2 id="2-算法-2"><a href="#2-算法-2" class="headerlink" title="2.算法"></a>2.算法</h2><p>  <img src="Reinforcement-Learning/4-1-1.JPG" alt="Sarsa"></p>
-</body></html>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wudizhangzhi.github.io/2017/07/16/Neural-Networks-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="月牙天冲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月牙天冲">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/16/Neural-Networks-Learning/" itemprop="url">Neural Networks Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-16T22:53:29+08:00">2017-07-16</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/16/Neural-Networks-Learning/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/07/16/Neural-Networks-Learning/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/07/16/Neural-Networks-Learning/" class="leancloud_visitors" data-flag-title="Neural Networks Learning">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <html><head></head><body><h1 id="0-design-model"><a href="#0-design-model" class="headerlink" title="0. design model"></a>0. design model</h1><p>设计模型: lay_in, lay_hidden, lay_out<br><img src="Neural-Networks-Learning/0.png" alt="design model"></p>
-<h1 id="1-randomly-initalize-theta"><a href="#1-randomly-initalize-theta" class="headerlink" title="1. randomly  initalize theta"></a>1. randomly  initalize theta</h1><p>initalize each theta(l) to a random value [-e, e]<br><img src="Neural-Networks-Learning/1.jpg" alt="randomly  initalize theta"></p>
-<h1 id="2-forward-propagation"><a href="#2-forward-propagation" class="headerlink" title="2. forward propagation"></a>2. forward propagation</h1><h1 id="2-1-compute-a-l"><a href="#2-1-compute-a-l" class="headerlink" title="2.1. compute a(l)"></a>2.1. compute a(l)</h1><p>  计算 layer l 上的 a(l)<br>  <img src="Neural-Networks-Learning/2.1.jpg" alt="compute a(l)"></p>
-<h1 id="2-2-compute-cost-J-theta"><a href="#2-2-compute-cost-J-theta" class="headerlink" title="2.2. compute cost J(theta)"></a>2.2. compute cost J(theta)</h1><p><img src="Neural-Networks-Learning/2.2.jpg" alt="compute cost J(theta)"></p>
-<h1 id="3-back-propagation"><a href="#3-back-propagation" class="headerlink" title="3. back propagation"></a>3. back propagation</h1><h1 id="3-1-compute-delta"><a href="#3-1-compute-delta" class="headerlink" title="3.1. compute delta"></a>3.1. compute delta</h1><p><img src="Neural-Networks-Learning/3.1.jpg" alt="compute delta"></p>
-<h1 id="3-2-compute-Delta"><a href="#3-2-compute-Delta" class="headerlink" title="3.2. compute Delta"></a>3.2. compute Delta</h1><p><img src="Neural-Networks-Learning/3.2.jpg" alt="compute Delta"></p>
-<h1 id="3-3-compute-partial-derivatives"><a href="#3-3-compute-partial-derivatives" class="headerlink" title="3.3. compute partial derivatives"></a>3.3. compute partial derivatives</h1><p><img src="Neural-Networks-Learning/3.3.jpg" alt="compute partial derivatives"></p>
-<p><img src="Neural-Networks-Learning/3.3_2.jpg" alt="compute partial derivatives"></p>
-<h1 id="4-add-regularizaton"><a href="#4-add-regularizaton" class="headerlink" title="4. add regularizaton"></a>4. add regularizaton</h1><h1 id="5-gradient-checking"><a href="#5-gradient-checking" class="headerlink" title="5. gradient checking"></a>5. gradient checking</h1><p>利用一个小规模的模型，来验证代码的正确性<br><img src="Neural-Networks-Learning/5.jpg" alt="gradient checking"></p>
-<h1 id="6-use-gradient-descent-or-advanced-optimization-method-try-to-minimize-J-theta"><a href="#6-use-gradient-descent-or-advanced-optimization-method-try-to-minimize-J-theta" class="headerlink" title="6. use gradient descent or advanced optimization method try to minimize J(theta)"></a>6. use gradient descent or advanced optimization method try to minimize J(theta)</h1><p>使用梯度下降或者高级方式迭代(如:fmincg), 最小化代价 J(theta)</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">options = optimset('MaxIter', 50);</span><br><span class="line">costFunction = @(p) nnCostFunction(p, ...</span><br><span class="line">                                   input_layer_size, ...</span><br><span class="line">                                   hidden_layer_size, ...</span><br><span class="line">                                   num_labels, X, y, lambda);</span><br><span class="line">[nn_params, cost] = fmincg(costFunction, initial_nn_params, options);</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h1><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">写公式的方法</span><br><span class="line"><img src="http://chart.googleapis.com/chart?cht=tx&chl= 在此插入Latex公式" style="border:none;"></span><br><span class="line">例如:</span><br><span class="line"><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;"></span><br></pre></td></tr></tbody></table></figure>
-<p>效果<br><img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" style="border:none;"></p>
-</body></html>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wudizhangzhi.github.io/2017/06/15/zeronet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="月牙天冲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="月牙天冲">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/15/zeronet/" itemprop="url">zeronet</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-15T23:13:57+08:00">2017-06-15</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/15/zeronet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/06/15/zeronet/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/15/zeronet/" class="leancloud_visitors" data-flag-title="zeronet">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <html><head></head><body><h1 id="什么是ZeroNet"><a href="#什么是ZeroNet" class="headerlink" title="什么是ZeroNet?"></a>什么是ZeroNet?</h1><p>ZeroNet是一个去中心化的类似于Internet的网络，由匈牙利的开发者使用Python制作，完全开源。网站由特殊的”ZeroNet URL”可以被使用一般的浏览器通过ZeroNet程序浏览，就像访问本地主机一样。ZeroNet默认并不匿名，但是用户可以通过内置的Tor功能进行匿名化。ZeroNet使用Bitcoin加密算法及BitTorrent网络。<br>防DMCA Take down<br>由于ZeroNet去中心化的原因,国外有人制作了一个ZeroNet版本的海盗湾，,这个网站可让版权所有者头疼啦…一般的网站服务器都有IP地址,不抗投诉的ISP收到了向IP WHOIS滥用信箱发送的DMCA投诉信的话,你就要和你的网站说再见了..(俗称 DMCA Take down),可用了ZeroNet后,并没有一台服务器是真实的服务器,任何访客都有可能成为服务器,还有些访客使用了Tor,更找不到真正的物理地址。<br>功能<br>实时站点更新<br>支持 Namecoin 的 .bit 域名<br>安装方便: 只需解压并运行<br>一键克隆存在的站点<br>无需密码、基于 BIP32 的认证：用与比特币钱包相同的加密方法用来保护你的账户 你的账户被使用和比特币钱包相同的加密方法<br>内建 SQL 服务器和 P2P 数据同步: 让开发更简单并提升加载速度<br>匿名性: 完整的 Tor 网络支持，支持通过 .onion 隐藏服务相互连接而不是通过IPv4地址连接<br>TLS 加密连接<br>自动打开 uPnP 端口<br>插件和多用户 (开放式代理) 支持<br>全平台兼容<br>原理<br>在你运行zeronet.py后你将可以通过<a href="http://127.0.0.1:43110/{zeronet_address}" target="_blank" rel="noopener">http://127.0.0.1:43110/{zeronet_address}</a> (比如.<a href="http://127.0.0.1:43110/1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D)。访问" target="_blank" rel="noopener">http://127.0.0.1:43110/1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D)。访问</a> zeronet 中的站点。<br>在你浏览 zeronet 站点时，客户端会尝试通过 BitTorrent 网络来寻找可用的节点，从而下载需要的文件 (html, css, js…)<br>你将会储存每一个浏览过的站点<br>每个站点都包含一个名为 content.json ，它储存了其他所有文件的 sha512 hash 值 和一个通过站点私钥建立的签名<br>如果站点的所有者 (拥有私钥的那个人) 修改了站点, 并且他/她签名了新的 content.json 然后推送至其他节点， 那么所有节点将会在验证 content.json 的真实性 (使用签名)后, 下载修改后的文件并推送至其他节点。<br>有关于 ZeroNet 加密, 站点更新, 多用户站点的幻灯片 »<br>常见问题 »<br>ZeroNet开发者文档 »</p>
-<p>好了，说点有用的：<br>1.可以建自己的网站，你基本上不用做什么。<br>2.基于p2p原理，你只要建好并有人浏览过，即使你自己关机，你的网站依然在全球存在。别人想关你站，没门。<br>3.基于p2p原理，支付内网穿透，也就是说你在内网也没关系，手机也没问题。<br>4.基于比特币原理，账号很安全，谁也不知道你是谁，谁也盗不去。<br>5.不需要域名，任何人访问都使用<a href="http://127.0.0.1:43110/字符串" target="_blank" rel="noopener">http://127.0.0.1:43110/字符串</a> 来访问。<br>6.不用gg fb和tt你就能浏览全世界<br>项目地址：该项目的官方网址为: <a href="https://github.com/hellozeronet/zeronet" target="_blank" rel="noopener">https://github.com/hellozeronet/zeronet</a><br>下载地址：<a href="https://github.com/HelloZeroNet/ZeroBundle/raw/master/dist/ZeroBundle-win.zip" target="_blank" rel="noopener">https://github.com/HelloZeroNet/ZeroBundle/raw/master/dist/ZeroBundle-win.zip</a><br>相关说明：<a href="http://www.wanbizu.com/news/201603086775.html" target="_blank" rel="noopener">http://www.wanbizu.com/news/201603086775.html</a><br>安装方法？其实很简单，到官网zeronet.io下载，解压，双击运行，等进度走完就会自动打开默认浏览器，你就可以访问了。一般新系统都能正常运行，老系统有两种情况：如果自动打开浏览器后发现页面显示不正常，说明你的IE不支持，用chrome或者firefox浏览器来打开127.0.0.1:43110就行了。XP用户如果运行不了，那就需要下载安装微软的VC2008 Redistributable Package运行环境，才1MB多，搜一下就有了。<br>安装：解压后运行zeronet.cmd</p>
-<p>安装后你唯一要做的，是注册一个id。<br><a href="http://127.0.0.1:43110/zeroid.bit" target="_blank" rel="noopener">http://127.0.0.1:43110/zeroid.bit</a></p>
-<h1 id="如何加入-？"><a href="#如何加入-？" class="headerlink" title="如何加入 ？"></a>如何加入 ？</h1><p>下载 ZeroBundle 文件包:<br>Microsoft Windows<br>Apple OS X<br>Linux 64bit<br>Linux 32bit<br>解压缩<br>运行 ZeroNet.cmd (win), ZeroNet(.app) (osx), ZeroNet.sh (linux)<br>如果你在 OS X 上遇到了 “classic environment no longer supported” 错误，请打开一个终端然后把 ZeroNet.app 拖进去<br>在你打开时他将会自动下载最新版本的 ZeroNet 。</p>
-<h2 id="Linux-命令行"><a href="#Linux-命令行" class="headerlink" title="Linux 命令行"></a>Linux 命令行</h2><p>wget <a href="https://github.com/HelloZeroNet/ZeroBundle/raw/master/dist/ZeroBundle-linux64.tar.gz" target="_blank" rel="noopener">https://github.com/HelloZeroNet/ZeroBundle/raw/master/dist/ZeroBundle-linux64.tar.gz</a><br>tar xvpfz ZeroBundle-linux64.tar.gz<br>cd ZeroBundle<br>执行 ./ZeroNet.sh 来启动<br>在你打开时他将会自动下载最新版本的 ZeroNet 。<br>在 Debian Linux 中手动安装<br>sudo apt-get update<br>sudo apt-get install msgpack-python python-gevent<br>wget <a href="https://github.com/HelloZeroNet/ZeroNet/archive/master.tar.gz" target="_blank" rel="noopener">https://github.com/HelloZeroNet/ZeroNet/archive/master.tar.gz</a><br>tar xvpfz master.tar.gz<br>cd ZeroNet-master<br>执行 python zeronet.py 来启动<br>在你的浏览器中打开 <a href="http://127.0.0.1:43110/" target="_blank" rel="noopener">http://127.0.0.1:43110/</a></p>
-<h2 id="Vagrant"><a href="#Vagrant" class="headerlink" title="Vagrant"></a>Vagrant</h2><p>vagrant up<br>通过 vagrant ssh 连接到 VM<br>cd /vagrant<br>运行 python zeronet.py –ui_ip 0.0.0.0<br>在你的浏览器中打开 <a href="http://127.0.0.1:43110/" target="_blank" rel="noopener">http://127.0.0.1:43110/</a></p>
-<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">docker run -d -v <local_data_folder>:/root/data -p 15441:15441 -p 43110:43110 nofish/zeronet</span><br><span class="line"># 这个 Docker 镜像包含了 Tor ，但默认是禁用的，因为一些托管商不允许你在他们的服务器上运行 Tor。如果你希望启用它， 设置 ENABLE_TOR 环境变量为 true (默认: false). E.g.:</span><br><span class="line">Docker run -d -e "ENABLE_TOR=true" -v <local_data_folder>:/root/data -p 15441:15441 -p 43110:43110 nofish/zeronet</span><br></pre></td></tr></tbody></table></figure>
-<p>在你的浏览器中打开 <a href="http://127.0.0.1:43110/" target="_blank" rel="noopener">http://127.0.0.1:43110/</a></p>
-<h2 id="Virtualenv"><a href="#Virtualenv" class="headerlink" title="Virtualenv"></a>Virtualenv</h2><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">virtualenv env</span><br><span class="line">source env/bin/activate</span><br><span class="line">pip install msgpack-python gevent</span><br><span class="line">python zeronet.py</span><br></pre></td></tr></tbody></table></figure>
-<p>在你的浏览器中打开 <a href="http://127.0.0.1:43110/" target="_blank" rel="noopener">http://127.0.0.1:43110/</a><br>现有限制<br>没有类似于 BitTorrent 的文件拆分来支持大文件<br>没有比 BitTorrent 更好的匿名性 (已添加内置的完整 Tor 支持)<br>传输文件时没有压缩和加密 (已添加 TLS 支持)<br>不支持私有站点</p>
-<h1 id="如何创建一个-ZeroNet-站点"><a href="#如何创建一个-ZeroNet-站点" class="headerlink" title="如何创建一个 ZeroNet 站点?"></a>如何创建一个 ZeroNet 站点?</h1><p>如果 zeronet 在运行，把它关掉 执行：<br>$ zeronet.py siteCreate<br>…</p>
-<ul>
-<li>Site private key: 23DKQpzxhbVBrAtvLEc2uvk7DZweh4qL3fn3jpM3LgHDczMK2TtYUq</li>
-<li>Site address: 13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2<br>…</li>
-<li>Site created!<br>$ zeronet.py<br>…<br>你已经完成了！ 现在任何人都可以通过 <a href="http://localhost:43110/13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2" target="_blank" rel="noopener">http://localhost:43110/13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2</a> 来访问你的站点<br>下一步: ZeroNet 开发者文档<br>我要如何修改 ZeroNet 站点?<br>修改位于 data/13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2 的目录. 在你改好之后:<br>$ zeronet.py siteSign 13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2</li>
-<li>Signing site: 13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2…<br>Private key (input hidden):<br>输入你在创建站点时获得的私钥<br>$ zeronet.py sitePublish 13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2<br>…<br>Site:13DNDk..bhC2 Publishing to 3/10 peers…<br>Site:13DNDk..bhC2 Successfuly published to 3 peers</li>
-<li>Serving files….<br>就是这样! 你现在已经成功的签名并推送了你的更改。<br>帮助这个项目<br>Bitcoin: 1QDhxQ6PraUZa21ET5fYUCPgdrwBomnFgX<br>Paypal: <a href="https://zeronet.readthedocs.org/en/latest/help_zeronet/donate/" target="_blank" rel="noopener">https://zeronet.readthedocs.org/en/latest/help_zeronet/donate/</a><br>Gratipay: <a href="https://gratipay.com/zeronet/" target="_blank" rel="noopener">https://gratipay.com/zeronet/</a><br>赞助商<br>在 OSX/Safari 下 BrowserStack.com 带来更好的兼容性<br>感谢!<br>更多信息, 帮助, 变更记录和 zeronet 站点: <a href="https://www.reddit.com/r/zeronet/" target="_blank" rel="noopener">https://www.reddit.com/r/zeronet/</a><br>在: #zeronet @ FreeNode 和我们聊天，或者使用 gitter<br>这里是一个 gitter 上的中文聊天室<br>Email: <a href="mailto:hello@noloop.me" target="_blank" rel="noopener">hello@noloop.me</a><h1 id="福利"><a href="#福利" class="headerlink" title="福利"></a>福利</h1>海盗湾全球种子站：<a href="http://127.0.0.1:43110/1PLAYgDQboKojowD3kwdb3CtWmWaokXvfp/" target="_blank" rel="noopener">http://127.0.0.1:43110/1PLAYgDQboKojowD3kwdb3CtWmWaokXvfp/</a><br>MSDN资源区：<a href="http://127.0.0.1:43110/1AJB5rtjfB9imjDGVk5vtRtZp3zgYizbpG/" target="_blank" rel="noopener">http://127.0.0.1:43110/1AJB5rtjfB9imjDGVk5vtRtZp3zgYizbpG/</a><br>Kindle电子书：<a href="http://127.0.0.1:43110/1KHCBG6dmbKXTZNenfwhWZ5x3oDyYyHSD4" target="_blank" rel="noopener">http://127.0.0.1:43110/1KHCBG6dmbKXTZNenfwhWZ5x3oDyYyHSD4</a><br>导航：<a href="http://127.0.0.1:43110/1NzWeweqJ32aRVdM5UzFnYCszuvG5xV3vS" target="_blank" rel="noopener">http://127.0.0.1:43110/1NzWeweqJ32aRVdM5UzFnYCszuvG5xV3vS</a></li>
-</ul>
-<p>ZeroNet站点集合 & 搜索引擎<br>站点集合<br><a href="http://127.0.0.1:43110/138R53t3ZW7KDfSfxVpWUsMXgwUnsDNXLP/?Page:list-of-zites" target="_blank" rel="noopener">http://127.0.0.1:43110/138R53t3ZW7KDfSfxVpWUsMXgwUnsDNXLP/?Page:list-of-zites</a><br>( 中文翻译在这里 )<br><a href="http://127.0.0.1:43110/zaphods.bit/RM.html" target="_blank" rel="noopener">http://127.0.0.1:43110/zaphods.bit/RM.html</a><br><a href="http://127.0.0.1:43110/0list.bit/" target="_blank" rel="noopener">http://127.0.0.1:43110/0list.bit/</a><br><a href="http://127.0.0.1:43110/1Dt7FR5aNLkqAjmosWh8cMWzJu633GYN6u/" target="_blank" rel="noopener">http://127.0.0.1:43110/1Dt7FR5aNLkqAjmosWh8cMWzJu633GYN6u/</a><br>搜索引擎<br><a href="http://127.0.0.1:43110/kaffiene.bit" target="_blank" rel="noopener">http://127.0.0.1:43110/kaffiene.bit</a><br><a href="http://127.0.0.1:43110/zerosearch.bit/" target="_blank" rel="noopener">http://127.0.0.1:43110/zerosearch.bit/</a><br><a href="http://127.0.0.1:43110/zerofind.bit" target="_blank" rel="noopener">http://127.0.0.1:43110/zerofind.bit</a><br>公用开放ZeroNet代{过}{滤}理集合（注意，这些代{过}{滤}理不能确保你的帐号安全）<br><a href="http://127.0.0.1:43110/ZeroProxies.bit" target="_blank" rel="noopener">http://127.0.0.1:43110/ZeroProxies.bit</a><br>聊天室集合<br><a href="http://127.0.0.1:43110/zerochatrooms.bit" target="_blank" rel="noopener">http://127.0.0.1:43110/zerochatrooms.bit</a><br>博客集合<br><a href="http://127.0.0.1:43110/zeroblogs.bit" target="_blank" rel="noopener">http://127.0.0.1:43110/zeroblogs.bit</a><br>ZeroNet官方帮助集合<br><a href="http://127.0.0.1:43110/ZeroSupport.bit" target="_blank" rel="noopener">http://127.0.0.1:43110/ZeroSupport.bit</a></p>
-</body></html>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2030,7 +1981,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2080,7 +2031,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2323,6 +2278,326 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
