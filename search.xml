@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Decision Tree]]></title>
+    <url>%2F2018%2F08%2F31%2FDecistion-Tree%2F</url>
+    <content type="text"><![CDATA[Decistion Tree(决策树)假设有如下数据: 信息熵(information entropy)信息熵(Information entropy): 是度量样本集合纯度的一种指标公式: 假设当前样本集D中第k类样本所占的比利为 $p_k$ (k=1, 2, …, |y|)$$Ent(D) = - \sum_{k=1}^{\vert y \vert}p_k\cdot log_2 p_k$$ 信息增益熵(Information gain)信息增益熵(Information gain): 一定条件下，信息复杂度(不确定性)减少的程度公式:$$bdzhserver/account/rest/views.pyGain(D, a) = Ent(D) - \sum_{v=1}^V \dfrac{|D^v|}{|D|}Ent(D^v)$$ 基尼指数(Gini index)公式:$$Gini(D) = 1 - \sum_{k=1}^{|y|} p_k^2$$ $$Gini_index(D, a) = \sum_{v=1}^{V} \dfrac{|D^v|}{|D|}Gini(D^v)$$ 不同的算法 ID3 for node in nodes: pass C4.5 CART(classification and regression tree)]]></content>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>学习笔记</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Algorithm]]></title>
     <url>%2F2018%2F06%2F29%2FAlgorithm%2F</url>
     <content type="text"><![CDATA[https://zh.wikipedia.org/wiki/A*%E6%90%9C%E5%B0%8B%E6%BC%94%E7%AE%97%E6%B3%95#]]></content>
