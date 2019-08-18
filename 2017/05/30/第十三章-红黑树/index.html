@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -51,9 +51,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=6.0.5" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.0.5" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.5">
@@ -104,7 +104,7 @@
 
 
   
-  <meta name="keywords" content="算法导论," />
+  <meta name="keywords" content="算法导论,">
 
 
 <meta name="description" content="十三章 红黑树(red-black tree)13.1 红黑树的性质红黑树是一个二叉搜索树，增加了一个存储位保存结点的颜色， black 或者 red树中的结点包含5个属性: color, key, left, right, p  1.每个结点或是红色， 或是黑色 2.根结点是黑色 3.每个叶结点(nil)都是黑色的 4.如果一个结点是红色， 则它的2个子结点都是黑色 5.对于每个结点， 到其所有">
@@ -116,7 +116,7 @@
 <meta property="og:description" content="十三章 红黑树(red-black tree)13.1 红黑树的性质红黑树是一个二叉搜索树，增加了一个存储位保存结点的颜色， black 或者 red树中的结点包含5个属性: color, key, left, right, p  1.每个结点或是红色， 或是黑色 2.根结点是黑色 3.每个叶结点(nil)都是黑色的 4.如果一个结点是红色， 则它的2个子结点都是黑色 5.对于每个结点， 到其所有">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wudizhangzhi.github.io/2017/05/30/第十三章-红黑树/第十三章-红黑树/13_2_1.png">
-<meta property="og:updated_time" content="2018-03-13T07:27:42.000Z">
+<meta property="og:updated_time" content="2019-03-04T13:36:15.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十三章 红黑树">
 <meta name="twitter:description" content="十三章 红黑树(red-black tree)13.1 红黑树的性质红黑树是一个二叉搜索树，增加了一个存储位保存结点的颜色， black 或者 red树中的结点包含5个属性: color, key, left, right, p  1.每个结点或是红色， 或是黑色 2.根结点是黑色 3.每个叶结点(nil)都是黑色的 4.如果一个结点是红色， 则它的2个子结点都是黑色 5.对于每个结点， 到其所有">
@@ -124,12 +124,12 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="月牙天冲" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="月牙天冲" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://wudizhangzhi.github.io/2017/05/30/第十三章-红黑树/"/>
+  <link rel="canonical" href="http://wudizhangzhi.github.io/2017/05/30/第十三章-红黑树/">
 
 
 
@@ -180,7 +180,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
   
-    <script type="text/javascript" color="0,0,0" opacity='0.5' zIndex="-1" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+    <script type="text/javascript" color="0,0,0" opacity="0.5" zindex="-1" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
 
   
@@ -197,7 +197,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">月牙天冲</span>
         <span class="logo-line-after"><i></i></span>
@@ -226,31 +226,31 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
         </li>
       
         
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
         </li>
       
         
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
         </li>
       
 
@@ -260,7 +260,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -278,9 +278,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -329,7 +327,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="月牙天冲">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
@@ -412,7 +410,7 @@
       
 
       
-        <html><head></head><body><h1 id="十三章-红黑树-red-black-tree"><a href="#十三章-红黑树-red-black-tree" class="headerlink" title="十三章 红黑树(red-black tree)"></a>十三章 红黑树(red-black tree)</h1><h2 id="13-1-红黑树的性质"><a href="#13-1-红黑树的性质" class="headerlink" title="13.1 红黑树的性质"></a>13.1 红黑树的性质</h2><p>红黑树是一个二叉搜索树，增加了一个存储位保存结点的颜色， black 或者 red<br>树中的结点包含5个属性: color, key, left, right, p</p>
+        <h1 id="十三章-红黑树-red-black-tree"><a href="#十三章-红黑树-red-black-tree" class="headerlink" title="十三章 红黑树(red-black tree)"></a>十三章 红黑树(red-black tree)</h1><h2 id="13-1-红黑树的性质"><a href="#13-1-红黑树的性质" class="headerlink" title="13.1 红黑树的性质"></a>13.1 红黑树的性质</h2><p>红黑树是一个二叉搜索树，增加了一个存储位保存结点的颜色， black 或者 red<br>树中的结点包含5个属性: color, key, left, right, p</p>
 <ul>
 <li>1.每个结点或是红色， 或是黑色</li>
 <li>2.根结点是黑色</li>
@@ -424,19 +422,19 @@
 <p>黑高: 从某个结点x出发，到达一个叶结点的任意一条简单路径上的黑色结点的个数称为该结点的黑高</p>
 </blockquote>
 <blockquote>
-<p>一个有n个内部结点的红黑树高度最多为 2log(n + 1)<br></p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">证明:</span><br><span class="line">  假设红黑树的高为h，由性质4可知：从根结点到叶结点一条简单路径上至少有一半是黑色的。即：bh(x) >= h/2</span><br><span class="line">  由性质4可知, 结点数量 n >= 2**bh(x) - 1</span><br><span class="line">  log(n+1) >= bh(x)</span><br><span class="line">  log(n+1) >= h/2</span><br><span class="line">  所以：h <= 2log(n+1)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>一个有n个内部结点的红黑树高度最多为 2log(n + 1)<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">证明:</span><br><span class="line">  假设红黑树的高为h，由性质4可知：从根结点到叶结点一条简单路径上至少有一半是黑色的。即：bh(x) &gt;= h/2</span><br><span class="line">  由性质4可知, 结点数量 n &gt;= 2**bh(x) - 1</span><br><span class="line">  log(n+1) &gt;= bh(x)</span><br><span class="line">  log(n+1) &gt;= h/2</span><br><span class="line">  所以：h &lt;= 2log(n+1)</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h2 id="13-2-旋转-rotation"><a href="#13-2-旋转-rotation" class="headerlink" title="13.2 旋转(rotation)"></a>13.2 旋转(rotation)</h2><p><img src="第十三章-红黑树/13_2_1.png" alt="rotation"></p>
 <ul>
 <li><p>左旋(left-rotation)</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">def left_rotation(T, x):</span><br><span class="line">    y = x.right</span><br><span class="line">    x.right = y.left</span><br><span class="line">    if y.left != T.nil:</span><br><span class="line">        y.left.p = x</span><br><span class="line">    if x.p == T.nil:</span><br><span class="line">        T.root = y</span><br><span class="line">    elif x == x.p.left:</span><br><span class="line">        x.p.left = y</span><br><span class="line">    else:</span><br><span class="line">        x.p.right = y</span><br><span class="line">    x.p = y</span><br><span class="line">    y.left = x</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def left_rotation(T, x):</span><br><span class="line">    y = x.right</span><br><span class="line">    x.right = y.left</span><br><span class="line">    if y.left != T.nil:</span><br><span class="line">        y.left.p = x</span><br><span class="line">    if x.p == T.nil:</span><br><span class="line">        T.root = y</span><br><span class="line">    elif x == x.p.left:</span><br><span class="line">        x.p.left = y</span><br><span class="line">    else:</span><br><span class="line">        x.p.right = y</span><br><span class="line">    x.p = y</span><br><span class="line">    y.left = x</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>右旋(right-rotation)</p>
-<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">def right_rotation(T, x):</span><br><span class="line">    y = x.p</span><br><span class="line">    y.left = x.right</span><br><span class="line">    if x.right != nil:</span><br><span class="line">        x.right.p = y</span><br><span class="line">    if y.p == T.nil:</span><br><span class="line">        T.root = x</span><br><span class="line">    elif y.p.left == y:</span><br><span class="line">        y.p.left = x</span><br><span class="line">    else:</span><br><span class="line">        y.p.right = x</span><br><span class="line">    x.right = y</span><br><span class="line">    y.p = x</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def right_rotation(T, x):</span><br><span class="line">    y = x.p</span><br><span class="line">    y.left = x.right</span><br><span class="line">    if x.right != nil:</span><br><span class="line">        x.right.p = y</span><br><span class="line">    if y.p == T.nil:</span><br><span class="line">        T.root = x</span><br><span class="line">    elif y.p.left == y:</span><br><span class="line">        y.p.left = x</span><br><span class="line">    else:</span><br><span class="line">        y.p.right = x</span><br><span class="line">    x.right = y</span><br><span class="line">    y.p = x</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="13-3-插入"><a href="#13-3-插入" class="headerlink" title="13.3 插入"></a>13.3 插入</h2><p>RB-INSERT插入结点后后需要一个辅助程序RB-INSERT-FIXUP对结点重新着色并旋转<br></p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">def RB_INSERT(T, z):</span><br><span class="line">    pass</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h2 id="13-4-删除"><a href="#13-4-删除" class="headerlink" title="13.4 删除"></a>13.4 删除</h2></body></html>
+<h2 id="13-3-插入"><a href="#13-3-插入" class="headerlink" title="13.3 插入"></a>13.3 插入</h2><p>RB-INSERT插入结点后后需要一个辅助程序RB-INSERT-FIXUP对结点重新着色并旋转<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def RB_INSERT(T, z):</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure></p>
+<h2 id="13-4-删除"><a href="#13-4-删除" class="headerlink" title="13.4 删除"></a>13.4 删除</h2>
       
     </div>
 
@@ -562,9 +560,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.png"
-                alt="月牙天冲" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="月牙天冲">
             
               <p class="site-author-name" itemprop="name">月牙天冲</p>
               <p class="site-description motion-element" itemprop="description">月牙天冲在 Github 上的个人博客</p>
@@ -577,7 +573,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -703,7 +699,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1362,6 +1358,6 @@
 
   
 
-  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script>
 </body>
 </html>

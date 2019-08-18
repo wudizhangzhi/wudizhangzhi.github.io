@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -51,9 +51,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=6.0.5" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.0.5" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.5">
@@ -104,7 +104,7 @@
 
 
   
-  <meta name="keywords" content="学习笔记," />
+  <meta name="keywords" content="学习笔记,">
 
 
 <meta name="description" content="原文地址Word2Vec Tutorial - The Skip-Gram Model Word2Vec Tutorial - The Skip-Gram Model This tutorial covers the skip gram neural network architecture for Word2Vec. My intention with this tutorial was to">
@@ -118,7 +118,7 @@
 <meta property="og:image" content="http://wudizhangzhi.github.io/2018/02/05/Word2Vec阅读-一/training_data.png">
 <meta property="og:image" content="http://wudizhangzhi.github.io/2018/02/05/Word2Vec阅读-一/skip_gram_net_arch.png">
 <meta property="og:image" content="http://wudizhangzhi.github.io/2018/02/05/Word2Vec阅读-一/output_weights_function.png">
-<meta property="og:updated_time" content="2018-05-26T13:28:13.000Z">
+<meta property="og:updated_time" content="2019-03-04T13:36:15.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Word2Vec阅读(一)">
 <meta name="twitter:description" content="原文地址Word2Vec Tutorial - The Skip-Gram Model Word2Vec Tutorial - The Skip-Gram Model This tutorial covers the skip gram neural network architecture for Word2Vec. My intention with this tutorial was to">
@@ -126,12 +126,12 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="月牙天冲" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="月牙天冲" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://wudizhangzhi.github.io/2018/02/05/Word2Vec阅读-一/"/>
+  <link rel="canonical" href="http://wudizhangzhi.github.io/2018/02/05/Word2Vec阅读-一/">
 
 
 
@@ -182,7 +182,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
   
-    <script type="text/javascript" color="0,0,0" opacity='0.5' zIndex="-1" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+    <script type="text/javascript" color="0,0,0" opacity="0.5" zindex="-1" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
 
   
@@ -199,7 +199,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">月牙天冲</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,31 +228,31 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
         </li>
       
         
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
         </li>
       
         
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
         </li>
       
 
@@ -262,7 +262,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -280,9 +280,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -331,7 +329,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="月牙天冲">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
@@ -366,7 +364,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -432,7 +430,7 @@
       
 
       
-        <html><head></head><body><p>原文地址<a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/" target="_blank" rel="noopener">Word2Vec Tutorial - The Skip-Gram Model</a></p>
+        <p>原文地址<a href="http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/" target="_blank" rel="noopener">Word2Vec Tutorial - The Skip-Gram Model</a></p>
 <h2 id="Word2Vec-Tutorial-The-Skip-Gram-Model"><a href="#Word2Vec-Tutorial-The-Skip-Gram-Model" class="headerlink" title="Word2Vec Tutorial - The Skip-Gram Model"></a>Word2Vec Tutorial - The Skip-Gram Model</h2><blockquote>
 <p>This tutorial covers the skip gram neural network architecture for Word2Vec. My intention with this tutorial was to skip over the usual introductory and abstract insights about Word2Vec, and get into more of the details. Specifically here I’m diving into the skip gram neural network model.</p>
 </blockquote>
@@ -464,7 +462,7 @@
 <p><img src="training_data.png" alt="training_data"></p>
 <p><img src="skip_gram_net_arch.png" alt="training_data"></p>
 <p><img src="output_weights_function.png" alt="training_data"></p>
-</body></html>
+
       
     </div>
 
@@ -590,9 +588,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.png"
-                alt="月牙天冲" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="月牙天冲">
             
               <p class="site-author-name" itemprop="name">月牙天冲</p>
               <p class="site-description motion-element" itemprop="description">月牙天冲在 Github 上的个人博客</p>
@@ -605,7 +601,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -711,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2Vec-Tutorial-The-Skip-Gram-Model"><span class="nav-number">1.</span> <span class="nav-text">Word2Vec Tutorial - The Skip-Gram Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Model"><span class="nav-number">2.</span> <span class="nav-text">The Model</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Fake-Task"><span class="nav-number"></span> <span class="nav-text">The Fake Task</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2Vec-Tutorial-The-Skip-Gram-Model"><span class="nav-number">1.</span> <span class="nav-text">Word2Vec Tutorial - The Skip-Gram Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Model"><span class="nav-number">2.</span> <span class="nav-text">The Model</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Fake-Task"><span class="nav-number"></span> <span class="nav-text">The Fake Task</span></a></li></div>
             
 
           </div>
@@ -731,7 +727,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1390,6 +1386,6 @@
 
   
 
-  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script>
 </body>
 </html>

@@ -6,10 +6,10 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -27,8 +27,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -51,9 +51,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=6.0.5" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.0.5" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.5">
@@ -104,7 +104,7 @@
 
 
   
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="mysql,">
 
 
 <meta name="description" content="1.主服务器1.1 设置好配置文件 cnf配置文件一般会有四个，可以根据命令 # ll /usr/share/mysql/*.cnf 查看；   my-small.cnf    内存少于或等于64M，只提供很少的的数据库服务；   my-medium.cnf   内存在32M–64M之间而且和其他服务一起使用，例如web；   my-large.cnf    内存有512M主要提供数据库服务；">
@@ -115,19 +115,19 @@
 <meta property="og:site_name" content="月牙天冲">
 <meta property="og:description" content="1.主服务器1.1 设置好配置文件 cnf配置文件一般会有四个，可以根据命令 # ll /usr/share/mysql/*.cnf 查看；   my-small.cnf    内存少于或等于64M，只提供很少的的数据库服务；   my-medium.cnf   内存在32M–64M之间而且和其他服务一起使用，例如web；   my-large.cnf    内存有512M主要提供数据库服务；">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-13T07:27:41.000Z">
+<meta property="og:updated_time" content="2019-03-04T13:36:15.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql主从配置">
 <meta name="twitter:description" content="1.主服务器1.1 设置好配置文件 cnf配置文件一般会有四个，可以根据命令 # ll /usr/share/mysql/*.cnf 查看；   my-small.cnf    内存少于或等于64M，只提供很少的的数据库服务；   my-medium.cnf   内存在32M–64M之间而且和其他服务一起使用，例如web；   my-large.cnf    内存有512M主要提供数据库服务；">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="月牙天冲" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="月牙天冲" type="application/atom+xml">
 
 
 
 
-  <link rel="canonical" href="http://wudizhangzhi.github.io/2017/03/17/mysql主从配置/"/>
+  <link rel="canonical" href="http://wudizhangzhi.github.io/2017/03/17/mysql主从配置/">
 
 
 
@@ -178,7 +178,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
   
-    <script type="text/javascript" color="0,0,0" opacity='0.5' zIndex="-1" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+    <script type="text/javascript" color="0,0,0" opacity="0.5" zindex="-1" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
 
   
@@ -195,7 +195,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">月牙天冲</span>
         <span class="logo-line-after"><i></i></span>
@@ -224,31 +224,31 @@
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
         </li>
       
         
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+            <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
         </li>
       
         
         <li class="menu-item menu-item-tags">
           <a href="/tags/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
         </li>
       
         
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
-            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
         </li>
       
 
@@ -258,7 +258,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
@@ -276,9 +276,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -327,7 +325,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="月牙天冲">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
 
@@ -410,7 +408,7 @@
       
 
       
-        <html><head></head><body><h2 id="1-主服务器"><a href="#1-主服务器" class="headerlink" title="1.主服务器"></a>1.主服务器</h2><h3 id="1-1-设置好配置文件"><a href="#1-1-设置好配置文件" class="headerlink" title="1.1 设置好配置文件"></a>1.1 设置好配置文件</h3><blockquote>
+        <h2 id="1-主服务器"><a href="#1-主服务器" class="headerlink" title="1.主服务器"></a>1.主服务器</h2><h3 id="1-1-设置好配置文件"><a href="#1-1-设置好配置文件" class="headerlink" title="1.1 设置好配置文件"></a>1.1 设置好配置文件</h3><blockquote>
 <p>cnf配置文件一般会有四个，可以根据命令 # ll /usr/share/mysql/*.cnf 查看；</p>
 </blockquote>
 <blockquote>
@@ -431,9 +429,9 @@
 <blockquote>
 <p>可以根据服务器配置的不同选择不同的cnf配置文件。</p>
 </blockquote>
-<p>my.cnf<br></p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id       = 1 # 必须，id，一般取IP最后一段</span><br><span class="line">log-bin = mysql-bin # 必须，二进制日志文件</span><br><span class="line">expire_logs_days    = 10</span><br><span class="line">max_binlog_size   = 100M</span><br><span class="line">binlog_do_db       = include_database_name # 包括的库名称 多个可换行多次设置</span><br><span class="line">binlog_ignore_db   = include_database_name # 不包括的库名称 多个可换行多次设置</span><br></pre></td></tr></tbody></table></figure><p></p>
-<h3 id="1-2-配置好给从服务器登陆的账号-重启"><a href="#1-2-配置好给从服务器登陆的账号-重启" class="headerlink" title="1.2 配置好给从服务器登陆的账号,重启"></a>1.2 配置好给从服务器登陆的账号,重启</h3>  <figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">grant replication slave on *.* to `tom`@`192.168.1.196` identified by 'password';</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="1-3-查看主服务器状态"><a href="#1-3-查看主服务器状态" class="headerlink" title="1.3 查看主服务器状态"></a>1.3 查看主服务器状态</h3>  <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">mysql> show master status;</span><br></pre></td></tr></tbody></table></figure>
+<p>my.cnf<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id       = 1 # 必须，id，一般取IP最后一段</span><br><span class="line">log-bin = mysql-bin # 必须，二进制日志文件</span><br><span class="line">expire_logs_days    = 10</span><br><span class="line">max_binlog_size   = 100M</span><br><span class="line">binlog_do_db       = include_database_name # 包括的库名称 多个可换行多次设置</span><br><span class="line">binlog_ignore_db   = include_database_name # 不包括的库名称 多个可换行多次设置</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-2-配置好给从服务器登陆的账号-重启"><a href="#1-2-配置好给从服务器登陆的账号-重启" class="headerlink" title="1.2 配置好给从服务器登陆的账号,重启"></a>1.2 配置好给从服务器登陆的账号,重启</h3>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">grant replication slave on *.* to `tom`@`192.168.1.196` identified by &apos;password&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3-查看主服务器状态"><a href="#1-3-查看主服务器状态" class="headerlink" title="1.3 查看主服务器状态"></a>1.3 查看主服务器状态</h3>  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; show master status;</span><br></pre></td></tr></table></figure>
 <h3 id="1-4-备份数据库-如果从服务器也为新建库，则不需要此操作"><a href="#1-4-备份数据库-如果从服务器也为新建库，则不需要此操作" class="headerlink" title="1.4 备份数据库(如果从服务器也为新建库，则不需要此操作)"></a>1.4 备份数据库(如果从服务器也为新建库，则不需要此操作)</h3><blockquote>
 <p>备份数据库的方法有很多种：如果在同一局域网可以直接复制数据库，也可以用工具直接进行数据导入。</p>
 </blockquote>
@@ -481,9 +479,9 @@ master-port = 3306 # 同步数据库的端口号。
 如果从库是新建的库就不需要进行此步骤
 </code></pre><h3 id="2-4-显示从服务器状态"><a href="#2-4-显示从服务器状态" class="headerlink" title="2.4    显示从服务器状态"></a>2.4    显示从服务器状态</h3><pre><code>进行mysql服务器：
 
-mysql>showslave status\G;
+mysql&gt;showslave status\G;
 查看Slave_IO_Running和Slave_SQL_Running都是yes则成功
-</code></pre></body></html>
+</code></pre>
       
     </div>
 
@@ -609,9 +607,7 @@ mysql>showslave status\G;
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.png"
-                alt="月牙天冲" />
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="月牙天冲">
             
               <p class="site-author-name" itemprop="name">月牙天冲</p>
               <p class="site-description motion-element" itemprop="description">月牙天冲在 Github 上的个人博客</p>
@@ -624,7 +620,7 @@ mysql>showslave status\G;
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -750,7 +746,7 @@ mysql>showslave status\G;
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1409,6 +1405,6 @@ mysql>showslave status\G;
 
   
 
-  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script>
 </body>
 </html>
