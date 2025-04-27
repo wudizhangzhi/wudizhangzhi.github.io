@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1.起因 因为另一个JR的帖子。看了他的github项目,发现很厉害。不过他的文字直播只是简单的比赛进程。不是虎扑App的文字直播。没办法看到来自三分剑地狱的火焰啊！所以我就想做一个虎扑App的文字直播的命令行版, 项目地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虎扑文字直播命令行学习历程">
+<meta property="og:url" content="http://blog.yueyawochong.cn/Python/%E8%99%8E%E6%89%91%E6%96%87%E5%AD%97%E7%9B%B4%E6%92%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="1.起因 因为另一个JR的帖子。看了他的github项目,发现很厉害。不过他的文字直播只是简单的比赛进程。不是虎扑App的文字直播。没办法看到来自三分剑地狱的火焰啊！所以我就想做一个虎扑App的文字直播的命令行版, 项目地址">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wudizhangzhi/PicGoHub/img/charles.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_live.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_live_contrast.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_teamranks.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_playerdata.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_playerdata_injury.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_news.gif">
+<meta property="article:published_time" content="2021-03-25T14:53:03.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.183Z">
+<meta property="article:author" content="月牙天冲">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wudizhangzhi/PicGoHub/img/charles.png">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/Python/%E8%99%8E%E6%89%91%E6%96%87%E5%AD%97%E7%9B%B4%E6%92%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/Python/%E8%99%8E%E6%89%91%E6%96%87%E5%AD%97%E7%9B%B4%E6%92%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B.html","path":"Python/虎扑文字直播命令行学习历程.html","title":"虎扑文字直播命令行学习历程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>虎扑文字直播命令行学习历程 | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">1.起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">2.开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8charles%E6%8A%93%E5%8F%96http%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.</span> <span class="nav-text">3.使用Charles抓取http接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E6%8E%A5%E5%8F%A3%E4%BC%A0%E5%8F%82%E8%A7%84%E5%88%99"><span class="nav-number">3.1.</span> <span class="nav-text">3.1.http接口传参规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#android_id"><span class="nav-number">3.2.</span> <span class="nav-text">3.3.android_id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sign"><span class="nav-number">3.3.</span> <span class="nav-text">3.4.sign</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E7%BC%96%E8%AF%91apk"><span class="nav-number">4.</span> <span class="nav-text">4.反编译Apk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#socket%E5%92%8C-websocket"><span class="nav-number">5.</span> <span class="nav-text">5.socket和
+websocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%93%E5%8F%96socket"><span class="nav-number">6.</span> <span class="nav-text">6.抓取socket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%88%86%E6%9E%90"><span class="nav-number">7.</span> <span class="nav-text">7.开始分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E6%9E%9C"><span class="nav-number">8.</span> <span class="nav-text">成果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E7%9B%B4%E6%92%AD"><span class="nav-number">8.1.</span> <span class="nav-text">文字直播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%83%E9%98%9F%E6%95%B0%E6%8D%AE%E6%8E%92%E8%A1%8C"><span class="nav-number">8.2.</span> <span class="nav-text">球队数据排行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%83%E5%91%98%E6%95%B0%E6%8D%AE"><span class="nav-number">8.3.</span> <span class="nav-text">球员数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%8E%E6%89%91%E6%96%B0%E9%97%BB"><span class="nav-number">8.4.</span> <span class="nav-text">虎扑新闻</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/Python/%E8%99%8E%E6%89%91%E6%96%87%E5%AD%97%E7%9B%B4%E6%92%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="虎扑文字直播命令行学习历程 | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          虎扑文字直播命令行学习历程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-25 22:53:03" itemprop="dateCreated datePublished" datetime="2021-03-25T22:53:03+08:00">2021-03-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/Python/%E8%99%8E%E6%89%91%E6%96%87%E5%AD%97%E7%9B%B4%E6%92%AD%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B.html" class="post-meta-item leancloud_visitors" data-flag-title="虎扑文字直播命令行学习历程" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="起因">1.起因</h2>
+<p>因为另一个JR的帖子。看了他的<a
+target="_blank" rel="noopener" href="https://github.com/chenjiandongx/HupuLive">github项目</a>,发现很厉害。不过他的文字直播只是简单的比赛进程。不是虎扑App的文字直播。没办法看到来自三分剑地狱的火焰啊！所以我就想做一个虎扑App的文字直播的命令行版,
+<a target="_blank" rel="noopener" href="https://github.com/wudizhangzhi/HupuApp">项目地址</a></p>
+<span id="more"></span>
+<h2 id="开始">2.开始</h2>
+<p>最开始当然是先抓包.手机抓包用的是<a
+target="_blank" rel="noopener" href="https://www.charlesproxy.com/">Charles</a>.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wudizhangzhi/PicGoHub/img/charles.png" width="50%" /></p>
+<p>不过抓包的过程中发现,文字直播的内容只有进入文字直播的页面的时候才会获取一次所有数据。后续的直播内容没有抓包成功。这里就卡住了。不知道怎么回事。
+后来才知道这是因为<code>Charles</code>只抓取了<code>http</code>,
+并没有抓取所有的<code>socket</code>包。 但是自己自学编程,
+对于基础知识部分几乎都是空白。所以只好一边搜索一边尝试抓取<code>socket</code></p>
+<h2
+id="使用charles抓取http接口">3.使用<code>Charles</code>抓取http接口</h2>
+<h3 id="http接口传参规则">3.1.<code>http</code>接口传参规则</h3>
+<p>虎扑的<code>http</code>接口传参一般为 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">      &#x27;crt&#x27;<span class="punctuation">:</span> <span class="number">1517468711881</span><span class="punctuation">,</span></span><br><span class="line">      &#x27;night&#x27;<span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">      &#x27;channel&#x27;<span class="punctuation">:</span> &#x27;myapp&#x27;<span class="punctuation">,</span></span><br><span class="line">      &#x27;client&#x27;<span class="punctuation">:</span> clientid<span class="punctuation">,</span></span><br><span class="line">      &#x27;time_zone&#x27;<span class="punctuation">:</span> &#x27;Asia/Shanghai&#x27;<span class="punctuation">,</span></span><br><span class="line">      &#x27;android_id&#x27;<span class="punctuation">:</span> android_id<span class="punctuation">,</span></span><br><span class="line">      &#x27;sign&#x27;<span class="punctuation">:</span> &#x27;<span class="number">7815696</span>ecbf1c96e6894b779456d330e&#x27;</span><br><span class="line">  <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure> ###
+3.2.<code>client_id</code>
+其中<code>client</code>是手机的<code>Imei</code>。 &gt;
+IMEI就是移动设备国际身份码，我们知道正常的手机串码IMEI码是15位数字，
+由TAC（6位，型号核准号码）、FAC（2位，最后装配号）、SNR（6位，厂商自行分配的串号）和SP（1位，校验位）。</p>
+<p>其中<code>tac</code>搜索后找到了一个数据表,<a
+target="_blank" rel="noopener" href="https://www.kaggle.com/sedthh/typeallocationtable/data">地址</a></p>
+<h3 id="android_id">3.3.android_id</h3>
+<blockquote>
+<p>随机64位数字的16进制</p>
+</blockquote>
+<h3 id="sign">3.4.sign</h3>
+<p>这个参数一看就像是md5值。不过不清楚是哪个的md5值。经验告诉我是其他参数排序后的MD5值。不过结果不对。纠结了好久。想想估计是加salt了。于是卡主了。不晓得该怎么办了.然后没办法开始反编译hupu
+apk的旅途。</p>
+<h2 id="反编译apk">4.反编译Apk</h2>
+<p>下载虎扑android app解压后看到3个dex文件, <code>classes.dex</code>,
+<code>classes2.dex</code>, <code>clsses3.dex</code>
+继续搜索之后。使用<code>jdax</code></p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span><span class="keyword">jadx</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">jadx </span>classes.dex -d classes</span><br><span class="line"><span class="keyword">jadx </span>classes2.dex -d classes2</span><br><span class="line"><span class="keyword">jadx </span>classes3.dex -d classes3</span><br><span class="line"><span class="comment"># 然后开始找salt</span></span><br><span class="line">find . <span class="title">| xargs grep -nr &#x27;SALT&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>幸运的是一下子我就找到了一个参数<code>HUPU_SALT</code>。
+加入进去之后sign结果正确 最后<code>sign</code>的生成方法就是
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">def <span class="built_in">getSortParam</span>(**kwargs):</span><br><span class="line">    result = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    kwargs_sorted = <span class="built_in">sorted</span>(kwargs)</span><br><span class="line">    for key in kwargs_sorted:</span><br><span class="line">        if <span class="built_in">len</span>(result) &gt; <span class="number">0</span>:</span><br><span class="line">            result += <span class="string">&#x27;&amp;&#x27;</span></span><br><span class="line">        result += <span class="string">&#x27;=&#x27;</span>.<span class="built_in">join</span>((key, <span class="built_in">str</span>(kwargs.<span class="built_in">get</span>(key))))</span><br><span class="line">    result += HUPU_SALT</span><br><span class="line">    return <span class="built_in">md5</span>(result.<span class="built_in">encode</span>(<span class="string">&#x27;utf8&#x27;</span>)).<span class="built_in">hexdigest</span>()</span><br></pre></td></tr></table></figure></p>
+<h2 id="socket和-websocket">5.<code>socket</code>和
+<code>websocket</code></h2>
+<p>待填写</p>
+<h2 id="抓取socket">6.抓取<code>socket</code></h2>
+<p>使用安卓模拟器 <a target="_blank" rel="noopener" href="http://mumu.163.com/">网易MuMu</a> ,
+编译好的<a target="_blank" rel="noopener" href="https://www.androidtcpdump.com/">tcpdump</a>二进制文件,
+和 <a target="_blank" rel="noopener" href="https://www.wireshark.org/">wireshark</a>,
+配合adb进行抓取</p>
+<blockquote>
+<p>如果想要修改模拟器的网络设置</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell am start -a android.intent.action.MAIN -n com.android.settings/.wifi.WifiSettings</span><br></pre></td></tr></table></figure>
+<p>但是直接<code>adb device</code>看不到模拟器,搜索之后发现需要手动连接
+搜索之后全局查找<code>myandrovm_vbox86.nemu</code>,
+最后在<code>Library/Nemu/vms/myandrovm_vbox86</code>找到了.
+在文件中搜索<code>ADB_PORT</code>, 发现了端口<code>5555</code> 然后</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb connect 5555</span><br><span class="line">adb device  # 查看是否连接成功</span><br><span class="line">adb push tcpdump /sdcard/</span><br><span class="line"></span><br><span class="line">adb shell</span><br><span class="line">su  # 提权为 root</span><br><span class="line">cp /sdcard/tcpdump /data/local/</span><br><span class="line">chmod 777 /data/local/tcpdump # 修改 tcpdump 执行权限</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将抓到的包输出到 netCapture.pcap 文件中</span></span><br><span class="line">/data/local/tcpdump -i any -p -s 0 -w /sdcard/data/netCapture.pcap</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">参数介绍</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># -i: 指定监控的网络接口, any 表示监控所有端口.</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-p: 将网络接口设置为非“混杂”模式.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-s: 指定抓取网络请求返回的大小,0 表示抓取整个网络包.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-w: 指定数据包写入文件的位置.</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">记录结束后将文件下载到电脑</span></span><br><span class="line">adb pull /sdcard/data/netCapture.pcap ./</span><br></pre></td></tr></table></figure>
+<p>将文件导入<code>wireshark</code></p>
+<h2 id="开始分析">7.开始分析</h2>
+<p>筛选出<code>websocket</code> 发现大致的交互过程为:</p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="meta"># 连接部分</span></span><br><span class="line">先获取token</span><br><span class="line"><span class="symbol">connect:</span>  附上token</span><br><span class="line"><span class="symbol">receive:</span>        <span class="number">1</span>::</span><br><span class="line"></span><br><span class="line"><span class="symbol">send:</span>           <span class="number">2</span>:::</span><br><span class="line"><span class="symbol">receive:</span>        <span class="number">2</span>::</span><br><span class="line"></span><br><span class="line"><span class="symbol">send:</span>           <span class="number">1</span>::/nba_v1</span><br><span class="line"><span class="symbol">receive:</span>        <span class="number">1</span>::/nba_v1</span><br><span class="line"></span><br><span class="line"><span class="symbol">send:</span>           </span><br><span class="line"><span class="number">5</span>::/nba_v1:&#123;<span class="string">&quot;args&quot;</span>:[&#123;<span class="string">&quot;roomid&quot;</span>:<span class="number">-1</span>,<span class="string">&quot;gid&quot;</span>:<span class="number">100721</span>,<span class="string">&quot;pid&quot;</span>:<span class="number">429</span>,<span class="string">&quot;room&quot;</span>:<span class="string">&quot;NBA_PLAYBYPLAY_CASINO&quot;</span>&#125;],<span class="string">&quot;name&quot;</span>:<span class="string">&quot;join&quot;</span>&#125;</span><br><span class="line"><span class="symbol">receive:</span>        直播数据</span><br><span class="line"></span><br><span class="line"><span class="meta"># 保持连接</span></span><br><span class="line"><span class="symbol">receive:</span>        <span class="number">2</span>::</span><br><span class="line"><span class="symbol">send:</span>           <span class="number">2</span>::</span><br><span class="line"></span><br><span class="line"><span class="meta"># 疑似还需要主动发送</span></span><br><span class="line"><span class="symbol">send:</span>           <span class="number">2</span>:::</span><br></pre></td></tr></table></figure>
+<p>然后在github上找到了一个websocket客户端的库<code>websocket-client</code>.随后进行了连接客户端代码的编写</p>
+<h2 id="成果">成果</h2>
+<h3 id="文字直播">文字直播</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_live.gif" width="50%"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_live_contrast.gif" width="50%"></p>
+<h3 id="球队数据排行">球队数据排行</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_teamranks.gif" width="50%"></p>
+<h3 id="球员数据">球员数据</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_playerdata.gif" width="50%"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_playerdata_injury.gif" width="50%"></p>
+<h3 id="虎扑新闻">虎扑新闻</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/wudizhangzhi/HupuApp/images/hupu_news.gif" width="50%"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E7%B3%BB%E7%BB%9F/centos%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85%E7%9A%84%E6%96%B9%E6%B3%95.html" rel="prev" title="centos离线安装包的方法">
+                  <i class="fa fa-angle-left"></i> centos离线安装包的方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E7%88%AC%E8%99%AB/%E8%B1%86%E7%93%A3%E5%B0%8F%E7%BB%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC.html" rel="next" title="豆瓣小组自动化脚本">
+                  豆瓣小组自动化脚本 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"3d6e475f3635287bef36889dc6397607"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1.转换图片大小 convert -resize 50% old.jpg new.jpg 2.项目启动celery服务 celery worker --app&#x3D;taidii  --loglevel&#x3D;info --logfile&#x3D;celery-worker-default-out.logcelery beat --app&#x3D;taidii --loglevel&#x3D;info 3.项目修改js之前 cd st">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用命令(不定期更新)">
+<meta property="og:url" content="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="1.转换图片大小 convert -resize 50% old.jpg new.jpg 2.项目启动celery服务 celery worker --app&#x3D;taidii  --loglevel&#x3D;info --logfile&#x3D;celery-worker-default-out.logcelery beat --app&#x3D;taidii --loglevel&#x3D;info 3.项目修改js之前 cd st">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0/keyword.png">
+<meta property="og:image" content="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0/toc.png">
+<meta property="og:image" content="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0/table.png">
+<meta property="og:image" content="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0/flow.png">
+<meta property="og:image" content="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0/sequence.png">
+<meta property="og:image" content="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0/latex.png">
+<meta property="article:published_time" content="2017-05-20T15:31:52.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.202Z">
+<meta property="article:author" content="月牙天冲">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0/keyword.png">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0.html","path":"uncategorized/常用命令-不定期更新.html","title":"常用命令(不定期更新)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>常用命令(不定期更新) | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.</span> <span class="nav-text">1.转换图片大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8celery%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">2.项目启动celery服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BF%AE%E6%94%B9js%E4%B9%8B%E5%89%8D"><span class="nav-number">3.</span> <span class="nav-text">3.项目修改js之前</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh%E4%BF%9D%E6%8C%81%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">4.ssh保持连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#django-south"><span class="nav-number">5.</span> <span class="nav-text">5.django south</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#markdown-%E8%AF%AD%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">6. markdown 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%B3%A8"><span class="nav-number">6.1.</span> <span class="nav-text">6.1. 脚注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E7%9B%AE%E5%BD%95"><span class="nav-number">6.2.</span> <span class="nav-text">6.2. 内容目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%85%E5%8A%9E%E4%BA%8B%E5%AE%9C-todo-%E5%88%97%E8%A1%A8"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 待办事宜 Todo 列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC"><span class="nav-number">6.4.</span> <span class="nav-text">6.4 表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%92%8C%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="nav-number">6.5.</span> <span class="nav-text">6.5 流程图和时序图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#latex-%E5%85%AC%E5%BC%8F"><span class="nav-number">6.6.</span> <span class="nav-text">6.6 LaTeX 公式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-%E7%BB%9F%E8%AE%A1"><span class="nav-number">7.</span> <span class="nav-text">git 统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#m-bad-interpreter"><span class="nav-number">8.</span> <span class="nav-text">^M: bad interpreter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#powershell%E4%BD%BF%E7%94%A8linux%E9%A3%8E%E6%A0%BC%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">9.</span> <span class="nav-text">Powershell使用linux风格的快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84ssl"><span class="nav-number">10.</span> <span class="nav-text">nginx添加自定义的ssl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#svn-clean-up-failed"><span class="nav-number">11.</span> <span class="nav-text">svn clean up failed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%B0%E5%BD%95%E5%92%8C%E7%99%BB%E9%99%86%E8%AE%B0%E5%BD%95"><span class="nav-number">12.</span> <span class="nav-text">清除命令行记录和登陆记录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python%E5%A4%9Acpu-build"><span class="nav-number">13.</span> <span class="nav-text">python多cpu build</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E6%9D%83%E9%99%90"><span class="nav-number">14.</span> <span class="nav-text">redis设置用户名密码权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kafka"><span class="nav-number">15.</span> <span class="nav-text">kafka</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#golang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91"><span class="nav-number">16.</span> <span class="nav-text">golang交叉编译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#centos%E6%B7%BB%E5%8A%A0%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="nav-number">17.</span> <span class="nav-text">centos添加启动项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#aria2"><span class="nav-number">18.</span> <span class="nav-text">aria2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mac%E5%88%A0%E9%99%A4%E6%97%A0%E7%94%A8%E7%9A%84%E6%94%AF%E6%8C%81%E5%9C%A8%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1"><span class="nav-number">19.</span> <span class="nav-text">mac删除无用的支持在后台服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#user%E5%8A%A0%E5%85%A5docker%E7%9A%84group"><span class="nav-number">20.</span> <span class="nav-text">user加入docker的group</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#switch%E6%B8%B8%E6%88%8Fnsz%E8%BD%AC%E4%B8%BAnsp"><span class="nav-number">21.</span> <span class="nav-text">switch游戏nsz转为nsp</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="常用命令(不定期更新) | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常用命令(不定期更新)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-05-20 23:31:52" itemprop="dateCreated datePublished" datetime="2017-05-20T23:31:52+08:00">2017-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+
+  
+    <span id="/uncategorized/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-%E4%B8%8D%E5%AE%9A%E6%9C%9F%E6%9B%B4%E6%96%B0.html" class="post-meta-item leancloud_visitors" data-flag-title="常用命令(不定期更新)" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="转换图片大小">1.转换图片大小</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">convert -resize 50% old.jpg new.jpg</span><br></pre></td></tr></table></figure>
+<h1 id="项目启动celery服务">2.项目启动celery服务</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">celery worker --app=taidii  --loglevel=info --logfile=celery-worker-default-out.log</span><br><span class="line"></span><br><span class="line">celery beat --app=taidii --loglevel=info</span><br></pre></td></tr></table></figure>
+<h1 id="项目修改js之前">3.项目修改js之前</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd static/js/app/modules/</span><br><span class="line">babel --presets react --watch reactSrc/ --out-dir reactBuild/</span><br></pre></td></tr></table></figure>
+<h1 id="ssh保持连接">4.ssh保持连接</h1>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">ssh -o <span class="attribute">TCPKeepAlive</span>=<span class="literal">yes</span> -o <span class="attribute">ServerAliveInterval</span>=300</span><br></pre></td></tr></table></figure>
+<h1 id="django-south">5.django south</h1>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">python</span> manage.<span class="keyword">py</span> syncdb</span><br><span class="line"><span class="keyword">python</span> manage.<span class="keyword">py</span> convert_to_south appname</span><br><span class="line"><span class="keyword">p</span></span><br><span class="line"><span class="keyword">python</span> manage.<span class="keyword">py</span> schemagration appname --initial</span><br><span class="line"><span class="keyword">python</span> manage.<span class="keyword">py</span> schemagration appname --auto</span><br><span class="line"><span class="keyword">python</span> manage.<span class="keyword">py</span> migrate appname --fake <span class="number">00001</span>.xxx</span><br><span class="line"><span class="keyword">python</span> manage.<span class="keyword">py</span> migrate appname</span><br></pre></td></tr></table></figure>
+<h1 id="markdown-语法">6. markdown 语法</h1>
+<h2 id="脚注">6.1. 脚注</h2>
+<p>使用 [^keyword] 表示注脚。 <img src="常用命令-不定期更新/keyword.png"
+alt="keyword" /></p>
+<h2 id="内容目录">6.2. 内容目录</h2>
+<p>使用[TOC]引用目录 <img src="常用命令-不定期更新/toc.png"
+alt="toc" /></p>
+<h2 id="待办事宜-todo-列表">6.3 待办事宜 Todo 列表</h2>
+<p>使用带有 [ ] 或 [x]
+（未完成或已完成）项的列表语法撰写一个待办事宜列表例如： <img
+src="常用命令-不定期更新/todo.png" alt="todo" /></p>
+<h2 id="表格">6.4 表格</h2>
+<figure>
+<img src="常用命令-不定期更新/table.png" alt="todo" />
+<figcaption aria-hidden="true">todo</figcaption>
+</figure>
+<h2 id="流程图和时序图">6.5 流程图和时序图</h2>
+<ul>
+<li><p>流程图: <img src="常用命令-不定期更新/flow.png"
+alt="todo" /></p></li>
+<li><p>时序图: <img src="常用命令-不定期更新/sequence.png"
+alt="todo" /></p></li>
+</ul>
+<h2 id="latex-公式">6.6 LaTeX 公式</h2>
+<ul>
+<li><p>$ 表示行内公式: <img src="常用命令-不定期更新/latex.png"
+alt="todo" /></p></li>
+<li><p>$$ 表示整行公式: <img
+src="常用命令-不定期更新/latex_wholeline.png" alt="todo" /></p></li>
+</ul>
+<h1 id="git-统计">git 统计</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、统计某人的代码提交量，包括增加，删除</span></span><br><span class="line">git log --author=&quot;$(git config --get user.name)&quot; --since=2014-07-01 --until=2016-08-01 --pretty=tformat: --numstat | awk &#x27;&#123; add += $1 ; subs += $2 ; loc += $1 - $2 &#125; END &#123; printf &quot;added lines: %s removed lines : %s total lines: %s\n&quot;,add,subs,loc &#125;&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、仓库提交者排名前5（如果看全部，去掉<span class="built_in">head</span>管道即可）</span></span><br><span class="line">git log --pretty=&#x27;%aN&#x27; | sort | uniq -c | sort -k1 -n -r | head -n 5</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="m-bad-interpreter"><code>^M: bad interpreter</code></h1>
+<p>window下编辑过的文件放到unix系统执行。会报错。</p>
+<p>使用<code>vi</code>打开文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">:<span class="built_in">set</span> fileformat=unix</span><br></pre></td></tr></table></figure>
+<p>然后<code>:w</code>保存,即可</p>
+<h1
+id="powershell使用linux风格的快捷键"><code>Powershell</code>使用<code>linux</code>风格的快捷键</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打开powershell配置文件</span></span><br><span class="line">notepad.exe <span class="variable">$PROFILE</span></span><br><span class="line"><span class="comment"># 添加下面一行</span></span><br><span class="line">Set-PSReadlineOption -EditMode Emacs</span><br></pre></td></tr></table></figure>
+<h1 id="nginx添加自定义的ssl">nginx添加自定义的ssl</h1>
+<p>制作密钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl genrsa -out test.key 2048</span><br></pre></td></tr></table></figure>
+<p>制作证书</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openssl req -new -x509 -days 365 -key test.key -out test.crt</span><br></pre></td></tr></table></figure>
+<p>修改nginx配置</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">server</span> &#123;</span><br><span class="line">    <span class="string">listen</span> <span class="number">443</span><span class="string">;</span></span><br><span class="line">    <span class="string">server_name</span> <span class="string">test.com;</span> <span class="comment"># 改为绑定证书的域名</span></span><br><span class="line">    <span class="string">ssl</span> <span class="string">on;</span></span><br><span class="line">    <span class="string">ssl_certificate</span> <span class="string">/etc/nginx/ssl/test.crt;</span> <span class="comment"># 改为自己申请得到的 crt 文件的名称</span></span><br><span class="line">    <span class="string">ssl_certificate_key/etc/nginx/ssl/test.key;</span> <span class="comment"># 改为自己申请得到的 key 文件的名称</span></span><br><span class="line">    <span class="string">ssl_session_timeout</span> <span class="string">5m;</span></span><br><span class="line">    <span class="string">ssl_protocols</span> <span class="string">TLSv1</span> <span class="string">TLSv1.1</span> <span class="string">TLSv1.2;</span></span><br><span class="line">    <span class="string">ssl_ciphers</span> <span class="string">ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;</span></span><br><span class="line">    <span class="string">ssl_prefer_server_ciphers</span> <span class="string">on;</span></span><br><span class="line"><span class="string">location</span> <span class="string">/</span> &#123;</span><br><span class="line">    <span class="string">root</span> <span class="string">/usr/share/nginx/html;</span> <span class="comment">#站点目录</span></span><br><span class="line">    <span class="string">index</span> <span class="string">index.html</span> <span class="string">index.htm;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="svn-clean-up-failed">svn clean up failed</h1>
+<ol type="1">
+<li>安装sqlite3命令行工具 (sqlite-tools-win32) from <a
+target="_blank" rel="noopener" href="http://www.sqlite.org/download.html"
+class="uri">http://www.sqlite.org/download.html</a></li>
+<li><code>sqlite3 .svn/wc.db "select * from work_queue"</code></li>
+<li><code>sqlite3 .svn/wc.db "delete from work_queue"</code></li>
+</ol>
+<h1 id="清除命令行记录和登陆记录">清除命令行记录和登陆记录</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo lastlog -C -u &lt;username&gt;</span><br><span class="line"></span><br><span class="line"><span class="built_in">history</span> -c</span><br></pre></td></tr></table></figure>
+<h1 id="python多cpu-build">python多cpu build</h1>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">MAKEFLAGS</span><span class="operator">=</span><span class="string">&quot;-j$(nproc)&quot;</span> pip install xxx</span><br></pre></td></tr></table></figure>
+<h1 id="redis设置用户名密码权限">redis设置用户名密码权限</h1>
+<p>参考<a
+target="_blank" rel="noopener" href="https://redis.io/docs/management/security/acl/#acl-rules">redis
+docs</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ACL SETUSER username on &gt;PASSOWRD allchannels ~* allcommands</span><br><span class="line">ACL SETUSER 用户名 on &gt;密码 key 命令</span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">ACL SETUSER xm on &gt;admin123  allchannels ~* allcommands</span><br></pre></td></tr></table></figure>
+<h1 id="kafka">kafka</h1>
+<p>消费者</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic <span class="built_in">test</span> --from-beginning --group group-python-test</span><br></pre></td></tr></table></figure>
+<p>生产者</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">kafka-console-producer.sh --bootstrap-server localhost:9092 --topic <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<h1 id="golang交叉编译">golang交叉编译</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">GOOS=linux GOARCH=amd64 go build -o &lt;output&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="centos添加启动项">centos添加启动项</h1>
+<p>在CentOS中添加启动项通常需要创建一个Systemd单元文件来管理服务。下面是一些简单的步骤来实现这个过程：</p>
+<ol type="1">
+<li>创建一个名为<code>&lt;服务名称&gt;.service</code>的文件，其中<code>&lt;服务名称&gt;</code>是你想要添加的服务名称。可以使用任何文本编辑器创建该文件。</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/systemd/system/&lt;服务名称&gt;.service</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>在打开的文件中，输入以下内容：</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=&lt;服务描述&gt;</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">ExecStart</span>=&lt;可执行文件的路径&gt;</span><br><span class="line"><span class="attr">Restart</span>=<span class="literal">on</span>-failure</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>确保将<code>&lt;服务描述&gt;</code>替换为对你的服务的简短描述，并将<code>&lt;可执行文件的路径&gt;</code>替换为你要运行的可执行文件的路径。</p>
+<ol start="3" type="1">
+<li><p>保存并关闭文件。</p></li>
+<li><p>运行以下命令来重新加载Systemd配置：</p></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>运行以下命令以启用并启动服务：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable &lt;服务名称&gt;.service</span><br><span class="line">sudo systemctl start &lt;服务名称&gt;.service</span><br></pre></td></tr></table></figure>
+<p>确保将<code>&lt;服务名称&gt;</code>替换为你在步骤1中创建的服务名称。</p>
+<p>现在，你的服务将在CentOS启动时自动启动。你可以使用以下命令来管理服务：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop &lt;服务名称&gt;.service  # 停止服务</span><br><span class="line">sudo systemctl restart &lt;服务名称&gt;.service  # 重启服务</span><br><span class="line">sudo systemctl status &lt;服务名称&gt;.service  # 查看服务状态</span><br></pre></td></tr></table></figure>
+<h1 id="aria2">aria2</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mayswind/AriaNg">AriaNg</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://github.com/XIU2/TrackersListCollection">Trackers</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/P3TERX/aria2.conf">aria2.conf</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://github.com/P3TERX/Aria2-Pro-Docker/blob/master/docker-compose.yml">Aria2-Pro-Docker</a>
+<ul>
+<li>需要修改aria2.conf中的rpc-secret为空</li>
+</ul></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件的保存路径 (可使用绝对路径或相对路径), 默认：当前启动位置</span></span><br><span class="line"><span class="comment"># D:\Download 是我的默认下载目录，可以改为你自己的下载路径</span></span><br><span class="line"><span class="built_in">dir</span>=D:\Download</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启 BT 下列设置</span></span><br><span class="line">enable-dht=<span class="literal">true</span></span><br><span class="line">bt-enable-lpd=<span class="literal">true</span></span><br><span class="line">enable-peer-exchange=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bt-tracker 更新，解决 Aria2 BT 下载速度慢没速度的问题</span></span><br><span class="line">bt-tracker=udp://tracker.opentrackr.org:1337/announce,udp://9.rarbg.com:2810/announce,udp://opentracker.i2p.rocks:6969/announce,https://opentracker.i2p.rocks:443/announce,udp://tracker1.myporn.club:9337/announce,udp://tracker1.bt.moack.co.kr:80/announce,udp://tracker.torrent.eu.org:451/announce,udp://p4p.arenabg.com:1337/announce,udp://open.stealth.si:80/announce,udp://open.demonii.com:1337/announce,udp://ipv4.tracker.harry.lu:80/announce,udp://explodie.org:6969/announce,udp://exodus.desync.com:6969/announce,https://tracker.tamersunion.org:443/announce,https://tracker.nanoha.org:443/announce,https://tracker.lilithraws.org:443/announce,https://tr.burnabyhighstar.com:443/announce,https://1337.abcvg.info:443/announce,http://tracker.mywaifu.best:6969/announce,http://bt.okmp3.ru:2710/announce</span><br></pre></td></tr></table></figure>
+<h1 id="mac删除无用的支持在后台服务">mac删除无用的支持在后台服务</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查找对应的服务</span></span><br><span class="line"><span class="built_in">ls</span> /Library/LaunchDaemons/</span><br><span class="line"><span class="built_in">ls</span> /Library/LaunchAgents/</span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">sudo <span class="built_in">rm</span> /Library/LaunchDaemons/&lt;对应的服务&gt;</span><br><span class="line">sudo <span class="built_in">rm</span> /Library/LaunchAgents/&lt;对应的服务&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="user加入docker的group">user加入docker的group</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看group</span></span><br><span class="line"><span class="built_in">groups</span></span><br><span class="line"><span class="comment"># 加入docker组</span></span><br><span class="line">sudo gpasswd -a <span class="variable">$USER</span> docker</span><br><span class="line"><span class="comment"># 重启docker后生效</span></span><br></pre></td></tr></table></figure>
+<h1 id="switch游戏nsz转为nsp">switch游戏nsz转为nsp</h1>
+<p>安装: <a target="_blank" rel="noopener" href="https://github.com/nicoboss/nsz/releases/"
+class="uri">https://github.com/nicoboss/nsz/releases/</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nsz -D /path/to/your/game.nsz</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/uncategorized/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE.html" rel="prev" title="mysql主从配置">
+                  <i class="fa fa-angle-left"></i> mysql主从配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/uncategorized/mysql%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD%E5%92%8C%E6%81%A2%E5%A4%8D.html" rel="next" title="mysql增量备份和恢复">
+                  mysql增量备份和恢复 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"54e9065119b99bd2a8f3ddf88dcbed49"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

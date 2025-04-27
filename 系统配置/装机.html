@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="装机时候一些常用软件的安装  iTerm oh-my-zsh brew pip virtualenv, virtualenvwrapper docker Atom, PyCharm mysql, redis  1. iTerm 1.1 下载安装   去 官网 下载最新版本, 并安装 1.2 set Transparency  1.3 Set Font Style(下载、安装库字体库)  1.3.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="装机">
+<meta property="og:url" content="http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/%E8%A3%85%E6%9C%BA.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="装机时候一些常用软件的安装  iTerm oh-my-zsh brew pip virtualenv, virtualenvwrapper docker Atom, PyCharm mysql, redis  1. iTerm 1.1 下载安装   去 官网 下载最新版本, 并安装 1.2 set Transparency  1.3 Set Font Style(下载、安装库字体库)  1.3.1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/%E8%A3%85%E6%9C%BA/change_font.jpg">
+<meta property="article:published_time" content="2022-05-14T07:04:46.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.198Z">
+<meta property="article:author" content="月牙天冲">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/%E8%A3%85%E6%9C%BA/change_font.jpg">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/%E8%A3%85%E6%9C%BA.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/%E8%A3%85%E6%9C%BA.html","path":"系统配置/装机.html","title":"装机"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>装机 | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A3%85%E6%9C%BA%E6%97%B6%E5%80%99%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">装机时候一些常用软件的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iterm"><span class="nav-number">1.1.</span> <span class="nav-text">1. iTerm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 下载安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-transparency"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 set Transparency</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-font-style%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%BA%93%E5%AD%97%E4%BD%93%E5%BA%93"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Set Font
+Style(下载、安装库字体库)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 配色方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oh-my-zsh"><span class="nav-number">1.2.</span> <span class="nav-text">2. oh-my-zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#install-oh-my-zsh"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Install oh-my-zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E7%9A%84shell"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 切换系统使用的shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%BB%E9%A2%98agnoster"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 使用主题(agnoster)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AEzsh-syntax-highlighting"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4
+语法高亮(zsh-syntax-highlighting)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#homebrew"><span class="nav-number">1.3.</span> <span class="nav-text">homebrew</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pyenv-pyenv-virtualenv"><span class="nav-number">1.4.</span> <span class="nav-text">pyenv + pyenv-virtualenv</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/%E8%A3%85%E6%9C%BA.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="装机 | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          装机
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-14 15:04:46" itemprop="dateCreated datePublished" datetime="2022-05-14T15:04:46+08:00">2022-05-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">系统配置</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE/%E8%A3%85%E6%9C%BA.html" class="post-meta-item leancloud_visitors" data-flag-title="装机" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>578</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="装机时候一些常用软件的安装">装机时候一些常用软件的安装</h1>
+<ul>
+<li>iTerm</li>
+<li>oh-my-zsh</li>
+<li>brew</li>
+<li>pip</li>
+<li>virtualenv, virtualenvwrapper</li>
+<li>docker</li>
+<li>Atom, PyCharm</li>
+<li>mysql, redis</li>
+</ul>
+<h2 id="iterm">1. iTerm</h2>
+<h3 id="下载安装">1.1 下载安装</h3>
+<p>  去 <a target="_blank" rel="noopener" href="http://www.iterm2.com/">官网</a> 下载最新版本,
+并安装</p>
+<h3 id="set-transparency">1.2 set Transparency</h3>
+<p><img
+src="https://cdn.jsdelivr.net/gh/wudizhangzhi/PicGoHub//img/系统配置202205141342570.jpg" /></p>
+<h3 id="set-font-style下载安装库字体库">1.3 Set Font
+Style(下载、安装库字体库)</h3>
+<ul>
+<li><p>1.3.1 拉取工程 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">https://github.com/powerline/fonts</span></span><br><span class="line">git clone git@github.com:powerline/fonts.git</span><br></pre></td></tr></table></figure></p></li>
+<li><p>1.3.2 安装字体</p>
+<p>执行./install.sh指令安装所有Powerline字体
+安装完成后提示所有字体均已下载到/Users/superdanny/Library/Fonts路径下</p></li>
+<li><p>1.3.3 修改iterm设置</p>
+<p><img src="装机/change_font.jpg" /> <img
+src="https://cdn.jsdelivr.net/gh/wudizhangzhi/PicGoHub//img/系统配置202205141340996.jpg"
+alt="change_font" /></p></li>
+<li><p>1.3.4 修改vsc terminal字体</p>
+<p>配置中搜索 <strong>terminal font</strong> 或者
+settings.json中<code>"terminal.integrated.fontFamily"</code>配置为Meslo
+LG L DZ for Powerline</p></li>
+</ul>
+<h3 id="配色方案">1.4 配色方案</h3>
+<ul>
+<li><p><a
+href="git@github.com:altercation/solarized.git">安装配色方案</a></p></li>
+<li><p>配置配色方案</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/wudizhangzhi/PicGoHub//img/系统配置202205141341408.jpg" /></p></li>
+</ul>
+<h2 id="oh-my-zsh">2. oh-my-zsh</h2>
+<h3 id="install-oh-my-zsh">2.1 Install oh-my-zsh</h3>
+<p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">via curl</span></span><br><span class="line">sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">via wget</span></span><br><span class="line">sh -c &quot;$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="切换系统使用的shell">2.2 切换系统使用的shell</h3>
+<ul>
+<li><p>通过 <strong><em>cat /etc/shells</em></strong>
+命令可以查看当前系统可以使用哪些shell</p></li>
+<li><p>通过 <strong><em>echo $SHELL</em></strong>
+命令可以查看我们当前正在使用的shell</p></li>
+<li><p>如果当前的shell不是zsh，我们可以通过 <strong><em>chsh -s
+/bin/zsh</em></strong>
+命令可以将shell切换为shell之zsh，终端重启之后即可生效。</p></li>
+</ul>
+<h3 id="使用主题agnoster">2.3 使用主题(agnoster)</h3>
+<ul>
+<li><p>下载<a
+target="_blank" rel="noopener" href="https://github.com/fcamblor/oh-my-zsh-agnoster-fcamblor">agnoster</a>主题</p>
+<p>到下载的工程里面运行install文件,主题将安装到~/.oh-my-zsh/themes目录下</p></li>
+<li><p>设置该主题</p>
+<p>进入~/.zshrc打开.zshrc文件，然后将ZSH_THEME后面的字段改为agnoster。ZSH_THEME="agnoster"（agnoster即为要设置的主题）</p></li>
+</ul>
+<h3 id="语法高亮zsh-syntax-highlighting">2.4
+语法高亮(zsh-syntax-highlighting)</h3>
+<ul>
+<li><p>cd到.zshrc所在目录</p></li>
+<li><p>执行指令将工程克隆到当前目录 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone git://github.com/zsh-users/zsh-syntax-highlighting.git</span><br></pre></td></tr></table></figure></p></li>
+<li><p>打开.zshrc文件，在最后添加下面内容</p>
+<p>plugins=(git zsh-syntax-highlighting)</p>
+<p>保存文件。</p></li>
+</ul>
+<h2 id="homebrew">homebrew</h2>
+<h2 id="pyenv-pyenv-virtualenv">pyenv + pyenv-virtualenv</h2>
+<ul>
+<li>pyenv可以管理python版本</li>
+<li><a
+target="_blank" rel="noopener" href="https://github.com/pyenv/pyenv-virtualenv">virturlenv</a>是一个pyenv的插件，可以创建虚拟环境</li>
+</ul>
+<p>使用homebrew安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install pyenv</span><br><span class="line">brew install pyenv-virtualenv</span><br></pre></td></tr></table></figure>
+<p>.zshrc配置添加环境变量和脚本初始化环境</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">export</span> <span class="string">PYENV_ROOT=&quot;$HOME/.pyenv&quot;</span></span><br><span class="line"><span class="string">export</span> <span class="string">PATH=$(pyenv</span> <span class="string">root)/shims:$PATH:/opt/homebrew/bin:/opt/homebrew/sbin</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">eval</span> <span class="string">&quot;$(pyenv init -)&quot;</span></span><br><span class="line"><span class="string">eval</span> <span class="string">&quot;$(pyenv virtualenv-init -)&quot;</span></span><br></pre></td></tr></table></figure>
+<p>安装python和虚拟环境 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pyenv install 3.10.4</span><br><span class="line"></span><br><span class="line"><span class="comment"># pyenv virtualenv &lt;python version&gt; &lt;virtual name&gt;</span></span><br><span class="line">pyenv virtualenv 3.10.4 jx</span><br></pre></td></tr></table></figure></p>
+<p>配置完成之后，可以在路径下添加文件 .python-version <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .python-version</span></span><br><span class="line"><span class="string">jx</span></span><br></pre></td></tr></table></figure>
+这样进入路径后会自动加载虚拟环境</p>
+<p><img
+src="https://cdn.jsdelivr.net/gh/wudizhangzhi/PicGoHub//img/系统配置202205141343291.png" /></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/uncategorized/who-covid-19-weekly-update%EF%BC%88april-12%EF%BC%89.html" rel="prev" title="WHO covid-19 weekly update（April 12）">
+                  <i class="fa fa-angle-left"></i> WHO covid-19 weekly update（April 12）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E7%88%AC%E8%99%AB/hupu-go-2-0-http-api.html" rel="next" title="Hupu Go 2.0 http api">
+                  Hupu Go 2.0 http api <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"231fd54a88dacc89b8c3d877011f2c15"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

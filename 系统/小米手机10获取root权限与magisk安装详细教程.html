@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="小米手机10获取Root权限与Magisk安装详细教程 在安卓设备上获取root权限可以让用户拥有对系统的完全控制权，实现更多高级功能和个性化设置。本文将详细介绍如何在小米10手机上获取root权限，安装Magisk框架，以及如何通过ADB进行root操作。 准备工作 在开始之前，请确保做好以下准备工作：  数据备份：获取root权限的过程可能会导致数据丢失，请务必备份重要数据 电量充足：确保手机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小米手机10获取Root权限与Magisk安装详细教程">
+<meta property="og:url" content="http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA10%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E4%B8%8Emagisk%E5%AE%89%E8%A3%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="小米手机10获取Root权限与Magisk安装详细教程 在安卓设备上获取root权限可以让用户拥有对系统的完全控制权，实现更多高级功能和个性化设置。本文将详细介绍如何在小米10手机上获取root权限，安装Magisk框架，以及如何通过ADB进行root操作。 准备工作 在开始之前，请确保做好以下准备工作：  数据备份：获取root权限的过程可能会导致数据丢失，请务必备份重要数据 电量充足：确保手机">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-27T07:30:00.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.196Z">
+<meta property="article:author" content="月牙天冲">
+<meta property="article:tag" content="小米手机">
+<meta property="article:tag" content="Root">
+<meta property="article:tag" content="Magisk">
+<meta property="article:tag" content="ADB">
+<meta property="article:tag" content="安卓">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA10%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E4%B8%8Emagisk%E5%AE%89%E8%A3%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA10%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E4%B8%8Emagisk%E5%AE%89%E8%A3%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html","path":"系统/小米手机10获取root权限与magisk安装详细教程.html","title":"小米手机10获取Root权限与Magisk安装详细教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>小米手机10获取Root权限与Magisk安装详细教程 | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA10%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E4%B8%8Emagisk%E5%AE%89%E8%A3%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">小米手机10获取Root权限与Magisk安装详细教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%A7%A3%E9%94%81bootloader%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">第一步：解锁Bootloader（引导加载程序）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B3%E8%AF%B7%E8%A7%A3%E9%94%81%E8%B5%84%E6%A0%BC"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 申请解锁资格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%94%81bootloader"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 解锁Bootloader</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E5%AE%89%E8%A3%85magisk"><span class="nav-number">1.3.</span> <span class="nav-text">第二步：安装Magisk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%8F%96boot%E9%95%9C%E5%83%8F"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 提取Boot镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8magisk%E4%BF%AE%E8%A1%A5boot%E9%95%9C%E5%83%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 使用Magisk修补Boot镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%B7%E5%85%A5%E4%BF%AE%E8%A1%A5%E5%90%8E%E7%9A%84boot%E9%95%9C%E5%83%8F"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 刷入修补后的Boot镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E9%80%9A%E8%BF%87adb%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90"><span class="nav-number">1.4.</span> <span class="nav-text">第三步：通过ADB获取Root权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEadb"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 设置ADB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adb%E5%91%BD%E4%BB%A4%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. ADB命令获取Root权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8root%E6%9D%83%E9%99%90%E6%93%8D%E4%BD%9C"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 常用Root权限操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">1.5.</span> <span class="nav-text">常见问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#magisk%E5%AE%89%E8%A3%85%E5%90%8E%E6%97%A0%E6%B3%95root"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. Magisk安装后无法Root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E9%93%B6%E8%A1%8C%E6%94%AF%E4%BB%98%E5%BA%94%E7%94%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 无法使用银行&#x2F;支付应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ota%E6%9B%B4%E6%96%B0%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. OTA更新失败</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E4%B8%8E%E9%A3%8E%E9%99%A9"><span class="nav-number">1.6.</span> <span class="nav-text">注意事项与风险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E5%BA%94%E7%94%A8"><span class="nav-number">1.7.</span> <span class="nav-text">拓展应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.8.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/%E7%B3%BB%E7%BB%9F/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA10%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E4%B8%8Emagisk%E5%AE%89%E8%A3%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="小米手机10获取Root权限与Magisk安装详细教程 | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小米手机10获取Root权限与Magisk安装详细教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-27 15:30:00 / 修改时间：11:53:33" itemprop="dateCreated datePublished" datetime="2025-04-27T15:30:00+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">系统</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E7%B3%BB%E7%BB%9F/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA10%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E4%B8%8Emagisk%E5%AE%89%E8%A3%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B.html" class="post-meta-item leancloud_visitors" data-flag-title="小米手机10获取Root权限与Magisk安装详细教程" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1
+id="小米手机10获取root权限与magisk安装详细教程">小米手机10获取Root权限与Magisk安装详细教程</h1>
+<p>在安卓设备上获取root权限可以让用户拥有对系统的完全控制权，实现更多高级功能和个性化设置。本文将详细介绍如何在小米10手机上获取root权限，安装Magisk框架，以及如何通过ADB进行root操作。</p>
+<h2 id="准备工作">准备工作</h2>
+<p>在开始之前，请确保做好以下准备工作：</p>
+<ol type="1">
+<li><strong>数据备份</strong>：获取root权限的过程可能会导致数据丢失，请务必备份重要数据</li>
+<li><strong>电量充足</strong>：确保手机电量在50%以上，最好连接充电器</li>
+<li><strong>必要工具</strong>：
+<ul>
+<li>电脑（Windows/Mac/Linux均可）</li>
+<li>USB数据线</li>
+<li>ADB和Fastboot工具</li>
+<li>小米解锁工具</li>
+<li>Magisk安装包</li>
+</ul></li>
+</ol>
+<h2
+id="第一步解锁bootloader引导加载程序">第一步：解锁Bootloader（引导加载程序）</h2>
+<p>小米手机要获取root权限，首先需要解锁Bootloader。</p>
+<h3 id="申请解锁资格">1. 申请解锁资格</h3>
+<ol type="1">
+<li>在小米手机上登录小米账号，并确保该账号已绑定手机号</li>
+<li>前往「设置」→「我的设备」→「全部参数」，连续点击「MIUI版本」7次以上，开启开发者选项</li>
+<li>进入「设置」→「更多设置」→「开发者选项」，启用「OEM解锁」和「USB调试」</li>
+<li>访问<a
+target="_blank" rel="noopener" href="http://www.miui.com/unlock/">小米解锁官网</a>申请解锁资格（注意：新账号可能需要等待7天或更长时间）</li>
+</ol>
+<h3 id="解锁bootloader">2. 解锁Bootloader</h3>
+<ol type="1">
+<li>下载并安装<a
+target="_blank" rel="noopener" href="http://www.miui.com/unlock/download.html">小米解锁工具</a>到电脑</li>
+<li>关闭手机，同时按住「音量下键」和「电源键」进入Fastboot模式</li>
+<li>用USB线连接手机和电脑</li>
+<li>打开解锁工具，登录与手机相同的小米账号</li>
+<li>按照工具提示进行解锁操作</li>
+<li>解锁成功后，手机将自动重启并恢复出厂设置（这就是为什么事先备份很重要）</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>：解锁Bootloader会清除手机所有数据，并且会使手机保修失效。这个操作是不可逆的，请谨慎考虑。</p>
+</blockquote>
+<h2 id="第二步安装magisk">第二步：安装Magisk</h2>
+<p>Magisk是目前最流行的Root解决方案，它提供了强大的模块化支持和隐藏Root功能。</p>
+<h3 id="准备工作-1">1. 准备工作</h3>
+<ol type="1">
+<li>下载最新版<a
+target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases">Magisk APK</a></li>
+<li>下载小米10对应的官方ROM包（可从<a
+target="_blank" rel="noopener" href="https://www.mi.com/service/download">小米官网</a>获取）</li>
+</ol>
+<h3 id="提取boot镜像">2. 提取Boot镜像</h3>
+<ol type="1">
+<li>将ROM包后缀名改为.zip，并解压</li>
+<li>找到其中的<code>boot.img</code>文件，将其复制到手机存储空间</li>
+</ol>
+<h3 id="使用magisk修补boot镜像">3. 使用Magisk修补Boot镜像</h3>
+<ol type="1">
+<li>在手机上安装Magisk APK</li>
+<li>打开Magisk应用，点击「安装」→「选择并修补一个文件」</li>
+<li>选择之前提取的boot.img文件</li>
+<li>Magisk将创建一个修补后的文件，名为<code>magisk_patched_[随机字符].img</code></li>
+<li>将修补后的镜像文件传输到电脑</li>
+</ol>
+<h3 id="刷入修补后的boot镜像">4. 刷入修补后的Boot镜像</h3>
+<ol type="1">
+<li>确保ADB和Fastboot工具已安装在电脑上</li>
+<li>将手机重启到Fastboot模式（关机状态下同时按住「音量下键」和「电源键」）</li>
+<li>在电脑终端/命令提示符中运行以下命令：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 验证设备连接</span></span><br><span class="line">fastboot devices</span><br><span class="line"></span><br><span class="line"><span class="comment"># 刷入修补后的Boot镜像</span></span><br><span class="line">fastboot flash boot magisk_patched_[随机字符].img</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启手机</span></span><br><span class="line">fastboot reboot</span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>手机重启后，打开Magisk应用，如果显示已安装版本号，则表示安装成功</li>
+</ol>
+<h2 id="第三步通过adb获取root权限">第三步：通过ADB获取Root权限</h2>
+<p>安装Magisk后，您可以通过ADB获取和使用Root权限。</p>
+<h3 id="设置adb">1. 设置ADB</h3>
+<ol type="1">
+<li>下载并安装<a
+target="_blank" rel="noopener" href="https://developer.android.com/studio/releases/platform-tools">Android
+SDK Platform Tools</a></li>
+<li>解压下载的文件到一个方便访问的位置</li>
+<li>在手机上启用「开发者选项」和「USB调试」</li>
+<li>连接手机到电脑，并在手机上允许USB调试</li>
+</ol>
+<h3 id="adb命令获取root权限">2. ADB命令获取Root权限</h3>
+<ol type="1">
+<li>打开终端/命令提示符，进入Platform Tools目录</li>
+<li>执行以下命令测试连接：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<p>如果列出了您的设备，则表示连接成功。</p>
+<ol start="3" type="1">
+<li>执行以下命令获取Root shell：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell</span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>在shell中执行：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">su</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>在手机上会弹出授权请求，点击「允许」后，命令行会显示<code>#</code>符号，表示已获得Root权限</li>
+</ol>
+<h3 id="常用root权限操作">3. 常用Root权限操作</h3>
+<p>以下是一些常用的需要Root权限的ADB操作：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 重启系统</span></span><br><span class="line">adb shell su -c <span class="string">&quot;reboot&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启到Recovery模式</span></span><br><span class="line">adb shell su -c <span class="string">&quot;reboot recovery&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启到Fastboot模式</span></span><br><span class="line">adb shell su -c <span class="string">&quot;reboot bootloader&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装系统应用</span></span><br><span class="line">adb shell su -c <span class="string">&quot;pm install -r -d /sdcard/Download/应用名称.apk&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载系统应用</span></span><br><span class="line">adb shell su -c <span class="string">&quot;pm uninstall --user 0 com.package.name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改系统属性</span></span><br><span class="line">adb shell su -c <span class="string">&quot;setprop [属性名] [属性值]&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="常见问题解决">常见问题解决</h2>
+<h3 id="magisk安装后无法root">1. Magisk安装后无法Root</h3>
+<ul>
+<li>检查Magisk应用是否显示已安装版本</li>
+<li>尝试在Magisk应用中重新修补最新的boot.img</li>
+<li>确保刷入的是正确的修补后镜像</li>
+</ul>
+<h3 id="无法使用银行支付应用">2. 无法使用银行/支付应用</h3>
+<ul>
+<li>在Magisk设置中启用「隐藏Magisk应用」功能</li>
+<li>使用「Magisk
+Hide」功能隐藏Root状态（新版本中已更名为「配置遮罩」）</li>
+<li>尝试使用「Shamiko」或类似模块进一步隐藏Root</li>
+</ul>
+<h3 id="ota更新失败">3. OTA更新失败</h3>
+<ul>
+<li>小米手机获取Root后，通常无法直接OTA更新</li>
+<li>可以尝试使用Magisk的「恢复原厂镜像」功能后再更新</li>
+<li>更新后需要重新安装Magisk</li>
+</ul>
+<h2 id="注意事项与风险">注意事项与风险</h2>
+<ol type="1">
+<li><strong>保修问题</strong>：获取Root权限会使设备保修失效</li>
+<li><strong>安全风险</strong>：Root权限可能被恶意应用利用，请谨慎安装来源不明的应用</li>
+<li><strong>系统稳定性</strong>：不当的Root操作可能导致系统不稳定或无法启动</li>
+<li><strong>指纹支付</strong>：某些银行和支付应用可能无法在Root设备上使用</li>
+<li><strong>数据丢失</strong>：操作不当可能导致数据丢失，请定期备份重要数据</li>
+</ol>
+<h2 id="拓展应用">拓展应用</h2>
+<p>获取Root权限后，您可以：</p>
+<ol type="1">
+<li><strong>系统优化</strong>：使用应用如Kernel Auditor调整系统参数</li>
+<li><strong>去除系统广告</strong>：通过模块如AdAway屏蔽广告</li>
+<li><strong>系统备份</strong>：使用Titanium
+Backup等工具进行完整备份</li>
+<li><strong>高级定制</strong>：安装Xposed框架或EdXposed进行深度定制</li>
+<li><strong>去除系统应用</strong>：卸载预装的不需要的应用</li>
+<li><strong>系统调试</strong>：使用更多高级调试工具和功能</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>小米手机10获取Root权限的过程虽然有些复杂，但只要按照步骤操作，一般都能成功。Magisk提供了当前最优秀的Root解决方案，通过ADB进一步扩展了Root功能的应用范围。</p>
+<p>但请记住，Root是一把双刃剑，它带来更多自由的同时也带来更多责任和风险。建议只有真正需要Root权限的用户才进行此操作，并在操作前充分了解相关风险。</p>
+<hr />
+<p><strong>参考资料</strong>： - <a
+target="_blank" rel="noopener" href="https://topjohnwu.github.io/Magisk/">Magisk官方文档</a> - <a
+target="_blank" rel="noopener" href="http://www.miui.com/unlock/">小米解锁官网</a> - <a
+target="_blank" rel="noopener" href="https://developer.android.com/studio/command-line/adb">Android开发者文档
+- ADB</a> - <a
+target="_blank" rel="noopener" href="https://forum.xda-developers.com/c/xiaomi-mi-10.9935/">XDA论坛 -
+小米10专区</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA/" rel="tag"># 小米手机</a>
+              <a href="/tags/Root/" rel="tag"># Root</a>
+              <a href="/tags/Magisk/" rel="tag"># Magisk</a>
+              <a href="/tags/ADB/" rel="tag"># ADB</a>
+              <a href="/tags/%E5%AE%89%E5%8D%93/" rel="tag"># 安卓</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E7%88%AC%E8%99%AB/%E7%A0%B4%E8%A7%A3instagram-android%E6%8A%93%E5%8C%85%EF%BC%9A%E7%BB%95%E8%BF%87ssl-pinning%E8%AF%A6%E8%A7%A3.html" rel="prev" title="破解Instagram Android抓包：绕过SSL Pinning详解">
+                  <i class="fa fa-angle-left"></i> 破解Instagram Android抓包：绕过SSL Pinning详解
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"608f0319d017a0b582946c414b2398a2"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

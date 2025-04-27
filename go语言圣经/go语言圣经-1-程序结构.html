@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="程序结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言圣经 .1.程序结构">
+<meta property="og:url" content="http://blog.yueyawochong.cn/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="程序结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-4.png">
+<meta property="article:published_time" content="2021-04-10T02:21:29.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.186Z">
+<meta property="article:author" content="月牙天冲">
+<meta property="article:tag" content="go">
+<meta property="article:tag" content="go语言圣经">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-1.png">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84.html","path":"go语言圣经/go语言圣经-1-程序结构.html","title":"Go语言圣经 .1.程序结构"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Go语言圣经 .1.程序结构 | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">程序结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E5%90%8D"><span class="nav-number">1.1.</span> <span class="nav-text">命名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.1.1.</span> <span class="nav-text">关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">常量、类型和函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%AD%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="nav-number">1.3.1.</span> <span class="nav-text">短变量声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88"><span class="nav-number">1.3.2.</span> <span class="nav-text">指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E5%8F%98%E9%87%8F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">指针与变量的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.3.</span> <span class="nav-text">new 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">1.3.4.</span> <span class="nav-text">变量的生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC"><span class="nav-number">1.4.</span> <span class="nav-text">赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%B5%8B%E5%80%BC%E6%80%A7"><span class="nav-number">1.4.1.</span> <span class="nav-text">可赋值性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E5%92%8C%E6%96%87%E4%BB%B6"><span class="nav-number">1.6.</span> <span class="nav-text">包和文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%8C%85"><span class="nav-number">1.6.1.</span> <span class="nav-text">导入包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.6.2.</span> <span class="nav-text">包的初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.7.</span> <span class="nav-text">作用域</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">2.</span> <span class="nav-text">练习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-2.1"><span class="nav-number">2.1.</span> <span class="nav-text">练习 2.1：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-2.2"><span class="nav-number">2.2.</span> <span class="nav-text">练习 2.2：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-2.3"><span class="nav-number">2.3.</span> <span class="nav-text">练习 2.3：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-2.4"><span class="nav-number">2.4.</span> <span class="nav-text">练习 2.4：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0-2.5"><span class="nav-number">2.5.</span> <span class="nav-text">练习 2.5：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Go语言圣经 .1.程序结构 | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Go语言圣经 .1.程序结构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-10 10:21:29" itemprop="dateCreated datePublished" datetime="2021-04-10T10:21:29+08:00">2021-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F/" itemprop="url" rel="index"><span itemprop="name">go语言圣经</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84.html" class="post-meta-item leancloud_visitors" data-flag-title="Go语言圣经 .1.程序结构" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="程序结构">程序结构</h1>
+<span id="more"></span>
+<h2 id="命名">命名</h2>
+<h3 id="关键字">关键字</h3>
+<table>
+<thead>
+<tr class="header">
+<th>break</th>
+<th>default</th>
+<th>func</th>
+<th>interface</th>
+<th>select</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>case</td>
+<td>defer</td>
+<td>go</td>
+<td>map</td>
+<td>struct</td>
+</tr>
+<tr class="even">
+<td>chan</td>
+<td>else</td>
+<td>goto</td>
+<td>package</td>
+<td>switch</td>
+</tr>
+<tr class="odd">
+<td>const</td>
+<td>fallthrough</td>
+<td>if</td>
+<td>range</td>
+<td>type</td>
+</tr>
+<tr class="even">
+<td>continue</td>
+<td>for</td>
+<td>import</td>
+<td>return</td>
+<td>var</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常量类型和函数">常量、类型和函数</h3>
+<ul>
+<li>常量: true, false, iota, nil</li>
+<li>类型: int, int8, int16, int32, int64, unit, unit8, unit16, unit32,
+unit64, unitptr, float32, float64, complex128, complex64, bool, byte,
+rune, string, error</li>
+<li>函数: make, len, cap, new, append, copy, close, delete, complex,
+real, imag, panic, recover</li>
+</ul>
+<hr />
+<p>注意事项:</p>
+<ol type="1">
+<li><p>包名本身总是由小写组成的</p></li>
+<li><p>实体第一个字母的大小写决定其可见性是否跨包。如果大写开头，它是导出的,
+对外是可见和可访问的</p>
+<p>例如: <code>fmt</code>包中的<code>Printf</code></p></li>
+</ol>
+<h2 id="声明">声明</h2>
+<p>声明给一个程序实体命名，并且设定其部分或者全部属性。</p>
+<p>4个主要的声明：</p>
+<ul>
+<li>变量(<code>var</code>)</li>
+<li>常量(<code>const</code>)</li>
+<li>类型(<code>type</code>)</li>
+<li>函数(<code>func</code>)</li>
+</ul>
+<p>go程序存放在一个或者多个以<code>.go</code>结尾的文件里，每个文件以<code>package</code>声明开头，表明文件属于哪个包，<code>package</code>声明之后是<code>import</code>声明，然后是包级别的类型、变量、常量、函数的声明、不区分顺序。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> f = <span class="string">&quot;hello world&quot;</span></span><br><span class="line">    fmt.Println(f)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="变量">变量</h2>
+<p><code>var</code>声明创建一个具体类型的变量，通用形式:</p>
+<p><code>var name type = expression</code></p>
+<p>其中类型(type)和表达式(express)只能省略一个</p>
+<ul>
+<li><p>如果省略<code>type</code>，则变量的类型将由初始表达式决定</p></li>
+<li><p>如果省略<code>expression</code>,
+则变量的初始值对应类型的<code>零值</code>,</p>
+<blockquote>
+<p>各个类型的零值：</p>
+<ul>
+<li>布尔 - <code>false</code></li>
+<li>字符串 - <code>""</code></li>
+<li>接口和引用类型(slice、指针、map、通道、函数) - <code>nil</code></li>
+<li>数组或结构体一样的符合类型 - 其所有元素或成员的零值</li>
+</ul>
+</blockquote>
+<p>例如:</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> s <span class="type">string</span></span><br><span class="line">fmt.Println(s) <span class="comment">// &quot;&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="短变量声明">短变量声明</h3>
+<p>短变量声明的形式:</p>
+<p><code>name := expression</code></p>
+<h3 id="指针">指针</h3>
+<p>变量是存储值的地方。</p>
+<p>指针的值是一个变量的地址。</p>
+<p>如果一个变量的声明为<code>var x int</code>,</p>
+<p>表达式 <code>&amp;x</code>(x的地址) 获取一个指向整型变量的指针，
+它的类型是整型指针<code>*int</code></p>
+<p>指针p指向的变量写作 <code>*p</code></p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">x := <span class="number">1</span>          <span class="comment">// </span></span><br><span class="line">p := &amp;x         <span class="comment">// x的地址赋值给p, p指向x</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// p指向的变量，结果 &quot;1&quot;</span></span><br><span class="line">*p = <span class="number">2</span>          <span class="comment">// 将2赋值给p指向的变量</span></span><br><span class="line">fmt.Println(x)  <span class="comment">// 结果 &quot;2&quot;</span></span><br></pre></td></tr></table></figure>
+<p>指针类型的零值是<code>nil</code>,
+若<code>p != nil</code>，则说明p指向一个变量。</p>
+<p>指针是可比较的。两个指针当且仅当指向同一个变量或者两者都是nil的情况下才相等。</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> x y <span class="type">int</span></span><br><span class="line">fmt.Println(&amp;x==&amp;x, &amp;x==&amp;y, &amp;x==<span class="literal">nil</span>) <span class="comment">// true false false</span></span><br></pre></td></tr></table></figure>
+<h4 id="指针与变量的关系">指针与变量的关系</h4>
+<ol type="1">
+<li>声明变量：, <code>var x int</code>= 100,
+编译器会在内存中留出一个唯一的地址单元来存储变量，如下，编译器地址为<em>1004</em>的内存单元留给变量，数值为100，将地址1004与该变量的值100关联起来</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-1.png" width="50%"></p>
+<ol start="2" type="1">
+<li>创建指针：变量x的地址是1004，是一个数字，地址的这个数字可以用另一个变量来保存它，假设这个变量为<em>p</em>，此时p未初始化，系统为它分配了空间，但值还不确定</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-2.png" width="50%"></p>
+<ol start="3" type="1">
+<li>初始化指针：将变量x的地址存储到变量p中，初始化后（p=&amp;x），p指向x，称为一个指向x的指针。指针是一个变量，存储了另一个变量的地址。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-3.png" width="50%"></p>
+<ol start="4" type="1">
+<li>声明指针：*p和x指向的是x的内容，p和&amp;x指向的是x的地址</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh//wudizhangzhi/PicGoHub//img/Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84Go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-1-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84-4.png" width="50%"></p>
+<h3 id="new-函数">new 函数</h3>
+<p>另一种创建变量的方式是使用内置的new函数</p>
+<p>表达式<code>new(T)</code>创建一个未命名的T类型变量，初始化为T的零值，并返回其<strong>地址</strong>（地址类型为*T）</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">p := <span class="built_in">new</span>(<span class="type">int</span>)</span><br><span class="line">fmt.Println(p)  <span class="comment">// 0xc000014078</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// 0</span></span><br><span class="line">*p = <span class="number">2</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="变量的生命周期">变量的生命周期</h3>
+<p>变量的声明周期是根据其是否可达来确定的。</p>
+<h2 id="赋值">赋值</h2>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">x = <span class="number">1</span></span><br><span class="line">*p = <span class="literal">true</span></span><br><span class="line">person.name = <span class="string">&quot;bob&quot;</span></span><br><span class="line">count[x] = count[x] * scale</span><br><span class="line">count[x] *= scale</span><br><span class="line">x ++</span><br><span class="line">x --</span><br></pre></td></tr></table></figure>
+<h3 id="可赋值性">可赋值性</h3>
+<ul>
+<li><p>隐式赋值</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">medals := []<span class="type">string</span>&#123;<span class="string">&quot;gold&quot;</span>, <span class="string">&quot;silver&quot;</span>, <span class="string">&quot;bronze&quot;</span>&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>显式赋值</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>可赋值性的规则对于不同类型有着不同的要求:</p>
+<ul>
+<li><p>类型必须完全匹配</p></li>
+<li><p>nil可以赋值给任务指针或者引用类型的变量</p></li>
+<li><p>常量有更加灵活的赋值规则</p></li>
+</ul>
+<h2 id="类型">类型</h2>
+<p>类型声明语句:</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> 类型名字 底层类型</span><br></pre></td></tr></table></figure>
+<p>对于每一个类型T，都有一个对应的类型转换操作<code>T(x)</code>,
+用于将x转换为T类型（如果T是指针类型，则可能需要用小括弧包装T，比如<code>(*int)(0)</code>）</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> tempconv </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Celsius <span class="type">float64</span> <span class="comment">// 摄氏温度 </span></span><br><span class="line"><span class="keyword">type</span> Fahrenheit <span class="type">float64</span> <span class="comment">// 华氏温度 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ( </span><br><span class="line">    AbsoluteZeroC Celsius = <span class="number">-273.15</span> <span class="comment">// 绝对零度 </span></span><br><span class="line">    FreezingC Celsius = <span class="number">0</span> <span class="comment">// 结冰点温度 </span></span><br><span class="line">    BoilingC Celsius = <span class="number">100</span> <span class="comment">// 沸水温度 </span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CToF</span><span class="params">(c Celsius)</span></span> Fahrenheit &#123; <span class="keyword">return</span> Fahrenheit(c*<span class="number">9</span>/<span class="number">5</span> + <span class="number">32</span>) &#125; </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">FToC</span><span class="params">(f Fahrenheit)</span></span> Celsius &#123; <span class="keyword">return</span> Celsius((f - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span>) &#125;</span><br></pre></td></tr></table></figure>
+<p>下面的声明语句，Celsius类型的参数出现在了函数名(String)的前面，表示声明的是Celsius类型的一个叫做String的方法：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c Celsius)</span></span> String() <span class="type">string</span> &#123; <span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;%g ℃&quot;</span>, c) &#125;</span><br></pre></td></tr></table></figure>
+<p>许多类型都会定义一个String方法，当使用fmt包打印的时候，会优先使用该类型的String方法</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">c := FToC(<span class="number">212.0</span>)</span><br><span class="line">fmt.Println(c.String())  <span class="comment">// 100 ℃</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%v\n&quot;</span>, c)    <span class="comment">// 100 ℃</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, c)    <span class="comment">// 100 ℃</span></span><br><span class="line">fmt.Println(c)		    <span class="comment">//  100 ℃</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%g\n&quot;</span>, c)    <span class="comment">// 100; 没有调用String方法</span></span><br><span class="line">fmt.Println(<span class="type">float64</span>(c))  <span class="comment">//	100; 没有调用String方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="包和文件">包和文件</h2>
+<ul>
+<li>通常一个包所在目录路径的后缀是包的导入路径；例如: 包
+gopl.io/ch1/hellowworld对应的目录路径是
+$GOPATH/src/gopl.io/ch1/helloworld</li>
+<li>每个包对应一个独立的名字空间，例如，image包中的Decode函数和在unicode/utf16包中的Decode函数是不同的。要在外部引用该函数，必须显示的使用image.Decode或utf16.Decode</li>
+<li>包可以用过控制名字首字母来控制外部可见的信息。大写开头，名字是导出的，小写则是隐藏</li>
+</ul>
+<p>在每个源文件的包声明前紧跟着的注释是包注释</p>
+<p>如果包注释很大, 通常会放到一个独立的<code>doc.go</code>文件中</p>
+<h3 id="导入包">导入包</h3>
+<p>每个包都是有一个全局唯一的导入路径。导入语句中类似<code>gopl.io/ch2/tempconv</code>的字符串对应包的导入路径,</p>
+<p>每个包还有一个包名，包名一般是短小的名字,一般包名跟导入路径最后一个字段相同，例如`<code>gopl.io/ch2/tempconv</code>的包名是<code>tempconv</code></p>
+<p>要使用gopl.io/ch2/tempconv包，需要先导入：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> ( </span><br><span class="line">	<span class="string">&quot;fmt&quot;</span> </span><br><span class="line">	<span class="string">&quot;os&quot;</span> </span><br><span class="line">	<span class="string">&quot;strconv&quot;</span> </span><br><span class="line">	<span class="string">&quot;gopl.io/ch2/tempconv&quot;</span> </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>如果导入了一个包，但是又没有使用该包，将被当作编译错误来处理。</p>
+<h3 id="包的初始化">包的初始化</h3>
+<p>包的初始化首先是解决包级变量的依赖顺序，然后按照包级变量声明出现的顺序依次初始化：</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = b + c <span class="comment">// a 第三个初始化, 为 3 </span></span><br><span class="line"><span class="keyword">var</span> b = f() <span class="comment">// b 第二个初始化, 为 2, 通过调用 f (依赖c) </span></span><br><span class="line"><span class="keyword">var</span> c = <span class="number">1</span> <span class="comment">// c 第一个初始化, 为 1 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">()</span></span> <span class="type">int</span> &#123; <span class="keyword">return</span> c + <span class="number">1</span> &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="作用域">作用域</h2>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cwd <span class="type">string</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    cwd, err := os.Getwd() <span class="comment">// wrong !</span></span><br><span class="line">    <span class="keyword">if</span> err!=<span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatalf(<span class="string">&quot;os.Getwd failed: %v&quot;</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">    log.Printf(<span class="string">&quot;Working directory = %s&quot;</span>, cwd)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的全局变量cwd没有被正确初始化,</p>
+<p>可以调整为</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> cwd <span class="type">string</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> err <span class="type">string</span></span><br><span class="line">    cwd, err := os.Getwd() <span class="comment">// wrong !</span></span><br><span class="line">    <span class="keyword">if</span> err!=<span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatalf(<span class="string">&quot;os.Getwd failed: %v&quot;</span>, err)</span><br><span class="line">    &#125;</span><br><span class="line">    log.Printf(<span class="string">&quot;Working directory = %s&quot;</span>, cwd)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单独声明err变量，避免使用<code>:=</code>短声明</p>
+<h1 id="练习">练习</h1>
+<h2 id="练习-2.1">练习 <strong>2.1</strong>：</h2>
+<p>向tempconv包添加类型、常量和函数用来处理Kelvin绝对温度的转换，Kelvin
+绝对零度是−273.15°C，Kelvin绝对温度1K和摄氏度1°C的单位间隔是一样的。</p>
+<h2 id="练习-2.2">练习 <strong>2.2</strong>：</h2>
+<p>写一个通用的单位转换程序，用类似cf程序的方式从命令行读取参数，如果缺省的
+话则是从标准输入读取参数，然后做类似Celsius和Fahrenheit的单位转换，长度单位可以对应英尺和米，重量单位可以对应磅和公斤等</p>
+<h2 id="练习-2.3">练习 <strong>2.3</strong>：</h2>
+<p>重写PopCount函数，用一个循环代替单一的表达式。比较两个版本的性能。（11.4节将展示如何系统地比较两个不同实现的性能。）</p>
+<h2 id="练习-2.4">练习 <strong>2.4</strong>：</h2>
+<p>用移位算法重写PopCount函数，每次测试最右边的1bit，然后统计总数。比较和查表算法的性能差异。</p>
+<h2 id="练习-2.5">练习 <strong>2.5</strong>：</h2>
+<p>表达式 x&amp;(x-1)
+用于将x的最低的一个非零的bit位清零。使用这个算法重写PopCount函数，然后比较性能。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/go/" rel="tag"># go</a>
+              <a href="/tags/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F/" rel="tag"># go语言圣经</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E7%B3%BB%E7%BB%9F/window%E4%B8%8A%E4%BD%BF%E7%94%A8vim%EF%BC%8C%E4%BC%98%E5%8C%96.html" rel="prev" title="Window上使用Vim，优化">
+                  <i class="fa fa-angle-left"></i> Window上使用Vim，优化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F/go%E8%AF%AD%E8%A8%80%E5%9C%A3%E7%BB%8F-2-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html" rel="next" title="Go语言圣经 .2.基础数据类型">
+                  Go语言圣经 .2.基础数据类型 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"55f9074e34d3a09f99190eebb94ad648"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

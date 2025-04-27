@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="什么是ZeroNet? ZeroNet是一个去中心化的类似于Internet的网络，由匈牙利的开发者使用Python制作，完全开源。网站由特殊的&quot;ZeroNet URL&quot;可以被使用一般的浏览器通过ZeroNet程序浏览，就像访问本地主机一样。ZeroNet默认并不匿名，但是用户可以通过内置的Tor功能进行匿名化。ZeroNet使用Bitcoin加密算法及BitTorrent网络。 防DMCA Ta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zeronet">
+<meta property="og:url" content="http://blog.yueyawochong.cn/uncategorized/zeronet.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="什么是ZeroNet? ZeroNet是一个去中心化的类似于Internet的网络，由匈牙利的开发者使用Python制作，完全开源。网站由特殊的&quot;ZeroNet URL&quot;可以被使用一般的浏览器通过ZeroNet程序浏览，就像访问本地主机一样。ZeroNet默认并不匿名，但是用户可以通过内置的Tor功能进行匿名化。ZeroNet使用Bitcoin加密算法及BitTorrent网络。 防DMCA Ta">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-06-15T15:13:57.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.198Z">
+<meta property="article:author" content="月牙天冲">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/uncategorized/zeronet.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/uncategorized/zeronet.html","path":"uncategorized/zeronet.html","title":"zeronet"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>zeronet | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFzeronet"><span class="nav-number">1.</span> <span class="nav-text">什么是ZeroNet?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8A%A0%E5%85%A5"><span class="nav-number">2.</span> <span class="nav-text">如何加入 ？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/uncategorized/zeronet.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="zeronet | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          zeronet
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-06-15 23:13:57" itemprop="dateCreated datePublished" datetime="2017-06-15T23:13:57+08:00">2017-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+
+  
+    <span id="/uncategorized/zeronet.html" class="post-meta-item leancloud_visitors" data-flag-title="zeronet" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="什么是zeronet">什么是ZeroNet?</h1>
+<p>ZeroNet是一个去中心化的类似于Internet的网络，由匈牙利的开发者使用Python制作，完全开源。网站由特殊的"ZeroNet
+URL"可以被使用一般的浏览器通过ZeroNet程序浏览，就像访问本地主机一样。ZeroNet默认并不匿名，但是用户可以通过内置的Tor功能进行匿名化。ZeroNet使用Bitcoin加密算法及BitTorrent网络。
+防DMCA Take down
+由于ZeroNet去中心化的原因,国外有人制作了一个ZeroNet版本的海盗湾，,这个网站可让版权所有者头疼啦...一般的网站服务器都有IP地址,不抗投诉的ISP收到了向IP
+WHOIS滥用信箱发送的DMCA投诉信的话,你就要和你的网站说再见了..(俗称 DMCA
+Take
+down),可用了ZeroNet后,并没有一台服务器是真实的服务器,任何访客都有可能成为服务器,还有些访客使用了Tor,更找不到真正的物理地址。
+功能 实时站点更新 支持 Namecoin 的 .bit 域名 安装方便: 只需解压并运行
+一键克隆存在的站点 无需密码、基于 BIP32
+的认证：用与比特币钱包相同的加密方法用来保护你的账户
+你的账户被使用和比特币钱包相同的加密方法 内建 SQL 服务器和 P2P 数据同步:
+让开发更简单并提升加载速度 匿名性: 完整的 Tor 网络支持，支持通过 .onion
+隐藏服务相互连接而不是通过IPv4地址连接 TLS 加密连接 自动打开 uPnP 端口
+插件和多用户 (开放式代理) 支持 全平台兼容 原理
+在你运行zeronet.py后你将可以通过http://127.0.0.1:43110/{zeronet_address}
+(比如.http://127.0.0.1:43110/1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D)。访问
+zeronet 中的站点。 在你浏览 zeronet 站点时，客户端会尝试通过 BitTorrent
+网络来寻找可用的节点，从而下载需要的文件 (html, css, js...)
+你将会储存每一个浏览过的站点 每个站点都包含一个名为 content.json
+，它储存了其他所有文件的 sha512 hash 值 和一个通过站点私钥建立的签名
+如果站点的所有者 (拥有私钥的那个人) 修改了站点, 并且他/她签名了新的
+content.json 然后推送至其他节点， 那么所有节点将会在验证 content.json
+的真实性 (使用签名)后, 下载修改后的文件并推送至其他节点。 有关于 ZeroNet
+加密, 站点更新, 多用户站点的幻灯片 » 常见问题 » ZeroNet开发者文档 »</p>
+<p>好了，说点有用的： 1.可以建自己的网站，你基本上不用做什么。
+2.基于p2p原理，你只要建好并有人浏览过，即使你自己关机，你的网站依然在全球存在。别人想关你站，没门。
+3.基于p2p原理，支付内网穿透，也就是说你在内网也没关系，手机也没问题。
+4.基于比特币原理，账号很安全，谁也不知道你是谁，谁也盗不去。
+5.不需要域名，任何人访问都使用http://127.0.0.1:43110/字符串 来访问。
+6.不用gg fb和tt你就能浏览全世界 项目地址：该项目的官方网址为:
+https://github.com/hellozeronet/zeronet
+下载地址：https://github.com/HelloZeroNet/ZeroBundle/raw/master/dist/ZeroBundle-win.zip
+相关说明：http://www.wanbizu.com/news/201603086775.html
+安装方法？其实很简单，到官网zeronet.io下载，解压，双击运行，等进度走完就会自动打开默认浏览器，你就可以访问了。一般新系统都能正常运行，老系统有两种情况：如果自动打开浏览器后发现页面显示不正常，说明你的IE不支持，用chrome或者firefox浏览器来打开127.0.0.1:43110就行了。XP用户如果运行不了，那就需要下载安装微软的VC2008
+Redistributable Package运行环境，才1MB多，搜一下就有了。
+安装：解压后运行zeronet.cmd</p>
+<p>安装后你唯一要做的，是注册一个id。
+http://127.0.0.1:43110/zeroid.bit</p>
+<h1 id="如何加入">如何加入 ？</h1>
+<p>下载 ZeroBundle 文件包: Microsoft Windows Apple OS X Linux 64bit
+Linux 32bit 解压缩 运行 ZeroNet.cmd (win), ZeroNet(.app) (osx),
+ZeroNet.sh (linux) 如果你在 OS X 上遇到了 "classic environment no longer
+supported" 错误，请打开一个终端然后把 ZeroNet.app 拖进去
+在你打开时他将会自动下载最新版本的 ZeroNet 。 ## Linux 命令行 wget
+https://github.com/HelloZeroNet/ZeroBundle/raw/master/dist/ZeroBundle-linux64.tar.gz
+tar xvpfz ZeroBundle-linux64.tar.gz cd ZeroBundle 执行 ./ZeroNet.sh
+来启动 在你打开时他将会自动下载最新版本的 ZeroNet 。 在 Debian Linux
+中手动安装 sudo apt-get update sudo apt-get install msgpack-python
+python-gevent wget
+https://github.com/HelloZeroNet/ZeroNet/archive/master.tar.gz tar xvpfz
+master.tar.gz cd ZeroNet-master 执行 python zeronet.py 来启动
+在你的浏览器中打开 http://127.0.0.1:43110/ ## Vagrant vagrant up 通过
+vagrant ssh 连接到 VM cd /vagrant 运行 python zeronet.py --ui_ip 0.0.0.0
+在你的浏览器中打开 http://127.0.0.1:43110/ ## Docker <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> run -d -v &lt;local_data_folder&gt;:/root/data -p <span class="number">15441</span>:<span class="number">15441</span> -p <span class="number">43110</span>:<span class="number">43110</span> nofish/zeronet</span><br><span class="line"><span class="comment"># 这个 Docker 镜像包含了 Tor ，但默认是禁用的，因为一些托管商不允许你在他们的服务器上运行 Tor。如果你希望启用它， 设置 ENABLE_TOR 环境变量为 true (默认: false). E.g.:</span></span><br><span class="line"><span class="attribute">Docker</span> run -d -e <span class="string">&quot;ENABLE_TOR=true&quot;</span> -v &lt;local_data_folder&gt;:/root/data -p <span class="number">15441</span>:<span class="number">15441</span> -p <span class="number">43110</span>:<span class="number">43110</span> nofish/zeronet</span><br></pre></td></tr></table></figure>
+在你的浏览器中打开 http://127.0.0.1:43110/ ## Virtualenv <figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">virtualenv <span class="keyword">env</span></span><br><span class="line"><span class="keyword">source</span> <span class="keyword">env</span>/bin/activate</span><br><span class="line">pip install msgpack-<span class="keyword">python</span> gevent</span><br><span class="line"><span class="keyword">python</span> zeronet.py</span><br></pre></td></tr></table></figure>
+在你的浏览器中打开 http://127.0.0.1:43110/ 现有限制 没有类似于
+BitTorrent 的文件拆分来支持大文件 没有比 BitTorrent 更好的匿名性
+(已添加内置的完整 Tor 支持) 传输文件时没有压缩和加密 (已添加 TLS 支持)
+不支持私有站点 # 如何创建一个 ZeroNet 站点? 如果 zeronet
+在运行，把它关掉 执行： $ zeronet.py siteCreate ... - Site private key:
+23DKQpzxhbVBrAtvLEc2uvk7DZweh4qL3fn3jpM3LgHDczMK2TtYUq - Site address:
+13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2 ... - Site created! $ zeronet.py ...
+你已经完成了！ 现在任何人都可以通过
+http://localhost:43110/13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2 来访问你的站点
+下一步: ZeroNet 开发者文档 我要如何修改 ZeroNet 站点? 修改位于
+data/13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2 的目录. 在你改好之后: $
+zeronet.py siteSign 13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2 - Signing site:
+13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2... Private key (input hidden):
+输入你在创建站点时获得的私钥 $ zeronet.py sitePublish
+13DNDkMUExRf9Xa9ogwPKqp7zyHFEqbhC2 ... Site:13DNDk..bhC2 Publishing to
+3/10 peers... Site:13DNDk..bhC2 Successfuly published to 3 peers -
+Serving files.... 就是这样! 你现在已经成功的签名并推送了你的更改。
+帮助这个项目 Bitcoin: 1QDhxQ6PraUZa21ET5fYUCPgdrwBomnFgX Paypal:
+https://zeronet.readthedocs.org/en/latest/help_zeronet/donate/ Gratipay:
+https://gratipay.com/zeronet/ 赞助商 在 OSX/Safari 下 BrowserStack.com
+带来更好的兼容性 感谢! 更多信息, 帮助, 变更记录和 zeronet 站点:
+https://www.reddit.com/r/zeronet/ 在: #zeronet @ FreeNode
+和我们聊天，或者使用 gitter 这里是一个 gitter 上的中文聊天室 Email:
+hello@noloop.me # 福利
+海盗湾全球种子站：http://127.0.0.1:43110/1PLAYgDQboKojowD3kwdb3CtWmWaokXvfp/
+MSDN资源区：http://127.0.0.1:43110/1AJB5rtjfB9imjDGVk5vtRtZp3zgYizbpG/
+Kindle电子书：http://127.0.0.1:43110/1KHCBG6dmbKXTZNenfwhWZ5x3oDyYyHSD4
+导航：http://127.0.0.1:43110/1NzWeweqJ32aRVdM5UzFnYCszuvG5xV3vS</p>
+<p>ZeroNet站点集合 &amp; 搜索引擎 站点集合
+http://127.0.0.1:43110/138R53t3ZW7KDfSfxVpWUsMXgwUnsDNXLP/?Page:list-of-zites
+( 中文翻译在这里 ) http://127.0.0.1:43110/zaphods.bit/RM.html
+http://127.0.0.1:43110/0list.bit/
+http://127.0.0.1:43110/1Dt7FR5aNLkqAjmosWh8cMWzJu633GYN6u/ 搜索引擎
+http://127.0.0.1:43110/kaffiene.bit
+http://127.0.0.1:43110/zerosearch.bit/
+http://127.0.0.1:43110/zerofind.bit
+公用开放ZeroNet代{过}{滤}理集合（注意，这些代{过}{滤}理不能确保你的帐号安全）
+http://127.0.0.1:43110/ZeroProxies.bit 聊天室集合
+http://127.0.0.1:43110/zerochatrooms.bit 博客集合
+http://127.0.0.1:43110/zeroblogs.bit ZeroNet官方帮助集合
+http://127.0.0.1:43110/ZeroSupport.bit</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/uncategorized/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0-%E7%BA%A2%E9%BB%91%E6%A0%91.html" rel="prev" title="第十三章 红黑树">
+                  <i class="fa fa-angle-left"></i> 第十三章 红黑树
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/neural-networks-learning.html" rel="next" title="Neural Networks Learning">
+                  Neural Networks Learning <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"9946843a819982ba618e5815ddbf3f32"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

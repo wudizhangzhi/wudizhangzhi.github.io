@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="使用apk-mitm抓取TikTok应用接口详解 在移动应用逆向工程和接口分析领域，TikTok因其复杂的加密和防抓取机制而备受关注。本文将详细介绍如何使用apk-mitm工具对TikTok应用进行接口抓取和分析。 什么是apk-mitm apk-mitm是一个强大的工具，它可以自动修改Android应用，使其信任用户安装的证书，从而允许通过MITM（中间人）代理进行HTTPS流量检查。这个工具特">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用apk-mitm抓取TikTok应用接口详解">
+<meta property="og:url" content="http://blog.yueyawochong.cn/%E7%88%AC%E8%99%AB/%E4%BD%BF%E7%94%A8apk-mitm%E6%8A%93%E5%8F%96tiktok%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%AF%A6%E8%A7%A3.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="使用apk-mitm抓取TikTok应用接口详解 在移动应用逆向工程和接口分析领域，TikTok因其复杂的加密和防抓取机制而备受关注。本文将详细介绍如何使用apk-mitm工具对TikTok应用进行接口抓取和分析。 什么是apk-mitm apk-mitm是一个强大的工具，它可以自动修改Android应用，使其信任用户安装的证书，从而允许通过MITM（中间人）代理进行HTTPS流量检查。这个工具特">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-21T07:30:00.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.196Z">
+<meta property="article:author" content="月牙天冲">
+<meta property="article:tag" content="抓包">
+<meta property="article:tag" content="TikTok">
+<meta property="article:tag" content="apk-mitm">
+<meta property="article:tag" content="移动应用">
+<meta property="article:tag" content="HTTPS抓包">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/%E7%88%AC%E8%99%AB/%E4%BD%BF%E7%94%A8apk-mitm%E6%8A%93%E5%8F%96tiktok%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%AF%A6%E8%A7%A3.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/%E7%88%AC%E8%99%AB/%E4%BD%BF%E7%94%A8apk-mitm%E6%8A%93%E5%8F%96tiktok%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%AF%A6%E8%A7%A3.html","path":"爬虫/使用apk-mitm抓取tiktok应用接口详解.html","title":"使用apk-mitm抓取TikTok应用接口详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用apk-mitm抓取TikTok应用接口详解 | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8apk-mitm%E6%8A%93%E5%8F%96tiktok%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">使用apk-mitm抓取TikTok应用接口详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFapk-mitm"><span class="nav-number">1.1.</span> <span class="nav-text">什么是apk-mitm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%80%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6"><span class="nav-number">1.3.</span> <span class="nav-text">步骤一：安装证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%BA%8C%E4%BD%BF%E7%94%A8apk-mitm%E4%BF%AE%E6%94%B9tiktok-apk"><span class="nav-number">1.4.</span> <span class="nav-text">步骤二：使用apk-mitm修改TikTok
+APK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E4%B8%89%E5%AE%89%E8%A3%85%E4%BF%AE%E6%94%B9%E5%90%8E%E7%9A%84apk"><span class="nav-number">1.5.</span> <span class="nav-text">步骤三：安装修改后的APK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4%E5%9B%9B%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E5%92%8C%E5%BC%80%E5%A7%8B%E6%8A%93%E5%8C%85"><span class="nav-number">1.6.</span> <span class="nav-text">步骤四：配置代理和开始抓包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90tiktok%E7%9A%84%E4%B8%BB%E8%A6%81%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.7.</span> <span class="nav-text">分析TikTok的主要接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%86%E9%A2%91feed%E6%B5%81%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.7.1.</span> <span class="nav-text">1. 视频Feed流接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.7.2.</span> <span class="nav-text">2. 用户信息接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E8%AE%BA%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.7.3.</span> <span class="nav-text">3. 评论接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4%E5%92%8C%E7%AD%BE%E5%90%8D%E5%88%86%E6%9E%90"><span class="nav-number">1.8.</span> <span class="nav-text">请求头和签名分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.9.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%8A%80%E5%B7%A7"><span class="nav-number">1.10.</span> <span class="nav-text">进阶技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#frida%E8%BE%85%E5%8A%A9%E5%88%86%E6%9E%90"><span class="nav-number">1.10.1.</span> <span class="nav-text">Frida辅助分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E5%8F%96ttencrypt%E7%AE%97%E6%B3%95"><span class="nav-number">1.10.2.</span> <span class="nav-text">提取TTEncrypt算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.11.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/%E7%88%AC%E8%99%AB/%E4%BD%BF%E7%94%A8apk-mitm%E6%8A%93%E5%8F%96tiktok%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%AF%A6%E8%A7%A3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用apk-mitm抓取TikTok应用接口详解 | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用apk-mitm抓取TikTok应用接口详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-21 15:30:00" itemprop="dateCreated datePublished" datetime="2025-04-21T15:30:00+08:00">2025-04-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E7%88%AC%E8%99%AB/%E4%BD%BF%E7%94%A8apk-mitm%E6%8A%93%E5%8F%96tiktok%E5%BA%94%E7%94%A8%E6%8E%A5%E5%8F%A3%E8%AF%A6%E8%A7%A3.html" class="post-meta-item leancloud_visitors" data-flag-title="使用apk-mitm抓取TikTok应用接口详解" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1
+id="使用apk-mitm抓取tiktok应用接口详解">使用apk-mitm抓取TikTok应用接口详解</h1>
+<p>在移动应用逆向工程和接口分析领域，TikTok因其复杂的加密和防抓取机制而备受关注。本文将详细介绍如何使用apk-mitm工具对TikTok应用进行接口抓取和分析。</p>
+<h2 id="什么是apk-mitm">什么是apk-mitm</h2>
+<p>apk-mitm是一个强大的工具，它可以自动修改Android应用，使其信任用户安装的证书，从而允许通过MITM（中间人）代理进行HTTPS流量检查。这个工具特别适用于那些实现了SSL
+Pinning（证书锁定）的应用程序，如TikTok。</p>
+<h2 id="准备工作">准备工作</h2>
+<p>在开始之前，我们需要准备以下工具和环境：</p>
+<ol type="1">
+<li><strong>Python 环境</strong>（推荐Python 3.7+）</li>
+<li><strong>安装apk-mitm</strong>：<code>pip install apk-mitm</code></li>
+<li><strong>Java开发环境</strong>：确保已安装JDK（版本8或更高）</li>
+<li><strong>Android
+SDK</strong>：需要安装build-tools和platform-tools</li>
+<li><strong>Charles或Fiddler</strong>等抓包工具</li>
+<li><strong>一部已root的Android设备</strong>或模拟器</li>
+<li><strong>TikTok APK</strong>文件</li>
+</ol>
+<h2 id="步骤一安装证书">步骤一：安装证书</h2>
+<p>首先，我们需要在手机上安装抓包工具的证书：</p>
+<ol type="1">
+<li>在电脑上打开Charles/Fiddler，设置代理端口（通常是8888）</li>
+<li>确保手机和电脑在同一网络下</li>
+<li>在手机的Wi-Fi设置中配置代理，IP为电脑IP，端口为抓包工具设置的端口</li>
+<li>在手机浏览器中访问<code>chls.pro/ssl</code>（Charles）或<code>http://192.168.x.x:8888</code>（Fiddler，其中x.x为电脑IP）</li>
+<li>下载并安装证书</li>
+<li>对于Android 7.0+，还需要在系统设置中将此证书设为信任</li>
+</ol>
+<h2 id="步骤二使用apk-mitm修改tiktok-apk">步骤二：使用apk-mitm修改TikTok
+APK</h2>
+<p>现在，我们使用apk-mitm工具来修改TikTok APK，绕过其SSL
+Pinning保护：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 确保apk-mitm已正确安装</span></span><br><span class="line">apk-mitm /path/to/tiktok.apk -o /path/to/output/tiktok-mitm.apk</span><br></pre></td></tr></table></figure>
+<p>这个过程将解包APK，修改相关代码，然后重新打包，生成一个新的APK文件，该文件会信任我们之前安装的证书。</p>
+<h2 id="步骤三安装修改后的apk">步骤三：安装修改后的APK</h2>
+<p>接下来，我们需要卸载原有的TikTok应用，然后安装修改后的版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 卸载原有应用（如果有）</span></span><br><span class="line">adb uninstall com.zhiliaoapp.musically  <span class="comment"># 国际版TikTok包名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装修改后的APK</span></span><br><span class="line">adb install /path/to/output/tiktok-mitm.apk</span><br></pre></td></tr></table></figure>
+<h2 id="步骤四配置代理和开始抓包">步骤四：配置代理和开始抓包</h2>
+<p>现在，我们可以开始抓取TikTok的接口了：</p>
+<ol type="1">
+<li>确保手机仍然连接到我们配置的代理</li>
+<li>启动Charles/Fiddler并配置好HTTPS抓取</li>
+<li>在手机上打开修改后的TikTok应用</li>
+<li>在抓包工具中，您应该能够看到来自TikTok的加密请求</li>
+</ol>
+<h2 id="分析tiktok的主要接口">分析TikTok的主要接口</h2>
+<p>通过抓包，我们可以观察到TikTok应用的几个关键接口：</p>
+<h3 id="视频feed流接口">1. 视频Feed流接口</h3>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>api*.tiktokv.com<span class="regexp">/aweme/</span>v1<span class="regexp">/feed/</span></span><br></pre></td></tr></table></figure>
+<p>这个接口负责获取推荐视频，其参数包括用户ID、设备信息、位置数据等。</p>
+<h3 id="用户信息接口">2. 用户信息接口</h3>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>api*.tiktokv.com<span class="regexp">/aweme/</span>v1<span class="regexp">/user/</span>profile<span class="regexp">/other/</span></span><br></pre></td></tr></table></figure>
+<p>此接口用于获取特定用户的个人资料信息。</p>
+<h3 id="评论接口">3. 评论接口</h3>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>api*.tiktokv.com<span class="regexp">/aweme/</span>v1<span class="regexp">/comment/</span>list/</span><br></pre></td></tr></table></figure>
+<p>用于获取视频的评论列表。</p>
+<h2 id="请求头和签名分析">请求头和签名分析</h2>
+<p>TikTok的API请求通常包含复杂的请求头和签名参数，包括：</p>
+<ul>
+<li><code>X-Gorgon</code>：一个基于请求参数、时间戳和设备信息生成的签名</li>
+<li><code>X-Khronos</code>：时间戳</li>
+<li><code>X-Ladon</code>：另一个签名参数</li>
+<li><code>user-agent</code>：包含详细设备信息的自定义UA</li>
+</ul>
+<p>这些参数的算法是高度复杂的，常常会随着应用版本更新而变化。</p>
+<h2 id="注意事项">注意事项</h2>
+<ol type="1">
+<li><strong>法律风险</strong>：未经授权抓取TikTok接口可能违反其服务条款，仅建议用于学习目的</li>
+<li><strong>版本依赖</strong>：不同版本的TikTok可能实现不同的安全机制，本教程的方法可能需要针对特定版本调整</li>
+<li><strong>地区限制</strong>：某些接口可能根据地区不同而有所不同</li>
+<li><strong>频率限制</strong>：过度请求可能触发TikTok的频率限制或IP封锁</li>
+</ol>
+<h2 id="进阶技巧">进阶技巧</h2>
+<h3 id="frida辅助分析">Frida辅助分析</h3>
+<p>除了使用apk-mitm，还可以结合Frida工具进行动态分析：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Frida脚本示例：绕过SSL Pinning</span></span><br><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">TrustManagerImpl</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.android.org.conscrypt.TrustManagerImpl&#x27;</span>);</span><br><span class="line">    <span class="title class_">TrustManagerImpl</span>.<span class="property">verifyChain</span>.<span class="property">implementation</span> = <span class="keyword">function</span>(<span class="params">untrustedChain, trustAnchorChain, host, clientAuth, ocspData, tlsSctData</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;[+] SSL Pinning Bypassed&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> untrustedChain;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="提取ttencrypt算法">提取TTEncrypt算法</h3>
+<p>TikTok使用名为TTEncrypt的加密库来保护某些敏感数据。通过反编译可以提取并分析此算法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apktool d tiktok.apk -o tiktok_decompiled</span><br><span class="line"><span class="comment"># 分析 tiktok_decompiled/lib/[架构]/libttencrypt.so</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<p>通过使用apk-mitm工具，我们能够绕过TikTok的SSL
+Pinning保护，成功抓取并分析其网络接口。这为理解TikTok的API结构和数据流提供了宝贵的见解。然而，请记住，此类技术应当仅用于教育和研究目的，尊重TikTok的服务条款和用户隐私。</p>
+<p>如果您对移动应用的接口抓取和分析有进一步的兴趣，可以查看我的其他相关文章，如<a
+href="/爬虫/获取百度的搜索结果的真实地址/">获取百度的搜索结果的真实地址</a>和<a
+href="/爬虫/使用you-get下载视频/">使用you-get下载视频</a>。</p>
+<hr />
+<p><strong>参考资料</strong>： 1. <a
+target="_blank" rel="noopener" href="https://github.com/shroudedcode/apk-mitm">apk-mitm GitHub仓库</a>
+2. <a
+target="_blank" rel="noopener" href="https://developer.android.com/training/articles/security-ssl">Android安全机制与SSL
+Pinning</a> 3. <a
+target="_blank" rel="noopener" href="https://owasp.org/www-community/attacks/Manipulator-in-the-middle_attack">中间人攻击(MITM)原理与防御</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%93%E5%8C%85/" rel="tag"># 抓包</a>
+              <a href="/tags/TikTok/" rel="tag"># TikTok</a>
+              <a href="/tags/apk-mitm/" rel="tag"># apk-mitm</a>
+              <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8/" rel="tag"># 移动应用</a>
+              <a href="/tags/HTTPS%E6%8A%93%E5%8C%85/" rel="tag"># HTTPS抓包</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/uncategorized/wsl-docker%E5%AE%89%E8%A3%85%E5%88%B0d%E7%9B%98.html" rel="prev" title="WSL docker安装到D盘">
+                  <i class="fa fa-angle-left"></i> WSL docker安装到D盘
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E7%88%AC%E8%99%AB/%E7%A0%B4%E8%A7%A3instagram-android%E6%8A%93%E5%8C%85%EF%BC%9A%E7%BB%95%E8%BF%87ssl-pinning%E8%AF%A6%E8%A7%A3.html" rel="next" title="破解Instagram Android抓包：绕过SSL Pinning详解">
+                  破解Instagram Android抓包：绕过SSL Pinning详解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"12bab5ed5c0755e22124b744d3c11944"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

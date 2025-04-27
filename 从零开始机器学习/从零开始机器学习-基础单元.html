@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="基础单元 linear unit: 线性单元 最简单的单元，输入和输出之间的关系是线性的。y &#x3D; wx + b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始机器学习-基础单元">
+<meta property="og:url" content="http://blog.yueyawochong.cn/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E5%8D%95%E5%85%83.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="基础单元 linear unit: 线性单元 最简单的单元，输入和输出之间的关系是线性的。y &#x3D; wx + b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-05T03:31:06.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.194Z">
+<meta property="article:author" content="月牙天冲">
+<meta property="article:tag" content="从零开始机器学习">
+<meta property="article:tag" content="基础单元">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E5%8D%95%E5%85%83.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E5%8D%95%E5%85%83.html","path":"从零开始机器学习/从零开始机器学习-基础单元.html","title":"从零开始机器学习-基础单元"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从零开始机器学习-基础单元 | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%8D%95%E5%85%83"><span class="nav-number">1.</span> <span class="nav-text">基础单元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linear-unit-%E7%BA%BF%E6%80%A7%E5%8D%95%E5%85%83"><span class="nav-number">1.1.</span> <span class="nav-text">linear unit: 线性单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sigmoid-unit-sigmoid%E5%8D%95%E5%85%83"><span class="nav-number">1.2.</span> <span class="nav-text">sigmoid unit: sigmoid单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#relu-unit-relu%E5%8D%95%E5%85%83rectified-linear-unit"><span class="nav-number">1.3.</span> <span class="nav-text">ReLU unit:
+ReLU单元(Rectified Linear Unit)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gelu-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">GELU 激活函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#regular-unit-%E6%AD%A3%E5%88%99%E5%8D%95%E5%85%83"><span class="nav-number">1.5.</span> <span class="nav-text">regular unit: 正则单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#softmax-unit-softmax%E5%8D%95%E5%85%83"><span class="nav-number">1.6.</span> <span class="nav-text">softmax unit: softmax单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tanh-unit-tanh%E5%8D%95%E5%85%83"><span class="nav-number">1.7.</span> <span class="nav-text">tanh unit: tanh单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#maxout-unit-maxout%E5%8D%95%E5%85%83"><span class="nav-number">1.8.</span> <span class="nav-text">maxout unit: maxout单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dropout-unit-dropout%E5%8D%95%E5%85%83"><span class="nav-number">1.9.</span> <span class="nav-text">dropout unit: dropout单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#batch-normalization-unit-batch-normalization%E5%8D%95%E5%85%83"><span class="nav-number">1.10.</span> <span class="nav-text">batch
+normalization unit: batch normalization单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#embedding-unit-embedding%E5%8D%95%E5%85%83"><span class="nav-number">1.11.</span> <span class="nav-text">embedding unit: embedding单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pooling-unit-pooling%E5%8D%95%E5%85%83"><span class="nav-number">1.12.</span> <span class="nav-text">pooling unit: pooling单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#convolution-unit-%E5%8D%B7%E7%A7%AF%E5%8D%95%E5%85%83"><span class="nav-number">1.13.</span> <span class="nav-text">convolution unit: 卷积单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loss-function-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">1.14.</span> <span class="nav-text">loss function: 损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#activation-function-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.15.</span> <span class="nav-text">activation function: 激活函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#optimizer-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">1.16.</span> <span class="nav-text">optimizer: 优化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-%E6%A2%AF%E5%BA%A6"><span class="nav-number">1.17.</span> <span class="nav-text">gradient: 梯度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mlp-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">MLP: 多层感知机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cnn-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.2.</span> <span class="nav-text">CNN: 卷积神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rnn-%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.3.</span> <span class="nav-text">RNN: 循环神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lstm-%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%BD%91%E7%BB%9C"><span class="nav-number">2.4.</span> <span class="nav-text">LSTM: 长短期记忆网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gru-%E9%97%A8%E6%8E%A7%E5%BE%AA%E7%8E%AF%E5%8D%95%E5%85%83"><span class="nav-number">2.5.</span> <span class="nav-text">GRU: 门控循环单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#seq2seq-%E5%BA%8F%E5%88%97%E5%88%B0%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.</span> <span class="nav-text">seq2seq: 序列到序列模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">高级模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ldmlatent-diffusion-model"><span class="nav-number">3.1.</span> <span class="nav-text">LDM&#x2F;Latent Diffusion Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resnet"><span class="nav-number">3.2.</span> <span class="nav-text">resnet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transformer"><span class="nav-number">3.3.</span> <span class="nav-text">transformer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#attention%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-number">3.3.1.</span> <span class="nav-text">Attention(注意力机制)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multi-head-attention%E5%A4%9A%E5%A4%B4%E6%B3%A8%E6%84%8F%E5%8A%9B"><span class="nav-number">3.3.2.</span> <span class="nav-text">Multi Head
+Attention(多头注意力)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gan"><span class="nav-number">3.4.</span> <span class="nav-text">GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bert"><span class="nav-number">3.5.</span> <span class="nav-text">BERT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gpt"><span class="nav-number">3.6.</span> <span class="nav-text">GPT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stable-diffusion"><span class="nav-number">3.7.</span> <span class="nav-text">Stable Diffusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vae"><span class="nav-number">3.8.</span> <span class="nav-text">VAE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clip"><span class="nav-number">3.9.</span> <span class="nav-text">CLIP</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E5%8D%95%E5%85%83.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从零开始机器学习-基础单元 | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从零开始机器学习-基础单元
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-05 11:31:06" itemprop="dateCreated datePublished" datetime="2023-04-05T11:31:06+08:00">2023-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">从零开始机器学习</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E5%8D%95%E5%85%83.html" class="post-meta-item leancloud_visitors" data-flag-title="从零开始机器学习-基础单元" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>770</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="基础单元">基础单元</h1>
+<h2 id="linear-unit-线性单元">linear unit: 线性单元</h2>
+<p>最简单的单元，输入和输出之间的关系是线性的。<code>y = wx + b</code>
+<span id="more"></span></p>
+<h2 id="sigmoid-unit-sigmoid单元">sigmoid unit: sigmoid单元</h2>
+<p>获得s形曲线的一个函数，能将输入的值映射到0到1之间。<span
+class="math inline">\(\Large \sigma(x) = \frac{1}{1+e^{-x}}\)</span></p>
+<p>问题：</p>
+<ul>
+<li>可能会导致梯度消失或者梯度爆炸</li>
+</ul>
+<h2 id="relu-unit-relu单元rectified-linear-unit">ReLU unit:
+ReLU单元(Rectified Linear Unit)</h2>
+<p>公式: <span class="math inline">\(f(x) = max(0, x)\)</span></p>
+<h2 id="gelu-激活函数">GELU 激活函数</h2>
+<h2 id="regular-unit-正则单元">regular unit: 正则单元</h2>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/young978/p/15801710.html">参考</a>
+加入一些限制，防止模型过拟合</p>
+<ul>
+<li>L0范数: 表示向量中非零元素的个数
+<ul>
+<li>公式：<span class="math inline">\({\vert \vert x \vert
+\vert}_0=\mathbb{I}(i|x \neq 0)\)</span></li>
+</ul></li>
+<li>L1范数: 可以导致稀疏
+<ul>
+<li>公式：<span class="math inline">\({\vert \vert x \vert \vert}_1 =
+\sum^n_i \vert x \vert\)</span></li>
+</ul></li>
+<li>L2范数: 可以导致稠密
+<ul>
+<li>公式：<span class="math inline">\({\vert \vert x \vert \vert}_2 =
+(\sum^n_ix^2_i)^\frac{1}{2}\)</span></li>
+</ul></li>
+<li>Dropout</li>
+</ul>
+<blockquote>
+<p>如上图所示，蓝色的圆圈表示问题可能的解范围，橘色的表示正则项可能的解范围。而整个目标函数（原问题+正则项）有解当且仅当两个解范围相切。从上图可以很容易地看出，由于L2范数解范围是圆，所以相切的点有很大可能不在坐标轴上，而由于L1范数是菱形（顶点是凸出来的），其相切的点更可能在坐标轴上，而坐标轴上的点有一个特点，其只有一个坐标分量不为零，其他坐标分量为零，即是稀疏的。所以有如下结论，L1范数可以导致稀疏解，L2范数导致稠密解。</p>
+</blockquote>
+<h2 id="softmax-unit-softmax单元">softmax unit: softmax单元</h2>
+<p>sigmoid单元的多分类版本，将输入的值映射到0到1之间，且所有输出的和为1。
+这样就可以想多个分类进行概率排序。</p>
+<p><span class="math inline">\(\hat{\mathbf{y}} =
+\mathrm{softmax}(\mathbf{o})\quad \text{其中}\quad \hat{y}_j =
+\frac{\exp(o_j)}{\sum_k \exp(o_k)}\)</span></p>
+<h2 id="tanh-unit-tanh单元">tanh unit: tanh单元</h2>
+<h2 id="maxout-unit-maxout单元">maxout unit: maxout单元</h2>
+<h2 id="dropout-unit-dropout单元">dropout unit: dropout单元</h2>
+<h2 id="batch-normalization-unit-batch-normalization单元">batch
+normalization unit: batch normalization单元</h2>
+<h2 id="embedding-unit-embedding单元">embedding unit: embedding单元</h2>
+<h2 id="pooling-unit-pooling单元">pooling unit: pooling单元</h2>
+<h2 id="convolution-unit-卷积单元">convolution unit: 卷积单元</h2>
+<h2 id="loss-function-损失函数">loss function: 损失函数</h2>
+<h2 id="activation-function-激活函数">activation function: 激活函数</h2>
+<h2 id="optimizer-优化器">optimizer: 优化器</h2>
+<h2 id="gradient-梯度">gradient: 梯度</h2>
+<h1 id="模型">模型</h1>
+<h2 id="mlp-多层感知机">MLP: 多层感知机</h2>
+<p>Multi-layer perceptron
+是由多层全连接层组成的神经网络，每一层的输入都是上一层的输出，最后一层的输出就是网络的输出。</p>
+<h2 id="cnn-卷积神经网络">CNN: 卷积神经网络</h2>
+<h2 id="rnn-循环神经网络">RNN: 循环神经网络</h2>
+<h2 id="lstm-长短期记忆网络">LSTM: 长短期记忆网络</h2>
+<h2 id="gru-门控循环单元">GRU: 门控循环单元</h2>
+<h2 id="seq2seq-序列到序列模型">seq2seq: 序列到序列模型</h2>
+<h1 id="高级模型">高级模型</h1>
+<h2 id="ldmlatent-diffusion-model">LDM/Latent Diffusion Model</h2>
+<h2 id="resnet">resnet</h2>
+<h2 id="transformer">transformer</h2>
+<p>参考:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=ugWDIIOHtPA&amp;t=835s"
+class="uri">https://www.youtube.com/watch?v=ugWDIIOHtPA&amp;t=835s</a></li>
+<li><a target="_blank" rel="noopener" href="https://jalammar.github.io/illustrated-transformer/"
+class="uri">https://jalammar.github.io/illustrated-transformer/</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/338817680"
+class="uri">https://zhuanlan.zhihu.com/p/338817680</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/82312421"
+class="uri">https://zhuanlan.zhihu.com/p/82312421</a></li>
+</ul>
+<h3 id="attention注意力机制">Attention(注意力机制)</h3>
+<p>Q, K, V</p>
+<h3 id="multi-head-attention多头注意力">Multi Head
+Attention(多头注意力)</h3>
+<h2 id="gan">GAN</h2>
+<h2 id="bert">BERT</h2>
+<h2 id="gpt">GPT</h2>
+<h2 id="stable-diffusion">Stable Diffusion</h2>
+<h2 id="vae">VAE</h2>
+<h2 id="clip">CLIP</h2>
+<ul>
+<li>MLP-RNN-seq2seq/编码器解码器架构-注意力机制-自注意力-transformer。</li>
+<li>byte-pair encoding</li>
+<li>TPU: tensor process unit</li>
+<li>label smoothing:</li>
+<li>BLEU score</li>
+<li>PPL score:</li>
+<li>logits:</li>
+<li>点乘：点乘的物理意义，两个向量的点乘表示两个向量的相似度</li>
+<li>Model Perplexities</li>
+<li>残差连接</li>
+<li>正则化
+<ul>
+<li>l1正则化</li>
+<li>l2正则化</li>
+</ul></li>
+<li>****Stable Diffusion****</li>
+<li>马尔可夫链</li>
+<li>对抗模型gan</li>
+<li>纳什均衡</li>
+<li>凸函数</li>
+<li>kl散度</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 从零开始机器学习</a>
+              <a href="/tags/%E5%9F%BA%E7%A1%80%E5%8D%95%E5%85%83/" rel="tag"># 基础单元</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0.html" rel="prev" title="从零开始机器学习-基础参数">
+                  <i class="fa fa-angle-left"></i> 从零开始机器学习-基础参数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/attenion-is-all-you-need.html" rel="next" title="Attenion Is All You Need">
+                  Attenion Is All You Need <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"7f0894db675820813a6e921504669975"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="这里挖坑 python python 的 GIL python wiki 中对 GIL的解释 GIL(Global Interpreter Lock),全局解释器锁. python的解释器，py文件的运行需要解释器。在cpython中，这个解释器不是线程安全的，他有一个全局锁，用于保证对象的线程安全。当多线程情况下运行时候。每次其实只有一个线程在运行,其他的线程都是在等待。这就导致python中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试中的一些常见的问题">
+<meta property="og:url" content="http://blog.yueyawochong.cn/uncategorized/%E9%9D%A2%E8%AF%95%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="这里挖坑 python python 的 GIL python wiki 中对 GIL的解释 GIL(Global Interpreter Lock),全局解释器锁. python的解释器，py文件的运行需要解释器。在cpython中，这个解释器不是线程安全的，他有一个全局锁，用于保证对象的线程安全。当多线程情况下运行时候。每次其实只有一个线程在运行,其他的线程都是在等待。这就导致python中的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-03-13T03:51:42.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.204Z">
+<meta property="article:author" content="月牙天冲">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/uncategorized/%E9%9D%A2%E8%AF%95%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/uncategorized/%E9%9D%A2%E8%AF%95%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98.html","path":"uncategorized/面试中的一些常见的问题.html","title":"面试中的一些常见的问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>面试中的一些常见的问题 | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python"><span class="nav-number">1.</span> <span class="nav-text">python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python-%E7%9A%84-gil"><span class="nav-number">1.1.</span> <span class="nav-text">python 的 GIL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E8%BF%9B%E7%A8%8B-%E5%8D%8F%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">python的多线程，多进程， 协程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E6%8E%92%E5%BA%8F"><span class="nav-number">1.3.</span> <span class="nav-text">几种排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-%E7%9A%84%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.</span> <span class="nav-text">mysql 的索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-%E7%9A%84-when-case"><span class="nav-number">2.2.</span> <span class="nav-text">mysql 的 when case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#orm-%E7%9A%84-n-1%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">orm 的 n + 1问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E9%98%9F%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">缓存、队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#redis-%E7%9A%84-%E6%8C%81%E4%B9%85%E5%8C%96%E7%AD%96%E7%95%A5"><span class="nav-number">3.1.</span> <span class="nav-text">redis 的 持久化策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%E9%9B%AA%E5%B4%A9%E7%A9%BF%E9%80%8F"><span class="nav-number">3.2.</span> <span class="nav-text">缓存击穿、雪崩、穿透</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%9F%BA%E7%A1%80"><span class="nav-number">4.</span> <span class="nav-text">其他基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcpip%E5%8D%8F%E8%AE%AEtcp%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%AD%89"><span class="nav-number">4.1.</span> <span class="nav-text">tcp&#x2F;ip协议，tcp的三次握手等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.2.</span> <span class="nav-text">http协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#url-uri-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.3.</span> <span class="nav-text">url, uri 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%BB%E9%94%81"><span class="nav-number">4.4.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#restful-%E8%A7%84%E8%8C%83"><span class="nav-number">4.5.</span> <span class="nav-text">restful 规范</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/uncategorized/%E9%9D%A2%E8%AF%95%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="面试中的一些常见的问题 | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面试中的一些常见的问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-03-13 11:51:42" itemprop="dateCreated datePublished" datetime="2018-03-13T11:51:42+08:00">2018-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+
+  
+    <span id="/uncategorized/%E9%9D%A2%E8%AF%95%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98.html" class="post-meta-item leancloud_visitors" data-flag-title="面试中的一些常见的问题" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>这里挖坑</p>
+<h1 id="python">python</h1>
+<h2 id="python-的-gil">python 的 GIL</h2>
+<p><a target="_blank" rel="noopener" href="https://wiki.python.org/moin/GlobalInterpreterLock">python
+wiki 中对 GIL的解释</a></p>
+<p>GIL(Global Interpreter Lock),全局解释器锁.</p>
+<p>python的解释器，py文件的运行需要解释器。在cpython中，这个解释器不是线程安全的，他有一个全局锁，用于保证对象的线程安全。当多线程情况下运行时候。每次其实只有一个线程在运行,其他的线程都是在等待。这就导致python中的多线程并不能完全利用全部的cpu资源（如果是多核处理器的话）.所以GIL的存在，使得python处理cpu密集型的任务时候效率低下，因为要不断切换浪费时间切换线程，而且无法利用所有的cpu资源。而在I/O密集型的任务有比较好的效率，因为处理耗时的I/O任务时，线程会释放GIL给其他线程.</p>
+<p>关于解释器和编译器的区别: - 代码 -运行-&gt; 解释器 --&gt; cpu - 代码
+--&gt;编译器 -运行-&gt; cpu</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">count</span>(<span class="params">num</span>):</span><br><span class="line">    <span class="keyword">while</span> num &gt; <span class="number">0</span>:</span><br><span class="line">        num -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">num = <span class="number">10000000</span></span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line">count(num)</span><br><span class="line">count(num)</span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;共运行: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(end - start))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">t1 = threading.Thread(target=count, args=(num,))</span><br><span class="line">t2 = threading.Thread(target=count, args=(num,))</span><br><span class="line">threads = [t1, t2]</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">    t.start()</span><br><span class="line">    t.join()</span><br><span class="line">end = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;多线程共运行: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(end - start))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 结果,多线程更慢</span></span><br><span class="line"><span class="comment"># 共运行: 0.858108997345</span></span><br><span class="line"><span class="comment"># 多线程共运行: 1.28467583656</span></span><br><span class="line"><span class="comment"># python3.6下</span></span><br><span class="line"><span class="comment"># 共运行: 1.553386926651001</span></span><br><span class="line"><span class="comment"># 多线程共运行: 1.5657341480255127</span></span><br></pre></td></tr></table></figure>
+<p>上面python3.6为什么将近慢了一倍？ &gt; python3 的 int 都默认为 long
+integer.所以会稍微慢一些. &gt; 这里有一个python3 和python2
+的表现的对比。部分对比中python3比python2快8%到48%。部分慢25%到54%<a
+target="_blank" rel="noopener" href="https://mail.python.org/pipermail/speed/2016-November/000474.html">[Speed]
+Benchmarks: Comparison between Python 2.7 and Python 3.6
+performance</a></p>
+<h2 id="python的多线程多进程-协程">python的多线程，多进程， 协程</h2>
+<h2 id="几种排序">几种排序</h2>
+<p>快速排序 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sort_fast</span>(<span class="params">alist</span>):</span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="数据库">数据库</h1>
+<h2 id="mysql-的索引">mysql 的索引</h2>
+<h2 id="mysql-的-when-case">mysql 的 when case</h2>
+<p>先创建测试数据 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> testScore    </span><br><span class="line">(       </span><br><span class="line">   tname <span class="type">varchar</span>(<span class="number">30</span>) <span class="keyword">null</span>,    </span><br><span class="line">   ttype <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">null</span>,    </span><br><span class="line">   tscor <span class="type">int</span> <span class="keyword">null</span>   </span><br><span class="line">);    </span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> testScore <span class="keyword">values</span> (<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="number">80</span>);   </span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> testScore <span class="keyword">values</span> (<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="number">98</span>);    </span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> testScore <span class="keyword">values</span> (<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>,<span class="number">65</span>);    </span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> testScore <span class="keyword">values</span> (<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;语文&#x27;</span>,<span class="number">70</span>);    </span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> testScore <span class="keyword">values</span> (<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;数学&#x27;</span>,<span class="number">80</span>);    </span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> testScore <span class="keyword">values</span> (<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;英语&#x27;</span>,<span class="number">90</span>);    </span><br></pre></td></tr></table></figure></p>
+<p>查询每个人的分数 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  `tname`,</span><br><span class="line">  <span class="built_in">max</span>(<span class="keyword">case</span> `ttype` <span class="keyword">when</span> <span class="string">&#x27;语文&#x27;</span> <span class="keyword">then</span> `tscor` <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="string">&#x27;语文&#x27;</span>,</span><br><span class="line">  <span class="built_in">max</span>(<span class="keyword">case</span> `ttype` <span class="keyword">when</span> <span class="string">&#x27;数学&#x27;</span> <span class="keyword">then</span> `tscor` <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="string">&#x27;数学&#x27;</span>,</span><br><span class="line">  <span class="built_in">max</span>(<span class="keyword">case</span> `ttype` <span class="keyword">when</span> <span class="string">&#x27;英语&#x27;</span> <span class="keyword">then</span> `tscor` <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">end</span>) <span class="string">&#x27;英语&#x27;</span></span><br><span class="line"><span class="keyword">from</span> testScore <span class="keyword">group</span> <span class="keyword">by</span> `tname`;</span><br></pre></td></tr></table></figure></p>
+<p>group 中的case when <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">  `tname`,</span><br><span class="line">  <span class="keyword">case</span> `ttype`</span><br><span class="line">    <span class="keyword">when</span> <span class="string">&#x27;数学&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;理科&#x27;</span></span><br><span class="line">    <span class="keyword">else</span> <span class="string">&#x27;文科&#x27;</span></span><br><span class="line">  <span class="keyword">end</span> <span class="keyword">as</span> <span class="string">&#x27;科别&#x27;</span>,</span><br><span class="line">  <span class="built_in">sum</span>(`tscor`) <span class="keyword">as</span> <span class="string">&#x27;总分&#x27;</span></span><br><span class="line"><span class="keyword">from</span> `testScore`</span><br><span class="line"><span class="keyword">Group</span> <span class="keyword">by</span></span><br><span class="line">  `tname`,</span><br><span class="line">  <span class="keyword">case</span> `ttype`</span><br><span class="line">    <span class="keyword">when</span> <span class="string">&#x27;数学&#x27;</span> <span class="keyword">then</span> <span class="string">&#x27;理科&#x27;</span></span><br><span class="line">    <span class="keyword">else</span> <span class="string">&#x27;文科&#x27;</span></span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h2 id="orm-的-n-1问题">orm 的 n + 1问题</h2>
+<h1 id="缓存队列">缓存、队列</h1>
+<h2 id="redis-的-持久化策略">redis 的 持久化策略</h2>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://redis.io/topics/persistence">官方说明(英文)</a></p>
+</blockquote>
+<blockquote>
+<p><a
+target="_blank" rel="noopener" href="http://doc.redisfans.com/topic/persistence.html">中文翻译</a></p>
+</blockquote>
+<ul>
+<li>RDB 在指定的时间间隔内生成数据集的时间点快照</li>
+<li>AOF 持久化记录数据库的所有操作命令，并在服务器重启时重新执行</li>
+</ul>
+<h2 id="缓存击穿雪崩穿透">缓存击穿、雪崩、穿透</h2>
+<ul>
+<li>缓存雪崩：指大量缓存同时失效，使得查询直接落到数据库上，造成数据库短时间内承受大量请求而崩掉。</li>
+<li>缓存击穿：指某个热点key，短时间大量请求都在访问，当他过期时，所有的请求会突然都直接落到数据库上，造成数据库短时间内承受大量请求而崩掉。</li>
+<li>缓存穿透：当用户访问的数据，既不在缓存中，也不在数据库中，导致请求在访问缓存时，发现缓存缺失，再去访问数据库时，发现数据库中也没有要访问的数据，没办法构建缓存数据，来服务后续的请求。那么当有大量这样的请求到来时，数据库的压力骤增。</li>
+</ul>
+<h1 id="其他基础">其他基础</h1>
+<h2 id="tcpip协议tcp的三次握手等">tcp/ip协议，tcp的三次握手等</h2>
+<p>tcp/ip 是一个协议簇的统称，</p>
+<p>tcp(transport control protocol)传输控制协议 udp(user datagram
+protocol)</p>
+<h2 id="http协议">http协议</h2>
+<p>Hyper Text Transfer Protocol(超文本传输协议) <a
+target="_blank" rel="noopener" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">Hypertext
+Transfer Protocol -- HTTP/1.1</a></p>
+<p>包括方法: GET,POST,HEAD,OPTIONS,DELETE,PUT,TRACE,CONNECT</p>
+<h2 id="url-uri-的区别">url, uri 的区别</h2>
+<p>url(uniform resource locator) uri(uniform resource identifier)
+从名字可以看出来uri是资源的唯一标识，而url是资源的定位
+url是uri的一种</p>
+<h2 id="死锁">死锁</h2>
+<h2 id="restful-规范">restful 规范</h2>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/uncategorized/an-overview-of-gradient-descent-optimization-algorithms.html" rel="prev" title="An overview of gradient descent optimization algorithms">
+                  <i class="fa fa-angle-left"></i> An overview of gradient descent optimization algorithms
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/uncategorized/loss-function.html" rel="next" title="Loss Function">
+                  Loss Function <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4d650f6890fc0bd5652cfa77f0fef6dc"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

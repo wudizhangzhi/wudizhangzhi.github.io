@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="hEMI3OIYm2agrkUt60W9zMr5WNTO9NsTP8o683cQs5s">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/purple/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.yueyawochong.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"GitTalk","order":-1}},"activeClass":"gitalk"},"stickytabs":true,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="范例(Paradigms) 监督学习（Supervised Learning） 提供带有标签的数据集进行训练，常用于分类和回归问题。  线性回归（Linear Regression） 逻辑回归（Logistic Regression） 朴素贝叶斯（Naive Bayes） 决策树（Decision Tree） Ensemble  随机森林（Random Forest） AdaBoost Gradi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始机器学习-基础概念">
+<meta property="og:url" content="http://blog.yueyawochong.cn/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5.html">
+<meta property="og:site_name" content="月牙天冲 | 个人博客">
+<meta property="og:description" content="范例(Paradigms) 监督学习（Supervised Learning） 提供带有标签的数据集进行训练，常用于分类和回归问题。  线性回归（Linear Regression） 逻辑回归（Logistic Regression） 朴素贝叶斯（Naive Bayes） 决策树（Decision Tree） Ensemble  随机森林（Random Forest） AdaBoost Gradi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-05T03:31:06.000Z">
+<meta property="article:modified_time" content="2025-04-27T03:53:33.194Z">
+<meta property="article:author" content="月牙天冲">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="基础概念">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://blog.yueyawochong.cn/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://blog.yueyawochong.cn/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5.html","path":"从零开始机器学习/从零开始机器学习-基础概念.html","title":"从零开始机器学习-基础概念"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从零开始机器学习-基础概念 | 月牙天冲 | 个人博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWX4V5SC1V"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RWX4V5SC1V","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?0a25f0e95f85ab623aab75122d2e0903"></script>
+
+
+
+
+
+
+<script data-ad-client="ca-pub-8711650445903499" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">月牙天冲 | 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8C%83%E4%BE%8Bparadigms"><span class="nav-number">1.</span> <span class="nav-text">范例(Paradigms)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0supervised-learning"><span class="nav-number">1.1.</span> <span class="nav-text">监督学习（Supervised
+Learning）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0unsupervised-learning"><span class="nav-number">1.2.</span> <span class="nav-text">无监督学习（Unsupervised
+Learning）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0semi-supervised-learning"><span class="nav-number">1.3.</span> <span class="nav-text">半监督学习（Semi-Supervised
+Learning）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0-self-supervised-learning"><span class="nav-number">1.4.</span> <span class="nav-text">自监督学习
+（Self-supervised Learning）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-reinforcement-learning"><span class="nav-number">1.5.</span> <span class="nav-text">强化学习 （Reinforcement
+Learning）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%89%E7%85%A7%E9%97%AE%E9%A2%98%E5%88%92%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">按照问题划分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92regression"><span class="nav-number">2.1.</span> <span class="nav-text">回归（regression）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92linear-regression"><span class="nav-number">2.1.1.</span> <span class="nav-text">线性回归（linear regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92logistic-regression"><span class="nav-number">2.1.2.</span> <span class="nav-text">逻辑回归（logistic
+regression）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BBclassification"><span class="nav-number">2.2.</span> <span class="nav-text">分类（classification）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91decision-tree"><span class="nav-number">2.2.1.</span> <span class="nav-text">决策树（Decision Tree）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BAsupport-vector-machine-svm"><span class="nav-number">2.2.2.</span> <span class="nav-text">支持向量机(Support Vector
+Machine, SVM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8"><span class="nav-number">2.2.3.</span> <span class="nav-text">朴素贝叶斯分类器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%9A%E7%B1%BBclustering"><span class="nav-number">2.3.</span> <span class="nav-text">聚类（clustering）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E6%A0%87%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">指标、参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0hyperparameter"><span class="nav-number">3.1.</span> <span class="nav-text">超参数(Hyperparameter)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E7%A1%AE%E7%8E%87accuracy"><span class="nav-number">3.2.</span> <span class="nav-text">准确率（accuracy）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E5%BA%A6precision"><span class="nav-number">3.3.</span> <span class="nav-text">精确度(Precision)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AC%E5%9B%9E%E7%8E%87recall"><span class="nav-number">3.4.</span> <span class="nav-text">召回率（recall）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#f1-score"><span class="nav-number">3.5.</span> <span class="nav-text">F1 Score</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#aucarea-under-curve"><span class="nav-number">3.6.</span> <span class="nav-text">AUC(Area Under Curve)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kappa%E4%B9%9F%E7%A7%B0%E4%B8%BA-cohens-kappa-%E6%88%96-kappa%E7%BB%9F%E8%AE%A1%E9%87%8F"><span class="nav-number">3.7.</span> <span class="nav-text">Kappa(也称为 Cohen&#39;s
+Kappa 或 Kappa统计量)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mccmatthews-correlation-coefficient"><span class="nav-number">3.8.</span> <span class="nav-text">MCC（Matthews Correlation
+Coefficient）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logits-%E5%AF%B9%E6%95%B0%E5%87%A0%E7%8E%87"><span class="nav-number">3.9.</span> <span class="nav-text">logits (对数几率?)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0objective-function"><span class="nav-number">3.10.</span> <span class="nav-text">目标函数（objective function）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0loss-function"><span class="nav-number">3.11.</span> <span class="nav-text">损失函数（loss function）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#focal-loss"><span class="nav-number">3.11.1.</span> <span class="nav-text">Focal Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dice-loss"><span class="nav-number">3.11.2.</span> <span class="nav-text">Dice Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#msemean-squared-error%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE"><span class="nav-number">3.11.3.</span> <span class="nav-text">MSE(mean squared
+error)均方误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5cross-entropy"><span class="nav-number">3.11.4.</span> <span class="nav-text">交叉熵（cross entropy）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1maximum-likelihood-estimation"><span class="nav-number">3.12.</span> <span class="nav-text">最大似然估计（maximum
+likelihood estimation）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8Bgmm"><span class="nav-number">3.12.1.</span> <span class="nav-text">高斯混合模型(GMM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BD%91%E7%BB%9Cbayesian-network"><span class="nav-number">3.12.2.</span> <span class="nav-text">贝叶斯网络(Bayesian Network)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8Bhidden-markov-model"><span class="nav-number">3.12.3.</span> <span class="nav-text">隐马尔可夫模型(Hidden Markov
+Model)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8Bmaximum-entropy-model"><span class="nav-number">3.12.4.</span> <span class="nav-text">最大熵模型(Maximum Entropy
+Model)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradient-descent-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="nav-number">3.13.</span> <span class="nav-text">gradient descent: 梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#forward-propagation-%E6%AD%A3%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">3.14.</span> <span class="nav-text">forward propagation: 正向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#backpropagation-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">3.15.</span> <span class="nav-text">backpropagation: 反向传播</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">模型处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81multimodal"><span class="nav-number">4.1.</span> <span class="nav-text">多模态（multimodal）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9model-compression"><span class="nav-number">4.2.</span> <span class="nav-text">模型压缩（model compression）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88model-ensemble"><span class="nav-number">4.3.</span> <span class="nav-text">模型融合（model ensemble）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83fine-tuning"><span class="nav-number">4.4.</span> <span class="nav-text">模型微调（fine-tuning）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%89%AA%E6%9E%9Dmodel-pruning"><span class="nav-number">4.5.</span> <span class="nav-text">模型剪枝（model pruning）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#edaexploratory-data-analysis"><span class="nav-number">5.1.</span> <span class="nav-text">EDA(Exploratory Data
+Analysis)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%A1%E6%96%B9%E6%A3%80%E9%AA%8Cchi-square-test"><span class="nav-number">5.2.</span> <span class="nav-text">卡方检验（Chi-Square Test）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extreme-gradient-boostingxgboost"><span class="nav-number">5.3.</span> <span class="nav-text">eXtreme Gradient
+Boosting（XGBoost）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lgbmlight-gradient-boosting-machine"><span class="nav-number">5.4.</span> <span class="nav-text">LGBM（Light Gradient
+Boosting Machine）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cv-scorecross-validation-score%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E5%88%86%E6%95%B0"><span class="nav-number">5.5.</span> <span class="nav-text">CV
+score(Cross-Validation Score)交叉验证分数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B3%B0%E5%BA%A6kurtosis"><span class="nav-number">5.6.</span> <span class="nav-text">峰度（Kurtosis）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%8F%E5%BA%A6skewness"><span class="nav-number">5.7.</span> <span class="nav-text">偏度（Skewness）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="月牙天冲"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">月牙天冲</p>
+  <div class="site-description" itemprop="description">月牙天冲的个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wudizhangzhi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wudizhangzhi" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yueyawochong@qq.com" title="E-Mail → mailto:yueyawochong@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.yueyawochong.cn/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="月牙天冲">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="月牙天冲 | 个人博客">
+      <meta itemprop="description" content="月牙天冲的个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从零开始机器学习-基础概念 | 月牙天冲 | 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从零开始机器学习-基础概念
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-05 11:31:06" itemprop="dateCreated datePublished" datetime="2023-04-05T11:31:06+08:00">2023-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 11:53:33" itemprop="dateModified" datetime="2025-04-27T11:53:33+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">从零开始机器学习</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5.html" class="post-meta-item leancloud_visitors" data-flag-title="从零开始机器学习-基础概念" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>24 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="范例paradigms">范例(Paradigms)</h1>
+<h2 id="监督学习supervised-learning">监督学习（Supervised
+Learning）</h2>
+<p>提供带有标签的数据集进行训练，常用于分类和回归问题。</p>
+<ul>
+<li>线性回归（Linear Regression）</li>
+<li>逻辑回归（Logistic Regression）</li>
+<li>朴素贝叶斯（Naive Bayes）</li>
+<li>决策树（Decision Tree）</li>
+<li>Ensemble
+<ul>
+<li>随机森林（Random Forest）</li>
+<li>AdaBoost</li>
+<li>Gradient Boosting</li>
+</ul></li>
+<li>k-近邻（k-Nearest Neighbors）</li>
+<li>支持向量机（Support Vector Machine）</li>
+<li>人工神经网络（Artificial Neural Network）</li>
+</ul>
+<h2 id="无监督学习unsupervised-learning">无监督学习（Unsupervised
+Learning）</h2>
+<p>训练时候不提供标签，让模型自己归纳、提取特征。常用于聚类问题。</p>
+<p>常见算法和模型：</p>
+<ul>
+<li>k均值聚类（k-Means Clustering）</li>
+<li>霍夫菲尔德网络(Hopfield Network)</li>
+<li>Boltzmann机(Boltzmann Machine)</li>
+<li>自编码器（Autoencoder）</li>
+<li>VAE(Variational Autoencoder)</li>
+</ul>
+<h2 id="半监督学习semi-supervised-learning">半监督学习（Semi-Supervised
+Learning）</h2>
+<p>也被称为弱监督学习（Weakly Supervised Learning）</p>
+<p>真实情况下，不会有那么多已经标好的数据进行训练，所以需要使用半监督学习的方式，将无标签的数据和有标签的数据一起进行训练。</p>
+<h2 id="自监督学习-self-supervised-learning">自监督学习
+（Self-supervised Learning）</h2>
+<p>是一种半监督学习的方式，通过自身的输入数据来学习，不需要标签。自动学习出有用的特征，从而为后续的监督学习提供有用的特征表示。</p>
+<p>常用于图像分类、语音识别等。</p>
+<p>例如：将无标记的图像进行旋转，加噪点，遮挡，镜像等方式，生成一组具有相似性的数据，让模型提取出这些数据的共性，从而学习到有用的特征。<code>CLIP</code>模型就是使用类似的方法,
+输入文本和图像，让模型自己学习出文本和图像之间的关系，从而实现图像和文本的相互转换。</p>
+<ul>
+<li>对比学习（Contrastive Learning）:
+对比正样本和负样本，让模型学习出正样本和负样本之间的差异。</li>
+<li>非对比学习（Non-Contrastive Learning）:
+只使用正样本，不使用负样本。</li>
+</ul>
+<h2 id="强化学习-reinforcement-learning">强化学习 （Reinforcement
+Learning）</h2>
+<p>给定一个环境(env),和一些行动(action),让模型在环境中进行行动，每次行动后，环境会给出一个奖励(reward),重复步骤，让模型学习如何在环境中获得最大的奖励。</p>
+<span id="more"></span>
+<h1 id="按照问题划分">按照问题划分</h1>
+<h2 id="回归regression">回归（regression）</h2>
+<p>回归用来预测连续值的输出。例如：房价，股价等。</p>
+<h3 id="线性回归linear-regression">线性回归（linear regression）</h3>
+<p>输入和输出可以用线性函数来表示。即：<code>y = w1x1 + w2x2 + ... + b</code></p>
+<h3 id="逻辑回归logistic-regression">逻辑回归（logistic
+regression）</h3>
+<p>与线性回归不同，逻辑回归的输出是一个概率值，用来表示输入属于某个类别的概率。</p>
+<p>逻辑函数一般可以表示为：<code>y = 1/(1+e^(-x))</code></p>
+<h2 id="分类classification">分类（classification）</h2>
+<p>分类用来预测离散值的输出。例如：图片中的物体是猫还是狗。</p>
+<h3 id="决策树decision-tree">决策树（Decision Tree）</h3>
+<p>属于有监督学习。训练的样本会含有多个属性，每个属性有多个取值，训练过程中，决策树会判断信息增益最大的属性，然后将样本按照该属性的取值进行划分，直到所有样本都属于同一类别，或者所有属性都被划分完毕。</p>
+<h3 id="支持向量机support-vector-machine-svm">支持向量机(Support Vector
+Machine, SVM)</h3>
+<h3 id="朴素贝叶斯分类器">朴素贝叶斯分类器</h3>
+<h2 id="聚类clustering">聚类（clustering）</h2>
+<h1 id="指标参数">指标、参数</h1>
+<h2 id="超参数hyperparameter">超参数(Hyperparameter)</h2>
+<p>指训练前设定好值的参数集合。</p>
+<h2 id="准确率accuracy">准确率（accuracy）</h2>
+<p>正确的预测结果占总预测结果的比例。</p>
+<p>混淆矩阵(Confusion Matrix) | 实际| 正确 | 错误 | | -------- | ---- |
+---- | | 正确 | TP | FN | | 错误 | FP | TN |</p>
+<ul>
+<li>TP: True Positive, 预测为正，实际为正</li>
+<li>TN: True Negative, 预测为负，实际为负</li>
+<li>FP: False Positive, 预测为正，实际为负</li>
+<li>FN: False Negative, 预测为负，实际为正</li>
+</ul>
+<p>其中，准确率 = 所有正确的占总数的比例 = <span
+class="math inline">\(\frac{(TP+TN)}{(TP+TN+FP+FN)}\)</span></p>
+<h2 id="精确度precision">精确度(Precision)</h2>
+<p>预测正确的正例样本占所有预测为正例样本的比例 = (TP)/(TP+FP)</p>
+<h2 id="召回率recall">召回率（recall）</h2>
+<p>又叫查全率。</p>
+<p>其中，召回率 = 正确标注为正例的样本数占所有实际正例样本数的比例 =
+<span class="math inline">\(\frac{TP}{TP+FN}\)</span></p>
+<h2 id="f1-score">F1 Score</h2>
+<p>F1分数（F1
+Score）是一个用于评估二分类模型性能的指标，它综合了模型的准确率（Precision）和召回率（Recall）。F1分数是一个介于0和1之间的值，它提供了一个综合性的度量，以评估模型在正类别和负类别上的性能，特别适用于不平衡的数据集。</p>
+<p>F1分数可以通过以下公式计算：</p>
+<p><span class="math inline">\(F1 = 2 * \frac{Precision *
+Recall}{Precision + Recall}\)</span></p>
+<p>F1分数的计算考虑了Precision和Recall之间的权衡。当Precision和Recall都很高时，F1分数也会很高，表示模型在正类别和负类别上都表现良好。F1分数在处理不平衡的数据集时特别有用，因为它不仅考虑了模型对正类别的预测准确性，还考虑了模型对正类别的覆盖程度。</p>
+<p>通常，选择一个适当的阈值来平衡Precision和Recall对于特定应用非常重要，因为增加Precision可能会减少Recall，反之亦然。具体的应用情境和需求会影响到选择的阈值。</p>
+<h2 id="aucarea-under-curve">AUC(Area Under Curve)</h2>
+<p>机器学习中用来评估二元分类模型性能的常用指标之一。它是ROC曲线（Receiver
+Operating Characteristic
+curve）下的面积，ROC曲线是一种用于可视化分类模型在不同阈值下的性能的工具。</p>
+<p>ROC曲线：ROC曲线是以真正例率为纵轴，假正例率为横轴，绘制出的一条曲线。该曲线描述了在不同阈值下模型的性能表现。一般情况下，ROC曲线越接近左上角，模型性能越好。</p>
+<p>AUC是ROC曲线下的面积，取值范围通常在0到1之间。AUC的数值越接近1，表示模型的性能越好，能更好地区分正例和负例样本。如果AUC为0.5，表示模型的性能等同于随机猜测。</p>
+<h2 id="kappa也称为-cohens-kappa-或-kappa统计量">Kappa(也称为 Cohen's
+Kappa 或 Kappa统计量)</h2>
+<p>是一种用于评估分类模型性能的统计指标，通常用于衡量多类别分类任务的一致性和准确性。Kappa值用于度量模型的分类结果与随机分类之间的一致性程度，考虑到了随机因素对分类结果的影响。</p>
+<p>Kappa的计算公式如下：</p>
+<p>Kappa = <code>(Po - Pe) / (1 - Pe)</code></p>
+<p>其中：</p>
+<ul>
+<li><p>Po（Observed Agreement）
+表示实际观察到的分类一致性，即模型的准确性。它等于
+<code>(TP + TN) / (TP + TN + FP + FN)</code>。</p></li>
+<li><p>Pe（Expected Agreement by Chance）
+表示通过随机猜测获得的分类一致性的期望值。Pe是根据混淆矩阵中的样本分布计算出来的，通常是
+<code>(Po^+ *Pe^+) + (Po^-* Pe^-)</code>，其中 Po^+
+表示正类别的观察一致性，Pe^+ 表示正类别的期望一致性；Po^-
+表示负类别的观察一致性，Pe^- 表示负类别的期望一致性。</p></li>
+</ul>
+<p>Kappa的取值范围通常在-1到1之间，其中：</p>
+<ul>
+<li>Kappa &lt; 0 表示模型的性能差于随机分类。</li>
+<li>Kappa = 0 表示模型的性能与随机分类相当。</li>
+<li>Kappa &gt; 0 表示模型的性能优于随机分类。</li>
+<li></li>
+</ul>
+<p>Kappa值越接近1，表示模型的分类结果与实际情况的一致性越高。Kappa是一个有用的指标，特别适用于多类别分类任务，因为它考虑了随机分类的影响，帮助评估模型的真实性能。</p>
+<h2 id="mccmatthews-correlation-coefficient">MCC（Matthews Correlation
+Coefficient）</h2>
+<p>MCC通常用于衡量分类模型的整体性能，尤其在不平衡数据集中，其表现优于准确度（Accuracy）等指标。</p>
+<p>MCC的计算公式如下：</p>
+<p>MCC =
+<code>(TP *TN - FP* FN) / sqrt((TP + FP) *(TP + FN)* (TN + FP) * (TN + FN))</code></p>
+<p>MCC的取值范围在-1到+1之间，其中：</p>
+<ul>
+<li>MCC = +1 表示完美的分类器，模型的性能非常好。</li>
+<li>MCC = 0 表示模型的性能等同于随机分类。</li>
+<li>MCC = -1 表示模型的性能完全相反，最差。</li>
+</ul>
+<p>因此，MCC越接近+1，表示模型的性能越好，而越接近-1表示模型的性能越差。MCC是一种很有用的指标，特别适用于不平衡数据集，因为它同时考虑了真正例率和真负例率，对于处理类别不平衡问题时能够提供更准确的性能评估。</p>
+<h2 id="logits-对数几率">logits (对数几率?)</h2>
+<p>logits是指模型的输出值，一般是一个向量，向量的每个元素代表一个类别的概率，可以称为分类器的原始树池。</p>
+<h2 id="目标函数objective-function">目标函数（objective function）</h2>
+<p>机器学习中需要最大或者最小化的函数。例如：损失函数、正则化函数等。
+是具体任务的评估指标。</p>
+<h2 id="损失函数loss-function">损失函数（loss function）</h2>
+<p>计算模型的预测值<code>y'</code>与真实值<code>y</code>之间的差异，监督学习中用来衡量模型的好坏。
+损失函数对模型的影响是负向的，目标函数对模型的影响是正向的。</p>
+<h3 id="focal-loss">Focal Loss</h3>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/49981234"
+class="uri">https://zhuanlan.zhihu.com/p/49981234</a></p>
+<h3 id="dice-loss">Dice Loss</h3>
+<h3 id="msemean-squared-error均方误差">MSE(mean squared
+error)均方误差</h3>
+<p>损失函数的一种，算法为：<code>loss = (y' - y)^2</code></p>
+<p>缺点：因为是平方，所以对异常值敏感，异常值会对模型的训练产生较大的影响。</p>
+<h3 id="交叉熵cross-entropy">交叉熵（cross entropy）</h3>
+<p>损失函数的一种，算法为：<code>loss = -ylog(y') - (1-y)log(1-y')</code></p>
+<p>优点：对异常值不敏感。
+缺点：当y'接近0或者1时，log(y')会趋于无穷大，导致梯度消失。</p>
+<h2 id="最大似然估计maximum-likelihood-estimation">最大似然估计（maximum
+likelihood estimation）</h2>
+<p>概念：假设有一个随机变量X，它的概率分布为P(X)，那么X的最大似然估计就是使得P(X)最大的参数值。
+在机器学习中一般用于梯度的传递，例如：</p>
+<p>逻辑回归中。模型中的权重等参数就是这个X,
+损失函数的结果就是P(X)，训练模型就是求解P(X)最小的参数值。</p>
+<h3 id="高斯混合模型gmm">高斯混合模型(GMM)</h3>
+<h3 id="贝叶斯网络bayesian-network">贝叶斯网络(Bayesian Network)</h3>
+<h3 id="隐马尔可夫模型hidden-markov-model">隐马尔可夫模型(Hidden Markov
+Model)</h3>
+<h3 id="最大熵模型maximum-entropy-model">最大熵模型(Maximum Entropy
+Model)</h3>
+<h2 id="gradient-descent-梯度下降">gradient descent: 梯度下降</h2>
+<h2 id="forward-propagation-正向传播">forward propagation: 正向传播</h2>
+<h2 id="backpropagation-反向传播">backpropagation: 反向传播</h2>
+<h1 id="模型处理">模型处理</h1>
+<h2 id="多模态multimodal">多模态（multimodal）</h2>
+<h2 id="模型压缩model-compression">模型压缩（model compression）</h2>
+<p>模型压缩（Model
+Compression），又称为模型压缩技术或模型压缩算法，是一种在不牺牲模型性能的情况下减少深度学习模型存储和计算复杂度的技术。随着深度学习模型规模的不断扩大，其计算和存储需求也会不断增加，而模型压缩技术可以在一定程度上缓解这种压力。</p>
+<p>模型压缩技术主要包括以下几种：</p>
+<ul>
+<li><p>知识蒸馏（Knowledge
+Distillation）：将一个较为复杂的模型（称为教师网络）的知识迁移到一个较为简单的模型中（称为学生网络），以减少模型的计算和存储复杂度。</p></li>
+<li><p>参数共享（Weight
+Sharing）：对于一些共享结构的神经网络，可以在计算过程中共享其部分参数，以大幅减少存储和计算需求。</p></li>
+<li><p>矩阵分解（Matrix
+Decomposition）：通过将神经网络的权重矩阵分解成多个较小的矩阵，来减少模型的参数数量和计算复杂度。</p></li>
+<li><p>剪枝（Pruning）：通过对神经网络的权重进行剪枝操作，将权重较小的神经元删除，以减少模型的参数数量和计算复杂度。</p></li>
+</ul>
+<p>量化（Quantization）：将模型的参数从浮点数转换为较小的整数或定点数，以减少模型的存储需求和计算复杂度。</p>
+<h2 id="模型融合model-ensemble">模型融合（model ensemble）</h2>
+<h2 id="模型微调fine-tuning">模型微调（fine-tuning）</h2>
+<h2 id="模型剪枝model-pruning">模型剪枝（model pruning）</h2>
+<ul>
+<li>MLP-RNN-seq2seq/编码器解码器架构-注意力机制-自注意力-transformer。</li>
+<li>byte-pair encoding</li>
+<li>TPU: tensor process unit</li>
+<li>label smoothing:</li>
+<li>BLEU score</li>
+<li>PPL score:</li>
+<li>logits:</li>
+<li>点乘：点乘的物理意义，两个向量的点乘表示两个向量的相似度</li>
+<li>Model Perplexities</li>
+<li>残差连接</li>
+<li>正则化
+<ul>
+<li>l1正则化</li>
+<li>l2正则化</li>
+</ul></li>
+<li>****Stable Diffusion****</li>
+<li>马尔可夫链</li>
+<li>对抗模型gan</li>
+<li>纳什均衡</li>
+<li>凸函数</li>
+<li>kl散度</li>
+</ul>
+<h1 id="其他">其他</h1>
+<h2 id="edaexploratory-data-analysis">EDA(Exploratory Data
+Analysis)</h2>
+<p>EDA代表探索性数据分析（Exploratory Data
+Analysis）。EDA是数据分析的一项关键活动，旨在通过可视化和统计方法来探索和理解数据集，揭示其中包含的模式、趋势、异常和有趣的特征。</p>
+<p>EDA的主要目标包括：</p>
+<ol type="1">
+<li><p><strong>数据理解</strong>：通过查看数据的基本统计信息、分布、关系和特征来深入了解数据集的性质。</p></li>
+<li><p><strong>异常检测</strong>：识别和理解数据中的异常值或离群点，这些异常可能是数据录入错误或有趣的现象。</p></li>
+<li><p><strong>特征工程</strong>：探索潜在的特征，选择哪些特征可以用于建立模型，以及如何对这些特征进行预处理。</p></li>
+<li><p><strong>可视化</strong>：使用图形和可视化工具来可视化数据，以更好地理解数据分布、关系和趋势。</p></li>
+<li><p><strong>假设检验</strong>：测试关于数据分布和特征之间关系的假设，以验证或推翻它们。</p></li>
+</ol>
+<p>EDA通常是数据科学和机器学习项目的第一步，因为它有助于确定如何处理数据、选择合适的模型，以及为后续的数据预处理和建模过程提供重要的见解。通过进行EDA，数据分析人员和科学家可以更好地理解数据，并做出更明智的决策，以确保后续的建模和分析工作能够取得成功。</p>
+<h2 id="卡方检验chi-square-test">卡方检验（Chi-Square Test）</h2>
+<p>卡方检验（Chi-Square
+Test）是一种用于统计数据之间是否存在关联或独立性的检验方法。它主要用于比较观察值与预期值之间的差异，以确定两个变量之间是否存在显著的关联。卡方检验通常用于分析分类数据（如频数表）。</p>
+<p>卡方检验有两个主要变种：</p>
+<ol type="1">
+<li><p><strong>卡方拟合度检验（Chi-Square Goodness of Fit
+Test）</strong>：用于检验观察值与预期值之间的拟合程度。这种检验用于确定观察数据是否符合特定的理论分布，例如正态分布。</p></li>
+<li><p><strong>卡方独立性检验（Chi-Square Test for
+Independence）</strong>：用于检验两个分类变量之间是否独立。它检查观察值与期望值之间的差异，以确定两个变量之间是否存在关联。这种检验通常用于探讨两个分类变量之间的关系。</p></li>
+</ol>
+<p>卡方检验的基本思想是将观察值与期望值之间的差异转化为一个统计量，该统计量的分布在零假设成立时（即两个变量独立时）遵循卡方分布。然后，通过计算卡方统计量的值以及自由度，可以确定是否拒绝零假设，从而判断两个变量之间是否存在关联。</p>
+<p>在统计分析和数据挖掘中，卡方检验是一种常用的方法，用于确定变量之间的关系，例如在列联表（Contingency
+Table）分析中，它可以帮助确定两个分类变量之间是否相关。</p>
+<h2 id="extreme-gradient-boostingxgboost">eXtreme Gradient
+Boosting（XGBoost）</h2>
+<p>eXtreme Gradient
+Boosting（XGBoost）是一种高效、可扩展、并且在许多机器学习竞赛和实际应用中表现出色的梯度提升树（Gradient
+Boosting
+Tree）算法。XGBoost最初由陈天奇在2016年开发，自发布以来，它已经成为机器学习领域的一种标准算法。以下是关于XGBoost的详细解释：</p>
+<p><strong>1. 提升树（Boosting Tree）：</strong>
+提升树是一种集成学习方法，它通过逐步迭代构建多个决策树模型，每一次迭代都试图纠正前一次迭代中的错误。这种集成方法使得模型在每一步都更关注之前错误分类的样本，从而提高了整体模型的性能。</p>
+<p><strong>2. 梯度提升：</strong>
+XGBoost采用了梯度提升算法，这是一种提升树方法的变体。它使用了梯度下降的思想，以最小化损失函数，从而提高模型性能。这意味着XGBoost通过计算损失函数的梯度来确定如何更新树模型，以便更好地拟合数据。</p>
+<p><strong>3. 正则化：</strong>
+XGBoost支持L1（Lasso）和L2（Ridge）正则化技术，以减少过拟合的风险。这些正则化方法有助于控制树模型的复杂度，提高了模型的泛化能力。</p>
+<p><strong>4. 特征选择：</strong>
+XGBoost可以自动识别和评估特征的重要性，从而允许选择最重要的特征。这有助于提高模型的性能，减少过拟合，以及降低训练和预测的成本。</p>
+<p><strong>5. 缺失值处理：</strong>
+XGBoost能够自动处理缺失值，无需额外的数据预处理。这对于许多实际数据集来说是一个重要的优势。</p>
+<p><strong>6. 并行计算：</strong>
+XGBoost支持多线程和分布式计算，可以加快模型的训练速度，特别是在大规模数据集上。</p>
+<p><strong>7. 高性能：</strong>
+XGBoost经过高度优化，通常比许多其他梯度提升实现更快，并且在预测性能上表现出色。</p>
+<p><strong>8. 支持分类和回归问题：</strong>
+XGBoost不仅适用于分类问题（如XGBClassifier），还适用于回归问题（如XGBRegressor）。</p>
+<p><strong>9. 丰富的超参数：</strong>
+XGBoost提供了许多可调整的参数，以帮助用户优化模型的性能，包括树的深度、学习率、迭代次数等。</p>
+<p>总之，XGBoost是一个强大且灵活的机器学习算法，适用于各种任务，包括分类、回归、排名等。它的性能和可扩展性使得它成为数据科学家和机器学习从业者的首选工具之一。</p>
+<h2 id="lgbmlight-gradient-boosting-machine">LGBM（Light Gradient
+Boosting Machine）</h2>
+<p>LGBM（Light Gradient Boosting
+Machine）是一种高性能的梯度提升框架，用于机器学习和数据挖掘任务。它专注于提供高效的梯度提升决策树模型，特别适用于大规模数据集和高维特征的问题。LGBM在性能和速度方面的优势使它成为许多数据科学竞赛和实际应用中的首选工具之一。</p>
+<p>以下是关于LGBM的一些关键特点和信息：</p>
+<ol type="1">
+<li><p><strong>梯度提升树算法</strong>：LGBM是基于梯度提升树算法的，它采用了提升树的思想，通过迭代构建多个决策树，以逐步提高模型性能。</p></li>
+<li><p><strong>轻量级和高效</strong>：LGBM在内存使用和训练速度方面表现出色，这主要得益于其基于直方图的决策树构建方式和分裂特征的方式。这使得它特别适用于大规模数据集。</p></li>
+<li><p><strong>并行计算</strong>：LGBM支持多线程和分布式计算，可以充分利用多核处理器和集群来加速训练过程。</p></li>
+<li><p><strong>特征选择</strong>：LGBM可以自动识别特征的重要性，允许进行特征选择以提高模型性能。</p></li>
+<li><p><strong>处理缺失值</strong>：LGBM可以有效地处理缺失值，无需额外的数据预处理。</p></li>
+<li><p><strong>支持分类和回归问题</strong>：LGBM既可用于分类问题（如LightGBMClassifier），也可用于回归问题（如LightGBMRegressor）。</p></li>
+<li><p><strong>正则化</strong>：LGBM支持正则化技术，如L1（Lasso）和L2（Ridge）正则化，以帮助控制模型的复杂度。</p></li>
+<li><p><strong>丰富的超参数</strong>：LGBM提供了多种可调整的超参数，包括树的深度、学习率、叶节点最小样本数等。</p></li>
+<li><p><strong>Python接口和其他语言支持</strong>：LGBM有Python接口，但也支持其他编程语言，如R、C++、Java等。</p></li>
+</ol>
+<p>总的来说，LGBM是一个功能强大且高效的机器学习工具，适用于各种数据科学和机器学习任务。它在大规模数据集和高维特征的情况下表现出色，是许多数据科学家和机器学习从业者的首选算法之一。</p>
+<h2 id="cv-scorecross-validation-score交叉验证分数">CV
+score(Cross-Validation Score)交叉验证分数</h2>
+<p>CV score是"交叉验证分数"（Cross-Validation
+Score）的缩写。交叉验证是一种用于评估机器学习模型性能的技术，CV
+score是在交叉验证过程中生成的分数或指标。</p>
+<p>交叉验证的主要目的是评估模型的泛化性能，即模型在未见过的数据上的性能。这是通过将可用数据集分为多个子集（通常称为"折叠"或"折"）来实现的。然后，模型在这些折叠上进行多次训练和测试，以获得不同训练和测试数据组合的性能评估。</p>
+<p>CV score通常表示模型在交叉验证中的性能。具体来说，CV
+score通常是以下之一：</p>
+<ol type="1">
+<li><p><strong>K-Fold交叉验证分数</strong>：模型在K-Fold交叉验证中的性能。在K-Fold中，数据集被分成K个相等的子集，每个子集依次作为验证集，其余的作为训练集。CV
+score是K个验证集上性能评估的平均值。</p></li>
+<li><p><strong>Stratified
+K-Fold交叉验证分数</strong>：与K-Fold类似，但保持了类别分布的一致性。这对于不平衡数据集非常有用，因为它确保每个折中的类别分布都与整个数据集中的分布一致。</p></li>
+<li><p><strong>Leave-One-Out交叉验证分数</strong>：每次将一个样本作为验证集，其余的样本作为训练集。这种方法在小型数据集上非常有效，但计算成本较高。</p></li>
+<li><p><strong>交叉验证指标</strong>：不仅限于准确度，还可以是其他评估指标，如F1分数、ROC-AUC、均方误差等，用于衡量模型性能。</p></li>
+</ol>
+<p>CV
+score通常用于选择最佳的模型超参数、比较不同模型的性能以及确定模型是否过拟合或欠拟合。CV
+score提供了对模型在不同数据子集上的一致性性能评估，有助于更好地了解模型的泛化能力。</p>
+<h2 id="峰度kurtosis">峰度（Kurtosis）</h2>
+<p>峰度（Kurtosis）是描述随机变量概率分布尾部形状的统计量之一。它用于衡量数据分布的尖峰或平坦度。峰度告诉我们数据分布尾部的形状，以及相对于正态分布的尾部形状是如何变化的。峰度可以是正数、负数或零，具体含义如下：</p>
+<ol type="1">
+<li><p><strong>正峰度（Positive
+Kurtosis）</strong>：正峰度表示数据分布具有比正态分布更尖峰的尾部。正峰度值较大表示分布尾部更尖锐，可能有更多的极端值（outliers）。</p></li>
+<li><p><strong>负峰度（Negative
+Kurtosis）</strong>：负峰度表示数据分布具有比正态分布更平坦的尾部。负峰度值较小表示分布的尾部相对较平坦，数据集中的值可能比正态分布更分散。</p></li>
+<li><p><strong>正常峰度（Mesokurtic）</strong>：正常峰度是指数据分布的尾部形状与正态分布相似，峰度值接近零。这意味着分布的尾部不太尖锐，也不太平坦，接近正态分布。</p></li>
+<li><p><strong>超过正态峰度（Leptokurtic）</strong>：超过正态峰度表示数据分布的尾部比正态分布更尖锐，峰度值大于零。</p></li>
+<li><p><strong>低于正态峰度（Platykurtic）</strong>：低于正态峰度表示数据分布的尾部比正态分布更平坦，峰度值小于零。</p></li>
+</ol>
+<p>峰度通常用于探索数据的形状，特别是在描述其尾部的情况下。然而，它并不提供有关数据集中心位置的信息，因此通常需要与其他统计量（如均值、方差、偏度等）一起使用，以更全面地了解数据的性质。</p>
+<p>在统计学和数据分析中，峰度可以通过不同的公式计算，最常见的是样本峰度和总体峰度。样本峰度是基于样本数据的估计，而总体峰度是基于整个总体的估计。不同的计算方法可能导致不同的峰度值。一般来说，峰度值越接近零，数据分布越接近正态分布。</p>
+<h2 id="偏度skewness">偏度（Skewness）</h2>
+<p>偏度（Skewness）是用于描述数据分布的不对称性或偏斜程度的统计量。它帮助了解数据集中数值在分布中的相对位置和分布的形状。偏度指示数据分布的尾部（长尾部）是向哪个方向倾斜的。偏度可以采用正值、负值或零，具体含义如下：</p>
+<ol type="1">
+<li><p><strong>正偏度（Positive
+Skewness）</strong>：正偏度表示数据分布的右侧尾部比左侧尾部更长，也就是数据分布偏向于较大的值。正偏度的偏度值为正。</p></li>
+<li><p><strong>负偏度（Negative
+Skewness）</strong>：负偏度表示数据分布的左侧尾部比右侧尾部更长，也就是数据分布偏向于较小的值。负偏度的偏度值为负。</p></li>
+<li><p><strong>无偏度（Zero
+Skewness）</strong>：无偏度表示数据分布的两侧尾部相对对称，没有明显的偏斜。无偏度的偏度值接近于零。</p></li>
+</ol>
+<p>偏度常用于研究数据的对称性或非对称性，以及分布中的异常情况。正偏度通常表示数据分布有一个长尾，其中包含一些极端的高值，而负偏度表示数据分布有一个长尾，其中包含一些极端的低值。</p>
+<p>偏度可以通过不同的公式来计算，其中最常见的是样本偏度和总体偏度。样本偏度是基于样本数据的估计，而总体偏度是基于整个总体的估计。在统计分析中，偏度是用来帮助解释数据分布的重要统计量之一，它通常与其他统计特征（如均值、方差、峰度等）一起使用，以更全面地了解数据的性质。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+<div class="end-slogan" style="text-align:center;font-size:22px;letter-spacing:10px;user-select:none;color:#bbb;"><br>----------- 本文结束啦<i class="fa fa-star"></i>感谢您阅读 -----------<br><br></div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="月牙天冲 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/wudizhangzhi">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">Github</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" rel="tag"># 基础概念</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E6%A8%A1%E5%9E%8B.html" rel="prev" title="从零开始机器学习-基础模型">
+                  <i class="fa fa-angle-left"></i> 从零开始机器学习-基础模型
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E5%8F%82%E6%95%B0.html" rel="next" title="从零开始机器学习-基础参数">
+                  从零开始机器学习-基础参数 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">苏ICP备20034520号 </a>
+      <img src="/images/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" alt="">
+  </div>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">月牙天冲</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">116k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:01</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"S6Io5toxz5Om8Ldu9HS662lY-gzGzoHsz","app_key":"DIuUso0SxwWwS71czjaJBJS6","server_url":"blog.yueyawochong.cn","security":true}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wudizhangzhi","repo":"wudizhangzhi.github.io","client_id":"fb23fff108da3dab7505","client_secret":"151873efd80f60bc2d61ea71f0181cc44a6fccc2","admin_user":"wudizhangzhi","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"c46fd7902424944bfe4ae9041df462c3"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
